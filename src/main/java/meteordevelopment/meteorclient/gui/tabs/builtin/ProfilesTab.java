@@ -139,7 +139,7 @@ public class ProfilesTab extends Tab {
             table.row();
 
             // On Server Join
-            table.add(theme.label("Load when Joining:"));
+            table.add(theme.label("加入时加载:"));
             WTable ips = table.add(theme.table()).widget();
             initTable(ips, list);
             table.row();
@@ -148,37 +148,37 @@ public class ProfilesTab extends Tab {
             table.row();
 
             // Accounts
-            table.add(theme.label("Accounts:"));
+            table.add(theme.label("账户:"));
             WCheckbox accountsBool = table.add(theme.checkbox(ogProfile.accounts)).widget();
             accountsBool.action = () -> newProfile.accounts = accountsBool.checked;
             table.row();
 
             // Config
-            table.add(theme.label("Config:"));
+            table.add(theme.label("配置:"));
             WCheckbox configBool = table.add(theme.checkbox(ogProfile.config)).widget();
             configBool.action = () -> newProfile.config = configBool.checked;
             table.row();
 
             // Friends
-            table.add(theme.label("Friends:"));
+            table.add(theme.label("好友:"));
             WCheckbox friendsBool = table.add(theme.checkbox(ogProfile.friends)).widget();
             friendsBool.action = () -> newProfile.friends = friendsBool.checked;
             table.row();
 
             // Macros
-            table.add(theme.label("Macros:"));
+            table.add(theme.label("宏:"));
             WCheckbox macrosBool = table.add(theme.checkbox(ogProfile.macros)).widget();
             macrosBool.action = () -> newProfile.macros = macrosBool.checked;
             table.row();
 
             // Modules
-            table.add(theme.label("Modules:"));
+            table.add(theme.label("模块:"));
             WCheckbox modulesBool = table.add(theme.checkbox(ogProfile.modules)).widget();
             modulesBool.action = () -> newProfile.modules = modulesBool.checked;
             table.row();
 
             // Waypoints
-            table.add(theme.label("Waypoints:"));
+            table.add(theme.label("航点:"));
             WCheckbox waypointsBool = table.add(theme.checkbox(ogProfile.waypoints)).widget();
             waypointsBool.action = () -> newProfile.waypoints = waypointsBool.checked;
             table.row();
@@ -193,7 +193,7 @@ public class ProfilesTab extends Tab {
             table.row();
 
             // Save
-            WButton save = table.add(theme.button("Save")).expandX().widget();
+            WButton save = table.add(theme.button("保存")).expandX().widget();
             save.action = () -> {
                 if (newProfile.name.isEmpty()) return;
 
