@@ -133,7 +133,7 @@ public class ProfilesTab extends Tab {
             table.row();
 
             // On Launch
-            table.add(theme.label("Load on Launch:"));
+            table.add(theme.label("启动时加载:"));
             WCheckbox onLaunchCheckbox = table.add(theme.checkbox(ogProfile.onLaunch)).widget();
             onLaunchCheckbox.action = () -> newProfile.onLaunch = onLaunchCheckbox.checked;
             table.row();
