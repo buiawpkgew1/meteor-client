@@ -27,7 +27,7 @@ import net.minecraft.client.gui.screen.Screen;
 
 public class FriendsTab extends Tab {
     public FriendsTab() {
-        super("Friends");
+        super("好友");
     }
 
     @Override
@@ -49,8 +49,8 @@ public class FriendsTab extends Tab {
             SettingGroup sgGeneral = settings.getDefaultGroup();
 
             sgGeneral.add(new ColorSetting.Builder()
-                    .name("color")
-                    .description("The color used to show friends.")
+                    .name("颜色")
+                    .description("用来显示好友的颜色.")
                     .defaultValue(new SettingColor(0, 255, 180))
                     .onChanged(Friends.get().color::set)
                     .onModuleActivated(colorSetting -> colorSetting.set(Friends.get().color))
@@ -59,7 +59,7 @@ public class FriendsTab extends Tab {
 
             sgGeneral.add(new BoolSetting.Builder()
                     .name("attack")
-                    .description("Whether to attack friends.")
+                    .description("是否攻击好友.")
                     .defaultValue(false)
                     .onChanged(aBoolean -> Friends.get().attack = aBoolean)
                     .onModuleActivated(booleanSetting -> booleanSetting.set(Friends.get().attack))
