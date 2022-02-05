@@ -35,7 +35,7 @@ public class BlockDataSettingScreen extends WindowScreen {
     private String filterText = "";
 
     public BlockDataSettingScreen(GuiTheme theme, BlockDataSetting<?> setting) {
-        super(theme, "Configure Blocks");
+        super(theme, "配置块");
 
         this.setting = setting;
     }
