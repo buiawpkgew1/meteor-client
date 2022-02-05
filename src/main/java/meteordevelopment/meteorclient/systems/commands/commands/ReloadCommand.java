@@ -15,7 +15,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class ReloadCommand extends Command {
     public ReloadCommand() {
-        super("reload", "Reloads the config, modules, friends, macros, accounts and capes.");
+        super("reload", "重新加载配置、模块、好友、宏、帐户和披风.");
     }
 
     @Override
