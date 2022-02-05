@@ -64,7 +64,7 @@ public class TheAlteningAccount extends Account<TheAlteningAccount> {
             cache.username = auth.getSelectedProfile().getName();
             return true;
         } catch (AuthenticationException e) {
-            MeteorClient.LOG.error("Failed to login with TheAltening.");
+            MeteorClient.LOG.error("使用 TheAltening 登录失败.");
             return false;
         }
     }
