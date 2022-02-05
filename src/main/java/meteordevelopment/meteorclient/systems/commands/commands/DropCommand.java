@@ -24,48 +24,48 @@ public class DropCommand extends Command {
     private static final SimpleCommandExceptionType NO_SUCH_ITEM = new SimpleCommandExceptionType(new LiteralText("Could not find an item with that name!"));
 
     public DropCommand() {
-        super("drop", "Automatically drops specified items.");
+        super("drop", "自动掉落指定物品.");
     }
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
 
         // Main Hand
-        builder.then(literal("hand").executes(context -> drop(player -> player.dropSelectedItem(true))));
+        builder.then(literal("主手").executes(context -> drop(player -> player.dropSelectedItem(true))));
 
         // Offhand
-        builder.then(literal("offhand").executes(context -> drop(player -> InvUtils.drop().slotOffhand())));
+        builder.then(literal("副手").executes(context -> drop(player -> InvUtils.drop().slotOffhand())));
 
         // Hotbar
-        builder.then(literal("hotbar").executes(context -> drop(player -> {
+        builder.then(literal("快捷栏").executes(context -> drop(player -> {
             for (int i = 0; i < 9; i++) {
                 InvUtils.drop().slotHotbar(i);
             }
         })));
 
         // Main Inv
-        builder.then(literal("inventory").executes(context -> drop(player -> {
+        builder.then(literal("库存").executes(context -> drop(player -> {
             for (int i = 9; i < player.getInventory().main.size(); i++) {
                 InvUtils.drop().slotMain(i - 9);
             }
         })));
 
         // Hotbar and main inv
-        builder.then(literal("all").executes(context -> drop(player -> {
+        builder.then(literal("所有").executes(context -> drop(player -> {
                     for (int i = 0; i < player.getInventory().size(); i++) {
                         InvUtils.drop().slot(i);
                     }
                 })));
 
         // Armor
-        builder.then(literal("armor").executes(context -> drop(player -> {
+        builder.then(literal("盔甲").executes(context -> drop(player -> {
                     for (int i = 0; i < player.getInventory().armor.size(); i++) {
                         InvUtils.drop().slotArmor(i);
                     }
                 })));
 
         // Specific item
-        builder.then(argument("item", ItemStackArgumentType.itemStack()).executes(context -> drop(player -> {
+        builder.then(argument("物品", ItemStackArgumentType.itemStack()).executes(context -> drop(player -> {
             ItemStack stack = ItemStackArgumentType.getItemStackArgument(context, "item").createStack(1, false);
 
             if (stack == null || stack.getItem() == Items.AIR) throw NO_SUCH_ITEM.create();
