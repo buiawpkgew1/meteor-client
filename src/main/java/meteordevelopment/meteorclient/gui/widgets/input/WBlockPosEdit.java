@@ -42,7 +42,7 @@ public class WBlockPosEdit extends WHorizontalList {
         addTextBox();
 
         if (canUpdate()) {
-            WButton click = add(theme.button("Click")).expandX().widget();
+            WButton click = add(theme.button("点击")).expandX().widget();
             click.action = () -> {
                 String sb = "Click!\n" + "Right click to pick a new position.\n" +
                     "Left click to cancel.";
@@ -54,7 +54,7 @@ public class WBlockPosEdit extends WHorizontalList {
                 mc.setScreen(null);
             };
 
-            WButton here = add(theme.button("Set Here")).expandX().widget();
+            WButton here = add(theme.button("设置在这里")).expandX().widget();
             here.action = () -> {
                 lastValue = value;
                 set(new BlockPos(mc.player.getBlockPos()));
