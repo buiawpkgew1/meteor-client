@@ -59,12 +59,12 @@ public class PremiumAccount extends Account<PremiumAccount> {
             cache.username = auth.getSelectedProfile().getName();
             return true;
         } catch (AuthenticationUnavailableException e) {
-            MeteorClient.LOG.error("Failed to contact the authentication server.");
+            MeteorClient.LOG.error("联系认证服务器失败.");
             return false;
         } catch (AuthenticationException e) {
-            if (e.getMessage().contains("Invalid username or password") || e.getMessage().contains("account migrated"))
-                MeteorClient.LOG.error("Wrong password.");
-            else MeteorClient.LOG.error("Failed to contact the authentication server.");
+            if (e.getMessage().contains("用户名或密码无效") || e.getMessage().contains("帐号已迁移"))
+                MeteorClient.LOG.error("密码错误.");
+            else MeteorClient.LOG.error("联系认证服务器失败.");
             return false;
         }
     }

@@ -34,15 +34,15 @@ public class EditBookTitleAndAuthorScreen extends WindowScreen {
     public void initWidgets() {
         WTable t = add(theme.table()).expandX().widget();
 
-        t.add(theme.label("Title"));
+        t.add(theme.label("标题"));
         WTextBox title = t.add(theme.textBox(itemStack.getOrCreateNbt().getString("title"))).minWidth(220).expandX().widget();
         t.row();
 
-        t.add(theme.label("Author"));
+        t.add(theme.label("作者"));
         WTextBox author = t.add(theme.textBox(itemStack.getNbt().getString("author"))).minWidth(220).expandX().widget();
         t.row();
 
-        t.add(theme.button("Done")).expandX().widget().action = () -> {
+        t.add(theme.button("完成")).expandX().widget().action = () -> {
             itemStack.getNbt().putString("author", author.get());
             itemStack.getNbt().putString("title", title.get());
 

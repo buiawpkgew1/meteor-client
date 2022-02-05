@@ -20,13 +20,13 @@ public class AddAlteningAccountScreen extends AddAccountScreen {
         WTable t = add(theme.table()).widget();
 
         // Token
-        t.add(theme.label("Token: "));
+        t.add(theme.label("令牌: "));
         WTextBox token = t.add(theme.textBox("")).minWidth(400).expandX().widget();
         token.setFocused(true);
         t.row();
 
         // Add
-        add = t.add(theme.button("Add")).expandX().widget();
+        add = t.add(theme.button("添加")).expandX().widget();
         add.action = () -> {
             if (!token.get().isEmpty()) {
                 AccountsScreen.addAccount(this, parent, new TheAlteningAccount(token.get()));

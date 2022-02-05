@@ -37,7 +37,7 @@ public class PlayerListEntryArgumentType implements ArgumentType<PlayerListEntry
     }
 
     private static final DynamicCommandExceptionType NO_SUCH_PLAYER = new DynamicCommandExceptionType(o ->
-            new LiteralText("Player list entry with name " + o + " doesn't exist."));
+            new LiteralText("名称为 " + o + " 的玩家列表条目不存在."));
 
     public static PlayerListEntryArgumentType playerListEntry() {
         return new PlayerListEntryArgumentType();

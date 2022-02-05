@@ -73,7 +73,7 @@ public class MacrosTab extends Tab {
             }
 
             // New
-            WButton create = add(theme.button("Create")).expandX().widget();
+            WButton create = add(theme.button("创建")).expandX().widget();
             create.action = () -> mc.setScreen(new MacroEditorScreen(theme, null));
         }
 
@@ -97,7 +97,7 @@ public class MacrosTab extends Tab {
         private boolean binding;
 
         public MacroEditorScreen(GuiTheme theme, Macro m) {
-            super(theme, m == null ? "Create Macro" : "Edit Macro");
+            super(theme, m == null ? "创建宏" : "编辑宏");
 
             isNew = m == null;
             macro = isNew ? new Macro() : m;
