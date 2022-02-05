@@ -37,7 +37,7 @@ public class PlayerArgumentType implements ArgumentType<PlayerEntity> {
     }
 
     private static final DynamicCommandExceptionType NO_SUCH_PLAYER = new DynamicCommandExceptionType(o ->
-            new LiteralText("Player with name " + o + " doesn't exist."));
+            new LiteralText("名称为 " + o + " 的玩家不存在."));
 
     public static PlayerArgumentType player() {
         return new PlayerArgumentType();
