@@ -21,18 +21,18 @@ public class AddPremiumAccountScreen extends AddAccountScreen {
         WTable t = add(theme.table()).widget();
 
         // Email
-        t.add(theme.label("Email: "));
+        t.add(theme.label("电子邮件: "));
         WTextBox email = t.add(theme.textBox("")).minWidth(400).expandX().widget();
         email.setFocused(true);
         t.row();
 
         // Password
-        t.add(theme.label("Password: "));
+        t.add(theme.label("密码: "));
         WTextBox password = t.add(theme.textBox("")).minWidth(400).expandX().widget();
         t.row();
 
         // Add
-        add = t.add(theme.button("Add")).expandX().widget();
+        add = t.add(theme.button("添加")).expandX().widget();
         add.action = () -> {
             PremiumAccount account = new PremiumAccount(email.get(), password.get());
             if (!email.get().isEmpty() && !password.get().isEmpty() && email.get().contains("@") && !Accounts.get().exists(account)) {
