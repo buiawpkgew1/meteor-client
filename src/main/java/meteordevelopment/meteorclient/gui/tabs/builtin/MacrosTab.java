@@ -73,7 +73,7 @@ public class MacrosTab extends Tab {
             }
 
             // New
-            WButton create = add(theme.button("Create")).expandX().widget();
+            WButton create = add(theme.button("创建")).expandX().widget();
             create.action = () -> mc.setScreen(new MacroEditorScreen(theme, null));
         }
 
@@ -97,7 +97,7 @@ public class MacrosTab extends Tab {
         private boolean binding;
 
         public MacroEditorScreen(GuiTheme theme, Macro m) {
-            super(theme, m == null ? "Create Macro" : "Edit Macro");
+            super(theme, m == null ? "创建宏" : "编辑宏");
 
             isNew = m == null;
             macro = isNew ? new Macro() : m;
@@ -112,14 +112,14 @@ public class MacrosTab extends Tab {
             // Name
             WTable t = add(theme.table()).widget();
 
-            t.add(theme.label("Name:"));
+            t.add(theme.label("名称:"));
             WTextBox name = t.add(theme.textBox(m == null ? "" : macro.name)).minWidth(400).expandX().widget();
             name.setFocused(true);
             name.action = () -> macro.name = name.get().trim();
             t.row();
 
             // Messages
-            t.add(theme.label("Messages:")).padTop(4).top();
+            t.add(theme.label("留言:")).padTop(4).top();
             WTable lines = t.add(theme.table()).widget();
             initTable(lines);
 
@@ -128,7 +128,7 @@ public class MacrosTab extends Tab {
             keybind.actionOnSet = () -> binding = true;
 
             // Apply
-            WButton apply = add(theme.button(isNew ? "Add" : "Apply")).expandX().widget();
+            WButton apply = add(theme.button(isNew ? "添加" : "申请")).expandX().widget();
             apply.action = () -> {
                 if (isNew) {
                     if (macro.name != null && !macro.name.isEmpty() && macro.messages.size() > 0 && macro.keybind.isSet()) {

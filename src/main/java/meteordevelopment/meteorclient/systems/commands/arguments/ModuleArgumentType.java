@@ -29,7 +29,7 @@ public class ModuleArgumentType implements ArgumentType<Module> {
             .collect(Collectors.toList());
 
     private static final DynamicCommandExceptionType NO_SUCH_MODULE = new DynamicCommandExceptionType(o ->
-            new LiteralText("Module with name " + o + " doesn't exist."));
+            new LiteralText("名称为" + o + " 的模块不存在."));
 
     public static ModuleArgumentType module() {
         return new ModuleArgumentType();

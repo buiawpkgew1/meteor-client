@@ -31,8 +31,8 @@ public abstract class AddAccountScreen extends WindowScreen {
             }
         }
 
-        else if (!add.getText().equals("Add")) {
-            add.set("Add");
+        else if (!add.getText().equals("添加")) {
+            add.set("添加");
         }
     }
 

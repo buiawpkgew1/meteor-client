@@ -63,7 +63,7 @@ public class ModuleScreen extends WindowScreen {
         // Toggle on bind release
         WHorizontalList tobr = section.add(theme.horizontalList()).widget();
 
-        tobr.add(theme.label("Toggle on bind release: "));
+        tobr.add(theme.label("切换绑定释放: "));
         WCheckbox tobrC = tobr.add(theme.checkbox(module.toggleOnBindRelease)).widget();
         tobrC.action = () -> module.toggleOnBindRelease = tobrC.checked;
 

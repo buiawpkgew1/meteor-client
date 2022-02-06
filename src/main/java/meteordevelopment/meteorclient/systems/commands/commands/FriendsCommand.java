@@ -29,7 +29,7 @@ import static net.minecraft.command.CommandSource.suggestMatching;
 public class FriendsCommand extends Command {
 
     public FriendsCommand() {
-        super("friends", "Manages friends.");
+        super("friends", "管理朋友.");
     }
 
     @Override

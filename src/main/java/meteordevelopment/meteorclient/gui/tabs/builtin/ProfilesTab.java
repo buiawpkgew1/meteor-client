@@ -30,7 +30,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 public class ProfilesTab extends Tab {
 
     public ProfilesTab() {
-        super("Profiles");
+        super("简介");
     }
 
     @Override
@@ -58,11 +58,11 @@ public class ProfilesTab extends Tab {
                 table.add(theme.label(profile.name)).expandCellX();
 
                 // Save
-                WButton save = table.add(theme.button("Save")).widget();
+                WButton save = table.add(theme.button("保存")).widget();
                 save.action = profile::save;
 
                 // Load
-                WButton load = table.add(theme.button("Load")).widget();
+                WButton load = table.add(theme.button("加载")).widget();
                 load.action = profile::load;
 
                 // Edit
@@ -83,7 +83,7 @@ public class ProfilesTab extends Tab {
             table.row();
 
             // Create
-            WButton create = table.add(theme.button("Create")).expandX().widget();
+            WButton create = table.add(theme.button("创建")).expandX().widget();
             create.action = () -> mc.setScreen(new EditProfileScreen(theme, null, this::reload));
         }
 
@@ -105,7 +105,7 @@ public class ProfilesTab extends Tab {
         private final Runnable action;
 
         public EditProfileScreen(GuiTheme theme, Profile profile, Runnable action) {
-            super(theme, profile == null ? "New Profile" : "Edit Profile");
+            super(theme, profile == null ? "新的配置文件" : "编辑个人资料");
 
             this.isNew = profile == null;
             this.newProfile = new Profile();
@@ -124,7 +124,7 @@ public class ProfilesTab extends Tab {
             WTable table = add(theme.table()).expandX().widget();
 
             // Name
-            table.add(theme.label("Name:"));
+            table.add(theme.label("名字:"));
             WTextBox nameInput = table.add(theme.textBox(ogProfile.name, this::nameFilter)).minWidth(400).expandX().widget();
             nameInput.action = () -> newProfile.name = nameInput.get();
             table.row();
@@ -133,13 +133,13 @@ public class ProfilesTab extends Tab {
             table.row();
 
             // On Launch
-            table.add(theme.label("Load on Launch:"));
+            table.add(theme.label("启动时加载:"));
             WCheckbox onLaunchCheckbox = table.add(theme.checkbox(ogProfile.onLaunch)).widget();
             onLaunchCheckbox.action = () -> newProfile.onLaunch = onLaunchCheckbox.checked;
             table.row();
 
             // On Server Join
-            table.add(theme.label("Load when Joining:"));
+            table.add(theme.label("加入时加载:"));
             WTable ips = table.add(theme.table()).widget();
             initTable(ips, list);
             table.row();
@@ -148,37 +148,37 @@ public class ProfilesTab extends Tab {
             table.row();
 
             // Accounts
-            table.add(theme.label("Accounts:"));
+            table.add(theme.label("账户:"));
             WCheckbox accountsBool = table.add(theme.checkbox(ogProfile.accounts)).widget();
             accountsBool.action = () -> newProfile.accounts = accountsBool.checked;
             table.row();
 
             // Config
-            table.add(theme.label("Config:"));
+            table.add(theme.label("配置:"));
             WCheckbox configBool = table.add(theme.checkbox(ogProfile.config)).widget();
             configBool.action = () -> newProfile.config = configBool.checked;
             table.row();
 
             // Friends
-            table.add(theme.label("Friends:"));
+            table.add(theme.label("好友:"));
             WCheckbox friendsBool = table.add(theme.checkbox(ogProfile.friends)).widget();
             friendsBool.action = () -> newProfile.friends = friendsBool.checked;
             table.row();
 
             // Macros
-            table.add(theme.label("Macros:"));
+            table.add(theme.label("宏:"));
             WCheckbox macrosBool = table.add(theme.checkbox(ogProfile.macros)).widget();
             macrosBool.action = () -> newProfile.macros = macrosBool.checked;
             table.row();
 
             // Modules
-            table.add(theme.label("Modules:"));
+            table.add(theme.label("模块:"));
             WCheckbox modulesBool = table.add(theme.checkbox(ogProfile.modules)).widget();
             modulesBool.action = () -> newProfile.modules = modulesBool.checked;
             table.row();
 
             // Waypoints
-            table.add(theme.label("Waypoints:"));
+            table.add(theme.label("航点:"));
             WCheckbox waypointsBool = table.add(theme.checkbox(ogProfile.waypoints)).widget();
             waypointsBool.action = () -> newProfile.waypoints = waypointsBool.checked;
             table.row();
@@ -193,7 +193,7 @@ public class ProfilesTab extends Tab {
             table.row();
 
             // Save
-            WButton save = table.add(theme.button("Save")).expandX().widget();
+            WButton save = table.add(theme.button("保存")).expandX().widget();
             save.action = () -> {
                 if (newProfile.name.isEmpty()) return;
 

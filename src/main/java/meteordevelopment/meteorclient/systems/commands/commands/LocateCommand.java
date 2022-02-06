@@ -59,7 +59,7 @@ public class LocateCommand extends Command {
     );
 
     public LocateCommand() {
-        super("locate", "Locates structures", "loc");
+        super("locate", "定位结构", "loc");
     }
 
     @Override
@@ -67,24 +67,24 @@ public class LocateCommand extends Command {
         builder.then(literal("buried_treasure").executes(s -> {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
             if (stack.getItem() != Items.FILLED_MAP) {
-                error("You need to hold a treasure map first");
+                error("你需要先拿着藏宝图");
                 return SINGLE_SUCCESS;
             }
             NbtCompound tag = stack.getNbt();
             NbtList nbt1 = (NbtList) tag.get("Decorations");
             if (nbt1 == null) {
-                error("Couldn't locate the cross. Are you holding a (highlight)treasure map(default)?");
+                error("找不到十字架。 您是否持有(突出显示)藏宝图(默认)?");
                 return SINGLE_SUCCESS;
             }
 
             NbtCompound iconNBT = nbt1.getCompound(0);
             if (iconNBT == null) {
-                error("Couldn't locate the cross. Are you holding a (highlight)treasure map(default)?");
+                error("找不到十字架。 您是否持有(突出显示)藏宝图(默认)?");
                 return SINGLE_SUCCESS;
             }
 
             Vec3d coords = new Vec3d(iconNBT.getDouble("x"),iconNBT.getDouble("y"),iconNBT.getDouble("z"));
-            BaseText text = new LiteralText("Buried Treasure located at ");
+            BaseText text = new LiteralText("埋藏的宝藏位于 ");
             text.append(ChatUtils.formatCoords(coords));
             text.append(".");
             info(text);
@@ -94,7 +94,7 @@ public class LocateCommand extends Command {
         builder.then(literal("lodestone").executes(s -> {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
             if (stack.getItem() != Items.COMPASS) {
-                error("You need to hold a lodestone compass");
+                error("你需要拿着一个磁石指南针");
                 return SINGLE_SUCCESS;
             }
             NbtCompound tag = stack.getNbt();
@@ -109,7 +109,7 @@ public class LocateCommand extends Command {
             }
 
             Vec3d coords = new Vec3d(nbt1.getDouble("X"),nbt1.getDouble("Y"),nbt1.getDouble("Z"));
-            BaseText text = new LiteralText("Lodestone located at ");
+            BaseText text = new LiteralText("磁石位于 ");
             text.append(ChatUtils.formatCoords(coords));
             text.append(".");
             info(text);
@@ -119,7 +119,7 @@ public class LocateCommand extends Command {
         builder.then(literal("mansion").executes(s -> {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
             if (stack.getItem() != Items.FILLED_MAP) {
-                error("You need to hold a woodland explorer map first");
+                error("你需要先拿着一张林地探险者地图");
                 return SINGLE_SUCCESS;
             }
             NbtCompound tag = stack.getNbt();
@@ -136,7 +136,7 @@ public class LocateCommand extends Command {
             }
 
             Vec3d coords = new Vec3d(iconNBT.getDouble("x"),iconNBT.getDouble("y"),iconNBT.getDouble("z"));
-            BaseText text = new LiteralText("Mansion located at ");
+            BaseText text = new LiteralText("豪宅位于 ");
             text.append(ChatUtils.formatCoords(coords));
             text.append(".");
             info(text);

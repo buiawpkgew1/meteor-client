@@ -21,7 +21,7 @@ public class AddCrackedAccountScreen extends AddAccountScreen {
         WTable t = add(theme.table()).widget();
 
         // Name
-        t.add(theme.label("Name: "));
+        t.add(theme.label("名字: "));
         WTextBox name = t.add(theme.textBox("", (text, c) ->
             // Username can't contain spaces
             c != ' '
@@ -30,7 +30,7 @@ public class AddCrackedAccountScreen extends AddAccountScreen {
         t.row();
 
         // Add
-        add = t.add(theme.button("Add")).expandX().widget();
+        add = t.add(theme.button("添加")).expandX().widget();
         add.action = () -> {
             if (!name.get().isEmpty() && (name.get().length() < 17) && name.get().matches("^[a-zA-Z0-9_]+$")) {
                 CrackedAccount account = new CrackedAccount(name.get());
