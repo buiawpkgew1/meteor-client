@@ -19,7 +19,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class WaypointCommand extends Command {
     public WaypointCommand() {
-        super("waypoint", "Manages waypoints.", "wp");
+        super("waypoint", "管理航点.", "wp");
     }
 
     @Override

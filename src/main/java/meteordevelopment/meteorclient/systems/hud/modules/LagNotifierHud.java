@@ -15,7 +15,7 @@ public class LagNotifierHud extends DoubleTextHudElement {
     private static final Color YELLOW = new Color(255, 255, 5);
 
     public LagNotifierHud(HUD hud) {
-        super(hud, "lag-notifier", "Displays if the server is lagging in ticks.", "Time since last tick ");
+        super(hud, "滞后通知器", "显示服务器是否滞后,单位为 ticks.", "自上次打钩以来的时间 ");
     }
 
     @Override

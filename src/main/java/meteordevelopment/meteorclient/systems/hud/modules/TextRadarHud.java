@@ -25,8 +25,8 @@ public class TextRadarHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Integer> limit = sgGeneral.add(new IntSetting.Builder()
-        .name("limit")
-        .description("The max number of players to show.")
+        .name("限度")
+        .description("显示的最大玩家数量.")
         .defaultValue(10)
         .min(1)
         .sliderRange(1, 20)
@@ -34,15 +34,15 @@ public class TextRadarHud extends HudElement {
     );
 
     private final Setting<Boolean> distance = sgGeneral.add(new BoolSetting.Builder()
-        .name("distance")
-        .description("Shows the distance to the player next to their name.")
+        .name("距离")
+        .description("在球员的名字旁边显示与他们的距离.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> friends = sgGeneral.add(new BoolSetting.Builder()
-        .name("display-friends")
-        .description("Whether to show friends or not.")
+        .name("显示-朋友")
+        .description("是否给朋友看.")
         .defaultValue(true)
         .build()
     );
@@ -50,12 +50,12 @@ public class TextRadarHud extends HudElement {
     private final List<AbstractClientPlayerEntity> players = new ArrayList<>();
 
     public TextRadarHud(HUD hud) {
-        super(hud, "player-info", "Displays players in your visual range.", false);
+        super(hud, "玩家信息", "显示你视觉范围内的球员.", false);
     }
 
     @Override
     public void update(HudRenderer renderer) {
-        double width = renderer.textWidth("Players:");
+        double width = renderer.textWidth("玩家:");
         double height = renderer.textHeight();
 
         if (mc.world == null) {
@@ -82,7 +82,7 @@ public class TextRadarHud extends HudElement {
         double x = box.getX();
         double y = box.getY();
 
-        renderer.text("Players:", x, y, hud.secondaryColor.get());
+        renderer.text("玩家:", x, y, hud.secondaryColor.get());
 
         if (mc.world == null) return;
 

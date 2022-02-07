@@ -19,8 +19,8 @@ public class TotemHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale.")
+        .name("规模")
+        .description("规模.")
         .defaultValue(2)
         .min(1)
         .sliderRange(1, 5)
@@ -28,7 +28,7 @@ public class TotemHud extends HudElement {
     );
 
     public TotemHud(HUD hud) {
-        super(hud, "totems", "Displays the amount of totems in your inventory.", false);
+        super(hud, "图腾", "显示你库存中的图腾数量.", false);
     }
 
     @Override

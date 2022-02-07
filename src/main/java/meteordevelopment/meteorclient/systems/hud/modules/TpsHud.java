@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.utils.world.TickRate;
 
 public class TpsHud extends DoubleTextHudElement {
     public TpsHud(HUD hud) {
-        super(hud, "tps", "Displays the server's TPS.", "TPS: ");
+        super(hud, "tps", "显示服务器的 TPS.", "TPS: ");
     }
 
     @Override

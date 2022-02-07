@@ -33,7 +33,7 @@ public class NameHistoryCommand extends Command {
     private static final Type RESPONSE_TYPE = new TypeToken<List<NameHistoryObject>>() {}.getType();
 
     public NameHistoryCommand() {
-        super("name-history", "Provides a list of a players previous names from the Mojang api.", "history", "names");
+        super("name-history", "提供来自 Mojang api 的玩家先前名称的列表.", "history", "names");
     }
 
     @Override

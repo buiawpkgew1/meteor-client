@@ -22,21 +22,21 @@ public class LookingAtHud extends DoubleTextHudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Boolean> position = sgGeneral.add(new BoolSetting.Builder()
-        .name("position")
-        .description("Displays crosshair target's position.")
+        .name("位置")
+        .description("显示十字准星目标的位置.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> waterLogged = sgGeneral.add(new BoolSetting.Builder()
-        .name("waterlogged-status")
-        .description("Displays if a block is waterlogged or not")
+        .name("内涝-状态")
+        .description("显示一个区块是否有水渍")
         .defaultValue(true)
         .build()
     );
 
     public LookingAtHud(HUD hud) {
-        super(hud, "looking-at", "Displays what entity or block you are looking at.", "Looking At: ");
+        super(hud, "looking-at", "显示你正在查看的实体或区块.", "Looking At: ");
     }
 
     @Override

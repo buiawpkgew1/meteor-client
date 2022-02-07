@@ -19,14 +19,14 @@ public class TimeHud extends DoubleTextHudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Type> timeType = sgGeneral.add(new EnumSetting.Builder<Type>()
-        .name("type")
-        .description("Which time to use.")
+        .name("类型")
+        .description("使用哪种时间.")
         .defaultValue(Type.Game)
         .build()
     );
 
     public TimeHud(HUD hud) {
-        super(hud, "time", "Displays the world time.", "Time: ");
+        super(hud, "时间", "显示世界时间.", "时间: ");
     }
 
     @Override

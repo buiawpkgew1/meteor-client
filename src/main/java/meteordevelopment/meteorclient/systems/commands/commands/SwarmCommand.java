@@ -38,7 +38,7 @@ public class SwarmCommand extends Command {
     private final static SimpleCommandExceptionType SWARM_NOT_ACTIVE = new SimpleCommandExceptionType(new LiteralText("The swarm module must be active to use this command."));
 
     public SwarmCommand() {
-        super("swarm", "Sends commands to connected swarm workers.");
+        super("swarm", "向连接的 swarm worker 发送命令.");
     }
 
     @Override
@@ -106,7 +106,7 @@ public class SwarmCommand extends Command {
                     swarm.host.sendMessage(context.getInput() + " " + mc.player.getEntityName());
                 }
                 else if (swarm.isWorker()) {
-                    error("The follow host command must be used by the host.");
+                    error("以下主机命令必须由主机使用.");
                 }
             }
             else {

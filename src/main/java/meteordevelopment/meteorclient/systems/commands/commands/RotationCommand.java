@@ -15,7 +15,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class RotationCommand extends Command {
     public RotationCommand() {
-        super("rotation", "Modifies your rotation.");
+        super("rotation", "修改你的旋转.");
     }
 
     @Override

@@ -42,7 +42,7 @@ public class ServerCommand extends Command {
     private Integer ticks = 0;
 
     public ServerCommand() {
-        super("server", "Prints server information");
+        super("server", "打印服务器信息");
     }
 
     @Override
@@ -168,7 +168,7 @@ public class ServerCommand extends Command {
         ticks++;
 
         if (ticks >= 5000) {
-            error("Plugins check timed out");
+            error("插件检查超时");
             MeteorClient.EVENT_BUS.unsubscribe(this);
             ticks = 0;
         }
@@ -183,7 +183,7 @@ public class ServerCommand extends Command {
                 Suggestions matches = packet.getSuggestions();
 
                 if (matches == null) {
-                    error("Invalid Packet.");
+                    error("无效数据包.");
                     return;
                 }
 
@@ -206,7 +206,7 @@ public class ServerCommand extends Command {
                 if (!plugins.isEmpty()) {
                     info("Plugins (%d): %s ", plugins.size(), Strings.join(plugins.toArray(new String[0]), ", "));
                 } else {
-                    error("No plugins found.");
+                    error("没有找到插件.");
                 }
 
                 ticks = 0;
@@ -214,7 +214,7 @@ public class ServerCommand extends Command {
             }
 
         } catch (Exception e) {
-            error("An error occurred while trying to find plugins");
+            error("尝试查找插件时出错");
             ticks = 0;
             MeteorClient.EVENT_BUS.unsubscribe(this);
         }

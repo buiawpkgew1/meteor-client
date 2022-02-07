@@ -9,7 +9,7 @@ import meteordevelopment.meteorclient.systems.hud.HUD;
 
 public class DurabilityHud extends DoubleTextHudElement {
     public DurabilityHud(HUD hud) {
-        super(hud, "durability", "Displays durability of the item you are holding.", "Durability: ");
+        super(hud, "耐用性", "显示你所持物品的耐久性.", "耐用性: ");
     }
 
     @Override

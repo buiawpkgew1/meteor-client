@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.systems.hud.HUD;
 
 public class FpsHud extends DoubleTextHudElement {
     public FpsHud(HUD hud) {
-        super(hud, "fps", "Displays your FPS.", "FPS: ");
+        super(hud, "fps", "显示你的 FPS.", "FPS: ");
     }
 
     @Override

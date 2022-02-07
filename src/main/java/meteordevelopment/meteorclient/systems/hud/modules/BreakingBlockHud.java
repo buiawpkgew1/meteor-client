@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.systems.hud.HUD;
 
 public class BreakingBlockHud extends DoubleTextHudElement {
     public BreakingBlockHud(HUD hud) {
-        super(hud, "breaking-block", "Displays percentage of the block you are breaking.", "Breaking Block: ");
+        super(hud, "突破口", "显示你正在破坏的区块的百分比.", "突破街区: ");
     }
 
     @Override

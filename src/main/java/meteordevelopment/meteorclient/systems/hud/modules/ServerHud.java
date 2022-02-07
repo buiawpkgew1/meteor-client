@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.utils.Utils;
 
 public class ServerHud extends DoubleTextHudElement {
     public ServerHud(HUD hud) {
-        super(hud, "server", "Displays the server you're currently in.", "Server: ");
+        super(hud, "服务器", "显示你当前所处的服务器.", "服务器: ");
     }
 
     @Override

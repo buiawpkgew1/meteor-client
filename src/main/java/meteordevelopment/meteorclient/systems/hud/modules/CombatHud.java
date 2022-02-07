@@ -46,8 +46,8 @@ public class CombatHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale.")
+        .name("规模")
+        .description("规模.")
         .defaultValue(2)
         .min(1)
         .sliderRange(1, 5)
@@ -55,8 +55,8 @@ public class CombatHud extends HudElement {
     );
 
     private final Setting<Double> range = sgGeneral.add(new DoubleSetting.Builder()
-        .name("range")
-        .description("The range to target players.")
+        .name("范围")
+        .description("目标球员的范围.")
         .defaultValue(100)
         .min(1)
         .sliderMax(200)
@@ -65,35 +65,35 @@ public class CombatHud extends HudElement {
 
     private final Setting<Boolean> displayPing = sgGeneral.add(new BoolSetting.Builder()
         .name("ping")
-        .description("Shows the player's ping.")
+        .description("显示玩家的 ping.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> displayDistance = sgGeneral.add(new BoolSetting.Builder()
-        .name("distance")
-        .description("Shows the distance between you and the player.")
+        .name("距离")
+        .description("显示你和玩家之间的距离.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<List<Enchantment>> displayedEnchantments = sgGeneral.add(new EnchantmentListSetting.Builder()
-        .name("displayed-enchantments")
-        .description("The enchantments that are shown on nametags.")
+        .name("显示的-魔法")
+        .description("铭牌上显示的魔力.")
         .defaultValue(getDefaultEnchantments())
         .build()
     );
 
     private final Setting<SettingColor> backgroundColor = sgGeneral.add(new ColorSetting.Builder()
-        .name("background-color")
-        .description("Color of background.")
+        .name("背景色")
+        .description("背景的颜色.")
         .defaultValue(new SettingColor(0, 0, 0, 64))
         .build()
     );
 
     private final Setting<SettingColor> enchantmentTextColor = sgGeneral.add(new ColorSetting.Builder()
-        .name("enchantment-color")
-        .description("Color of enchantment text.")
+        .name("魅力-颜色")
+        .description("魔法文本的颜色.")
         .defaultValue(new SettingColor(255, 255, 255))
         .build()
     );
@@ -123,46 +123,46 @@ public class CombatHud extends HudElement {
     );
 
     private final Setting<SettingColor> distColor1 = sgGeneral.add(new ColorSetting.Builder()
-        .name("distance-stage-1")
-        .description("The color when a player is within 10 blocks of you.")
+        .name("距离-阶段-1")
+        .description("当有玩家在你的 10 个区块内时的颜色.")
         .defaultValue(new SettingColor(255, 15, 15))
         .visible(displayDistance::get)
         .build()
     );
 
     private final Setting<SettingColor> distColor2 = sgGeneral.add(new ColorSetting.Builder()
-        .name("distance-stage-2")
-        .description("The color when a player is within 50 blocks of you.")
+        .name("距离-阶段-2")
+        .description("当有玩家在你的 50 个区块内时的颜色.")
         .defaultValue(new SettingColor(255, 150, 15))
         .visible(displayDistance::get)
         .build()
     );
 
     private final Setting<SettingColor> distColor3 = sgGeneral.add(new ColorSetting.Builder()
-        .name("distance-stage-3")
-        .description("The color when a player is greater then 50 blocks away from you.")
+        .name("距离-阶段-3")
+        .description("当玩家离你超过 50 个街区时的颜色.")
         .defaultValue(new SettingColor(15, 255, 15))
         .visible(displayDistance::get)
         .build()
     );
 
     private final Setting<SettingColor> healthColor1 = sgGeneral.add(new ColorSetting.Builder()
-        .name("health-stage-1")
-        .description("The color on the left of the health gradient.")
+        .name("健康-阶段-1")
+        .description("健康梯度左边的颜色.")
         .defaultValue(new SettingColor(255, 15, 15))
         .build()
     );
 
     private final Setting<SettingColor> healthColor2 = sgGeneral.add(new ColorSetting.Builder()
-        .name("health-stage-2")
-        .description("The color in the middle of the health gradient.")
+        .name("健康-阶段-2")
+        .description("健康梯度中间的颜色.")
         .defaultValue(new SettingColor(255, 150, 15))
         .build()
     );
 
     private final Setting<SettingColor> healthColor3 = sgGeneral.add(new ColorSetting.Builder()
-        .name("health-stage-3")
-        .description("The color on the right of the health gradient.")
+        .name("健康-阶段-3")
+        .description("健康梯度右边的颜色.")
         .defaultValue(new SettingColor(15, 255, 15))
         .build()
     );
@@ -170,7 +170,7 @@ public class CombatHud extends HudElement {
     private PlayerEntity playerEntity;
 
     public CombatHud(HUD hud) {
-        super(hud, "combat-info", "Displays information about your combat target.", false);
+        super(hud, "战斗信息", "显示有关你的战斗目标的信息.", false);
     }
 
     @Override

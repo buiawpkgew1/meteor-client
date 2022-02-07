@@ -27,15 +27,15 @@ public class HoleHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     public final Setting<List<Block>> safe = sgGeneral.add(new BlockListSetting.Builder()
-        .name("safe-blocks")
-        .description("Which blocks to consider safe.")
+        .name("安全块")
+        .description("哪些区块要考虑安全.")
         .defaultValue(Blocks.OBSIDIAN, Blocks.BEDROCK, Blocks.CRYING_OBSIDIAN, Blocks.NETHERITE_BLOCK)
         .build()
     );
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale.")
+        .name("规模")
+        .description("规模.")
         .defaultValue(2)
         .min(1)
         .sliderRange(1, 5)
@@ -46,7 +46,7 @@ public class HoleHud extends HudElement {
     private final Color OL_COLOR = new Color(255, 25, 25, 255);
 
     public HoleHud(HUD hud) {
-        super(hud, "hole", "Displays information about the hole you are standing in.", false);
+        super(hud, "洞", "显示你所站的洞的信息.", false);
     }
 
     @Override

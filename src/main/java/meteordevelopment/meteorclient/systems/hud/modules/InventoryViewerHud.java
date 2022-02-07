@@ -23,8 +23,8 @@ public class InventoryViewerHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale.")
+        .name("规模")
+        .description("规模.")
         .defaultValue(2)
         .min(1)
         .sliderRange(1, 5)
@@ -32,15 +32,15 @@ public class InventoryViewerHud extends HudElement {
     );
 
     private final Setting<Background> background = sgGeneral.add(new EnumSetting.Builder<Background>()
-        .name("background")
-        .description("Background of inventory viewer.")
+        .name("背景")
+        .description("库存查看器的背景.")
         .defaultValue(Background.Texture)
         .build()
     );
 
     private final Setting<SettingColor> color = sgGeneral.add(new ColorSetting.Builder()
-        .name("background-color")
-        .description("Color of the background.")
+        .name("背景色")
+        .description("背景的颜色.")
         .defaultValue(new SettingColor(255, 255, 255))
         .visible(() -> background.get() != Background.None)
         .build()
@@ -49,7 +49,7 @@ public class InventoryViewerHud extends HudElement {
     private final ItemStack[] editorInv;
 
     public InventoryViewerHud(HUD hud) {
-        super(hud, "inventory-viewer", "Displays your inventory.");
+        super(hud, "库存查看器", "显示你的库存.");
 
         editorInv = new ItemStack[9 * 3];
         editorInv[0] = Items.TOTEM_OF_UNDYING.getDefaultStack();

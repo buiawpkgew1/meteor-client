@@ -25,8 +25,8 @@ public class ContainerViewerHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale.")
+        .name("规模")
+        .description("规模.")
         .defaultValue(2)
         .min(1)
         .sliderRange(1, 5)
@@ -34,8 +34,8 @@ public class ContainerViewerHud extends HudElement {
     );
 
     private final Setting<Boolean> echestNoItem = sgGeneral.add(new BoolSetting.Builder()
-        .name("echest-when-empty")
-        .description("Display contents of ender chest if not holding any other container.")
+        .name("空腹时的胸部")
+        .description("如果没有任何其他容器,则显示末影箱的内容.")
         .defaultValue(false)
         .build()
     );
@@ -43,7 +43,7 @@ public class ContainerViewerHud extends HudElement {
     private final ItemStack[] inventory = new ItemStack[9 * 3];
 
     public ContainerViewerHud(HUD hud) {
-        super(hud, "container-viewer", "Displays held containers.", false);
+        super(hud, "容器查看器", "显示持有的容器.", false);
     }
 
     @Override

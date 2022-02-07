@@ -16,7 +16,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class VClipCommand extends Command {
     public VClipCommand() {
-        super("vclip", "Lets you clip through blocks vertically.");
+        super("vclip", "让您垂直剪辑块.");
     }
 
     @Override
