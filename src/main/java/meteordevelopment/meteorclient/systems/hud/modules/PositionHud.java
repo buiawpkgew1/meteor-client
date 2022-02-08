@@ -18,15 +18,15 @@ public class PositionHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Boolean> accurate = sgGeneral.add(new BoolSetting.Builder()
-        .name("accurate")
-        .description("Shows position with decimal points.")
+        .name("准确")
+        .description("显示带有小数点的位置.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> oppositeDim = sgGeneral.add(new BoolSetting.Builder()
-        .name("opposite-dimension")
-        .description("Displays the coords of the opposite dimension (Nether or Overworld).")
+        .name("对立维度")
+        .description("显示相反维度的坐标 (阴间或阳间).")
         .defaultValue(false)
         .build()
     );
@@ -40,7 +40,7 @@ public class PositionHud extends HudElement {
     private String right2;
 
     public PositionHud(HUD hud) {
-        super(hud, "coords", "Displays your coordinates in the world.");
+        super(hud, "曲线图", "显示你在世界的坐标.");
     }
 
     @Override

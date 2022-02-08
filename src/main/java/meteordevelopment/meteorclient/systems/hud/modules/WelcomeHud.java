@@ -17,14 +17,14 @@ public class WelcomeHud extends DoubleTextHudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<SettingColor> color = sgGeneral.add(new ColorSetting.Builder()
-        .name("color")
-        .description("Color of welcome text.")
+        .name("颜色")
+        .description("欢迎文字的颜色.")
         .defaultValue(new SettingColor(120, 43, 153))
         .build()
     );
 
     public WelcomeHud(HUD hud) {
-        super(hud, "welcome", "Displays a welcome message.", "Welcome to Meteor Client, ");
+        super(hud, "欢迎", "显示一个欢迎信息.", "欢迎来到 Meteor 客户端, ");
         rightColor = color.get();
     }
 

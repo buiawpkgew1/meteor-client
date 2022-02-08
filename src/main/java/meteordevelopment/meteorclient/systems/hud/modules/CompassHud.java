@@ -20,15 +20,15 @@ public class CompassHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Mode> mode = sgGeneral.add(new EnumSetting.Builder<Mode>()
-        .name("type")
-        .description("Which type of direction information to show.")
+        .name("类型")
+        .description("显示哪种类型的方向信息.")
         .defaultValue(Mode.Axis)
         .build()
     );
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale.")
+        .name("规模")
+        .description("规模.")
         .defaultValue(1)
         .min(1)
         .sliderRange(1, 5)
@@ -36,7 +36,7 @@ public class CompassHud extends HudElement {
     );
 
     public CompassHud(HUD hud) {
-        super(hud, "compass", "Displays a compass.");
+        super(hud, "指南针", "显示一个指南针.");
     }
 
     @Override

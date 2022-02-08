@@ -18,29 +18,29 @@ public class ArmorHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Boolean> flipOrder = sgGeneral.add(new BoolSetting.Builder()
-        .name("flip-order")
-        .description("Flips the order of armor items.")
+        .name("翻牌")
+        .description("翻转盔甲项目的顺序.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Orientation> orientation = sgGeneral.add(new EnumSetting.Builder<Orientation>()
-        .name("orientation")
-        .description("How to display armor.")
+        .name("方向")
+        .description("如何展示盔甲.")
         .defaultValue(Orientation.Horizontal)
         .build()
     );
 
     private final Setting<Durability> durability = sgGeneral.add(new EnumSetting.Builder<Durability>()
-        .name("durability")
-        .description("How to display armor durability.")
+        .name("耐久性")
+        .description("如何显示盔甲的耐久性.")
         .defaultValue(Durability.Bar)
         .build()
     );
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale.")
+        .name("规模")
+        .description("规模.")
         .defaultValue(2)
         .min(1)
         .sliderRange(1, 5)
@@ -48,7 +48,7 @@ public class ArmorHud extends HudElement {
     );
 
     public ArmorHud(HUD hud) {
-        super(hud, "armor", "Displays information about your armor.");
+        super(hud, "盔甲", "显示有关你的盔甲的信息.");
     }
 
     @Override

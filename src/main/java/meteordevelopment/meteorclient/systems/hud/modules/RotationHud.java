@@ -14,7 +14,7 @@ import meteordevelopment.meteorclient.utils.misc.HorizontalDirection;
 
 public class RotationHud extends DoubleTextHudElement {
     public RotationHud(HUD hud) {
-        super(hud, "rotation", "Displays your rotation.", "");
+        super(hud, "旋转", "显示你的旋转.", "");
     }
 
     @Override

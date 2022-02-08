@@ -19,8 +19,8 @@ public class PlayerModelHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale.")
+        .name("规模")
+        .description("规模.")
         .defaultValue(2)
         .min(1)
         .sliderRange(1, 5)
@@ -28,21 +28,21 @@ public class PlayerModelHud extends HudElement {
     );
 
     private final Setting<Boolean> copyYaw = sgGeneral.add(new BoolSetting.Builder()
-        .name("copy-yaw")
-        .description("Makes the player model's yaw equal to yours.")
+        .name("拷贝-yaw")
+        .description("使玩家模型的偏航等于你的。.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> copyPitch = sgGeneral.add(new BoolSetting.Builder()
-        .name("copy-pitch")
-        .description("Makes the player model's pitch equal to yours.")
+        .name("抄送")
+        .description("使玩家模型的音高与你相等.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Integer> customYaw = sgGeneral.add(new IntSetting.Builder()
-        .name("custom-yaw")
+        .name("定制-偏航")
         .description("Custom yaw for when copy yaw is off.")
         .defaultValue(0)
         .range(-180, 180)
@@ -52,8 +52,8 @@ public class PlayerModelHud extends HudElement {
     );
 
     private final Setting<Integer> customPitch = sgGeneral.add(new IntSetting.Builder()
-        .name("custom-pitch")
-        .description("Custom pitch for when copy pitch is off.")
+        .name("定制间距")
+        .description("拷贝音调关闭时的自定义音调.")
         .defaultValue(0)
         .range(-90, 90)
         .sliderRange(-90, 90)
@@ -62,22 +62,22 @@ public class PlayerModelHud extends HudElement {
     );
 
     private final Setting<Boolean> background = sgGeneral.add(new BoolSetting.Builder()
-        .name("background")
-        .description("Displays a background behind the player model.")
+        .name("背景")
+        .description("在玩家模型后面显示一个背景.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<SettingColor> backgroundColor = sgGeneral.add(new ColorSetting.Builder()
-        .name("background-color")
-        .description("Color of background.")
+        .name("背景色")
+        .description("背景的颜色.")
         .defaultValue(new SettingColor(0, 0, 0, 64))
         .visible(background::get)
         .build()
     );
 
     public PlayerModelHud(HUD hud) {
-        super(hud, "player-model", "Displays a model of your player.", false);
+        super(hud, "玩家模式", "显示你的播放器的模型.", false);
     }
 
     @Override

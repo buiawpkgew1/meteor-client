@@ -18,7 +18,7 @@ public class BiomeHud extends DoubleTextHudElement {
     private final BlockPos.Mutable blockPos = new BlockPos.Mutable();
 
     public BiomeHud(HUD hud) {
-        super(hud, "biome", "Displays the biome you are in.", "Biome: ");
+        super(hud, "生物群落", "显示你所处的生物群落.", "生物群落: ");
     }
 
     @Override

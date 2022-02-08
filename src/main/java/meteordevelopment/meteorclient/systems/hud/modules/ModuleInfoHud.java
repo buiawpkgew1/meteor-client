@@ -19,35 +19,35 @@ public class ModuleInfoHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<List<Module>> modules = sgGeneral.add(new ModuleListSetting.Builder()
-        .name("modules")
-        .description("Which modules to display")
+        .name("模块")
+        .description("哪些模块要显示")
         .defaultValue(KillAura.class, CrystalAura.class, AnchorAura.class, BedAura.class, Surround.class)
         .build()
     );
 
     private final Setting<Boolean> info = sgGeneral.add(new BoolSetting.Builder()
-        .name("additional-info")
-        .description("Shows additional info from the module next to the name in the module info list.")
+        .name("额外信息")
+        .description("在模块信息列表中的名称旁边显示模块的其他信息。.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<SettingColor> onColor = sgGeneral.add(new ColorSetting.Builder()
-        .name("on-color")
-        .description("Color when module is on.")
+        .name("肤色")
+        .description("模块开启时的颜色.")
         .defaultValue(new SettingColor(25, 225, 25))
         .build()
     );
 
     private final Setting<SettingColor> offColor = sgGeneral.add(new ColorSetting.Builder()
-        .name("off-color")
-        .description("Color when module is off.")
+        .name("异色")
+        .description("模块关闭时的颜色.")
         .defaultValue(new SettingColor(225, 25, 25))
         .build()
     );
 
     public ModuleInfoHud(HUD hud) {
-        super(hud, "module-info", "Displays if selected modules are enabled or disabled.", false);
+        super(hud, "module-info", "显示所选模块是否被启用或禁用.", false);
     }
 
     @Override

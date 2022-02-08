@@ -18,10 +18,10 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 public class PeekCommand extends Command {
     private static final ItemStack[] ITEMS = new ItemStack[27];
     private static final SimpleCommandExceptionType NOT_HOLDING_SHULKER_BOX =
-            new SimpleCommandExceptionType(new LiteralText("You must be holding a storage block with items in it."));
+            new SimpleCommandExceptionType(new LiteralText("你必须拿着一个里面有物品的存储块."));
 
     public PeekCommand() {
-        super("peek", "Lets you see what's inside storage block items.");
+        super("peek", "让您查看存储块项目中的内容.");
     }
 
     @Override

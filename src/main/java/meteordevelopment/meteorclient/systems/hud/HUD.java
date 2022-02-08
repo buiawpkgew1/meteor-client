@@ -39,8 +39,8 @@ public class HUD extends System<HUD> {
     // General
 
     public final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("Scale of the HUD.")
+        .name("规模")
+        .description("HUD 的规模.")
         .defaultValue(1)
         .min(0.75)
         .sliderRange(0.75, 4)
@@ -48,22 +48,22 @@ public class HUD extends System<HUD> {
     );
 
     public final Setting<SettingColor> primaryColor = sgGeneral.add(new ColorSetting.Builder()
-        .name("primary-color")
-        .description("Primary color of text.")
+        .name("主要颜色")
+        .description("文字的主要颜色.")
         .defaultValue(new SettingColor(255, 255, 255))
         .build()
     );
 
     public final Setting<SettingColor> secondaryColor = sgGeneral.add(new ColorSetting.Builder()
-        .name("secondary-color")
-        .description("Secondary color of text.")
+        .name("次要颜色")
+        .description("文字的次要颜色.")
         .defaultValue(new SettingColor(175, 175, 175))
         .build()
     );
 
     private final Setting<Keybind> toggleKeybind = sgGeneral.add(new KeybindSetting.Builder()
-        .name("toggle-keybind")
-        .description("Keybind used to toggle HUD.")
+        .name("切换键合")
+        .description("用于切换 HUD 的绑定键.")
         .defaultValue(Keybind.none())
         .action(() -> active = !active)
         .build()
@@ -72,8 +72,8 @@ public class HUD extends System<HUD> {
     // Editor
 
     public final Setting<Integer> snappingRange = sgEditor.add(new IntSetting.Builder()
-        .name("snapping-range")
-        .description("Snapping range in editor.")
+        .name("捕捉范围")
+        .description("在编辑器中捕捉范围.")
         .defaultValue(6)
         .build()
     );
@@ -192,9 +192,9 @@ public class HUD extends System<HUD> {
     public NbtCompound toTag() {
         NbtCompound tag = new NbtCompound();
 
-        tag.putBoolean("active", active);
-        tag.put("settings", settings.toTag());
-        tag.put("elements", NbtUtils.listToTag(elements));
+        tag.putBoolean("活动", active);
+        tag.put("设置", settings.toTag());
+        tag.put("元素", NbtUtils.listToTag(elements));
 
         return tag;
     }
@@ -203,10 +203,10 @@ public class HUD extends System<HUD> {
     public HUD fromTag(NbtCompound tag) {
         settings.reset();
 
-        if (tag.contains("active")) active = tag.getBoolean("active");
-        if (tag.contains("settings")) settings.fromTag(tag.getCompound("settings"));
-        if (tag.contains("elements")) {
-            NbtList elementsTag = tag.getList("elements", 10);
+        if (tag.contains("活动")) active = tag.getBoolean("活动");
+        if (tag.contains("设置")) settings.fromTag(tag.getCompound("设置"));
+        if (tag.contains("元素")) {
+            NbtList elementsTag = tag.getList("元素", 10);
 
             for (NbtElement t : elementsTag) {
                 NbtCompound elementTag = (NbtCompound) t;

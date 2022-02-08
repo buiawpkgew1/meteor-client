@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.utils.Utils;
 
 public class SpeedHud extends DoubleTextHudElement {
     public SpeedHud(HUD hud) {
-        super(hud, "speed", "Displays your horizontal speed.", "Speed: ");
+        super(hud, "速度", "显示你的水平速度.", "速度: ");
     }
 
     @Override

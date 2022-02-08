@@ -38,7 +38,7 @@ public class SaveMapCommand extends Command {
     private final PointerBuffer filters;
 
     public SaveMapCommand() {
-        super("save-map", "Saves a map to an image.", "sm");
+        super("save-map", "将地图保存到图像.", "sm");
 
         filters = BufferUtils.createPointerBuffer(1);
 

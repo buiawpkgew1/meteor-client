@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.systems.hud.HUD;
 
 public class WatermarkHud extends DoubleTextHudElement {
     public WatermarkHud(HUD hud) {
-        super(hud, "watermark", "Displays a Meteor Client watermark.", "Meteor Client ");
+        super(hud, "水印", "显示 Meteor 客户端的水印.", "Meteor Client ");
     }
 
     @Override

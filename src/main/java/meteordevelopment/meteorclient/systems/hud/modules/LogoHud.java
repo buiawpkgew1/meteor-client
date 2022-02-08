@@ -20,8 +20,8 @@ public class LogoHud extends HudElement {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("scale")
-        .description("The scale of the logo.")
+        .name("规模")
+        .description("徽标的规模.")
         .defaultValue(3)
         .min(0.1)
         .sliderRange(0.1, 10)
@@ -31,7 +31,7 @@ public class LogoHud extends HudElement {
     private final Identifier TEXTURE = new Identifier("meteor-client", "textures/meteor.png");
 
     public LogoHud(HUD hud) {
-        super(hud, "logo", "Shows the Meteor logo in the HUD.");
+        super(hud, "徽标", "在 HUD 中显示 Meteor 标志.");
     }
 
     @Override

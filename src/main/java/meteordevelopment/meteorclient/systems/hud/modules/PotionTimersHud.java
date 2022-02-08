@@ -17,13 +17,13 @@ public class PotionTimersHud extends HudElement {
     private final Color color = new Color();
 
     public PotionTimersHud(HUD hud) {
-        super(hud, "potion-timers", "Displays active potion effects with timers.");
+        super(hud, "药水计时员", "显示带有定时器的活动药水效果.");
     }
 
     @Override
     public void update(HudRenderer renderer) {
         if (isInEditor()) {
-            box.setSize(renderer.textWidth("Potion Timers 0:00"), renderer.textHeight());
+            box.setSize(renderer.textWidth("药水定时器 0:00"), renderer.textHeight());
             return;
         }
 
@@ -48,7 +48,7 @@ public class PotionTimersHud extends HudElement {
         double y = box.getY();
 
         if (isInEditor()) {
-            renderer.text("Potion Timers 0:00", x, y, color);
+            renderer.text("药水定时器 0:00", x, y, color);
             return;
         }
 
