@@ -73,7 +73,7 @@ public class AutoCity extends Module {
     private boolean sentMessage;
 
     public AutoCity() {
-        super(Categories.Combat, "auto-city", "Automatically cities a target by mining the nearest obsidian next to them.");
+        super(Categories.Combat, "auto-city", "通过挖掘目标附近最近的黑曜石来自动占领目标.");
     }
 
     @EventHandler
