@@ -23,7 +23,7 @@ public class AntiAnvil extends Module {
 
     private final Setting<Boolean> swing = sgGeneral.add(new BoolSetting.Builder()
         .name("swing")
-        .description("Swings your hand client-side when placing.")
+        .description("放置时在客户端摆动您的手.")
         .defaultValue(true)
         .build()
     );
