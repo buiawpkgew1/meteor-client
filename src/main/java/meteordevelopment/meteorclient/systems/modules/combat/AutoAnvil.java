@@ -96,7 +96,7 @@ public class AutoAnvil extends Module {
     private int timer;
 
     public AutoAnvil() {
-        super(Categories.Combat, "auto-anvil", "Automatically places anvils above players to destroy helmets.");
+        super(Categories.Combat, "自动砧", "自动在玩家上方放置铁砧以摧毁头盔.");
     }
 
     @Override

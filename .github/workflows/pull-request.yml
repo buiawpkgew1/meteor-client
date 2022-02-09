@@ -24,8 +24,12 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+    - name: 自动释放
+      uses: marvinpinto/action-automatic-releases@v1.2.1
       with:
-        name: pull-request-build
-        path: build/libs/
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "jar"
+        prerelease: true
+        title: "pull-request-build"
+        files: |
+          build/libs/

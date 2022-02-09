@@ -110,7 +110,7 @@ public class ActiveModulesHud extends HudElement {
     @Override
     public void update(HudRenderer renderer) {
         if (Modules.get() == null) {
-            box.setSize(renderer.textWidth("Active Modules"), renderer.textHeight());
+            box.setSize(renderer.textWidth("有源模块"), renderer.textHeight());
             return;
         }
 

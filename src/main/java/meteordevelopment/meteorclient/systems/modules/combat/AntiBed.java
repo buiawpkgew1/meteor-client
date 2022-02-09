@@ -29,14 +29,14 @@ public class AntiBed extends Module {
 
     private final Setting<Boolean> placeStringTop = sgGeneral.add(new BoolSetting.Builder()
         .name("place-string-top")
-        .description("Places string above you.")
+        .description("在您上方放置字符串.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> placeStringMiddle = sgGeneral.add(new BoolSetting.Builder()
         .name("place-string-middle")
-        .description("Places string in your upper hitbox.")
+        .description("将字符串放置在您的上碰撞箱中.")
         .defaultValue(true)
         .build()
     );
@@ -58,7 +58,7 @@ public class AntiBed extends Module {
     private boolean breaking;
 
     public AntiBed() {
-        super(Categories.Combat, "anti-bed", "Places string to prevent beds being placed on you.");
+        super(Categories.Combat, "防床", "放置绳子以防止床被放在你身上.");
     }
 
     @EventHandler

@@ -23,20 +23,20 @@ public class AntiAnvil extends Module {
 
     private final Setting<Boolean> swing = sgGeneral.add(new BoolSetting.Builder()
         .name("swing")
-        .description("Swings your hand client-side when placing.")
+        .description("放置时在客户端摆动您的手.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
         .name("rotate")
-        .description("Makes you rotate when placing.")
+        .description("让你在放置时旋转.")
         .defaultValue(true)
         .build()
     );
 
     public AntiAnvil() {
-        super(Categories.Combat, "anti-anvil", "Automatically prevents Auto Anvil by placing between you and the anvil.");
+        super(Categories.Combat, "反砧", "通过放置在您和铁砧之间来自动阻止自动铁砧.");
     }
 
     @EventHandler

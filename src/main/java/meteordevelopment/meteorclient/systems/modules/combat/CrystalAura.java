@@ -74,8 +74,8 @@ public class CrystalAura extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
     private final SettingGroup sgPlace = settings.createGroup("Place");
     private final SettingGroup sgFacePlace = settings.createGroup("Face Place");
-    private final SettingGroup sgBreak = settings.createGroup("Break");
-    private final SettingGroup sgPause = settings.createGroup("Pause");
+    private final SettingGroup sgBreak = settings.createGroup("休息");
+    private final SettingGroup sgPause = settings.createGroup("暂停");
     private final SettingGroup sgRender = settings.createGroup("Render");
 
     // General
@@ -507,7 +507,7 @@ public class CrystalAura extends Module {
     private double renderDamage;
 
     public CrystalAura() {
-        super(Categories.Combat, "crystal-aura", "Automatically places and attacks crystals.");
+        super(Categories.Combat, "水晶光环", "自动放置和攻击水晶.");
     }
 
     @Override

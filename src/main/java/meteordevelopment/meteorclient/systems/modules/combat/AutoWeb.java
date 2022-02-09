@@ -53,7 +53,7 @@ public class AutoWeb extends Module {
     private PlayerEntity target = null;
 
     public AutoWeb() {
-        super(Categories.Combat, "auto-web", "Automatically places webs on other players.");
+        super(Categories.Combat, "自动网络", "自动将网络放置在其他玩家身上.");
     }
 
     @EventHandler
