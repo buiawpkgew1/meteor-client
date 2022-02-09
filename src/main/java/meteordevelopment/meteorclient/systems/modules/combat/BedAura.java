@@ -34,8 +34,8 @@ import net.minecraft.util.math.Vec3d;
 public class BedAura extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
     private final SettingGroup sgTargeting = settings.createGroup("Targeting");
-    private final SettingGroup sgAutoMove = settings.createGroup("Inventory");
-    private final SettingGroup sgPause = settings.createGroup("Pause");
+    private final SettingGroup sgAutoMove = settings.createGroup("存货");
+    private final SettingGroup sgPause = settings.createGroup("暂停");
     private final SettingGroup sgRender = settings.createGroup("Render");
 
     // General
@@ -191,7 +191,7 @@ public class BedAura extends Module {
     private int timer;
 
     public BedAura() {
-        super(Categories.Combat, "bed-aura", "Automatically places and explodes beds in the Nether and End.");
+        super(Categories.Combat, "床光环", "自动在下界和末地放置和爆炸床.");
     }
 
     @Override
@@ -204,7 +204,7 @@ public class BedAura extends Module {
     private void onTick(TickEvent.Post event) {
         // Check if beds can explode here
         if (mc.world.getDimension().isBedWorking()) {
-            error("You can't blow up beds in this dimension, disabling.");
+            error("你不能炸毁这个维度的床,禁用.");
             toggle();
             return;
         }
