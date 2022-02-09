@@ -32,7 +32,7 @@ public class HUD extends System<HUD> {
     public final Settings settings = new Settings();
 
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgEditor = settings.createGroup("Editor");
+    private final SettingGroup sgEditor = settings.createGroup("编辑");
 
     public boolean active;
 
