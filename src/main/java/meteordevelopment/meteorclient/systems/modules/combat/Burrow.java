@@ -150,7 +150,7 @@ public class Burrow extends Module {
             if (instant.get()) shouldBurrow = true;
             else mc.player.jump();
         } else {
-            info("Waiting for manual jump.");
+            info("等待手动跳转.");
         }
     }
 
