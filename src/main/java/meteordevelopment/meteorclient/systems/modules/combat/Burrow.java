@@ -109,25 +109,25 @@ public class Burrow extends Module {
     private boolean shouldBurrow;
 
     public Burrow() {
-        super(Categories.Combat, "burrow", "Attempts to clip you into a block.");
+        super(Categories.Combat, "挖洞", "试图将你夹在一个块中.");
     }
 
     @Override
     public void onActivate() {
         if (!mc.world.getBlockState(mc.player.getBlockPos()).getMaterial().isReplaceable()) {
-            error("Already burrowed, disabling.");
+            error("已经挖洞，禁用.");
             toggle();
             return;
         }
 
         if (!PlayerUtils.isInHole(false) && onlyInHole.get()) {
-            error("Not in a hole, disabling.");
+            error("不在一个洞里，禁用.");
             toggle();
             return;
         }
 
         if (!checkHead()) {
-            error("Not enough headroom to burrow, disabling.");
+            error("没有足够的空间来挖洞，禁用.");
             toggle();
             return;
         }
@@ -135,7 +135,7 @@ public class Burrow extends Module {
         FindItemResult result = getItem();
 
         if (!result.isHotbar() && !result.isOffhand()) {
-            error("No burrow block found, disabling.");
+            error("没有找到洞穴块，禁用.");
             toggle();
             return;
         }
