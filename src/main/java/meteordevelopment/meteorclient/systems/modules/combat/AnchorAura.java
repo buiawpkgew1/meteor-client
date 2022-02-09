@@ -138,7 +138,7 @@ public class AnchorAura extends Module {
 
     private final Setting<Double> breakRange = sgBreak.add(new DoubleSetting.Builder()
         .name("break-range")
-        .description("The radius in which anchors are broken in.")
+        .description("锚点断裂的半径.")
         .defaultValue(5)
         .min(0)
         .sliderMax(5)
@@ -149,21 +149,21 @@ public class AnchorAura extends Module {
 
     private final Setting<Boolean> pauseOnEat = sgPause.add(new BoolSetting.Builder()
         .name("pause-on-eat")
-        .description("Pauses while eating.")
+        .description("吃饭时停顿.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> pauseOnDrink = sgPause.add(new BoolSetting.Builder()
         .name("pause-on-drink")
-        .description("Pauses while drinking potions.")
+        .description("喝药水时暂停.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> pauseOnMine = sgPause.add(new BoolSetting.Builder()
         .name("pause-on-mine")
-        .description("Pauses while mining blocks.")
+        .description("挖掘块时暂停.")
         .defaultValue(false)
         .build()
     );
@@ -172,21 +172,21 @@ public class AnchorAura extends Module {
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
         .name("shape-mode")
-        .description("How the shapes are rendered.")
+        .description("如何渲染形状.")
         .defaultValue(ShapeMode.Both)
         .build()
     );
 
     private final Setting<Boolean> renderPlace = sgRender.add(new BoolSetting.Builder()
         .name("render-place")
-        .description("Renders the block where it is placing an anchor.")
+        .description("渲染放置锚点的块.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<SettingColor> placeSideColor = sgRender.add(new ColorSetting.Builder()
         .name("place-side-color")
-        .description("The side color for positions to be placed.")
+        .description("要放置的位置的侧面颜色.")
         .defaultValue(new SettingColor(255, 0, 0, 75))
         .visible(renderPlace::get)
         .build()
@@ -194,7 +194,7 @@ public class AnchorAura extends Module {
 
     private final Setting<SettingColor> placeLineColor = sgRender.add(new ColorSetting.Builder()
         .name("place-line-color")
-        .description("The line color for positions to be placed.")
+        .description("要放置的位置的线条颜色.")
         .defaultValue(new SettingColor(255, 0, 0, 255))
         .visible(renderPlace::get)
         .build()
@@ -202,14 +202,14 @@ public class AnchorAura extends Module {
 
     private final Setting<Boolean> renderBreak = sgRender.add(new BoolSetting.Builder()
         .name("render-break")
-        .description("Renders the block where it is breaking an anchor.")
+        .description("渲染正在破坏锚点的块.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<SettingColor> breakSideColor = sgRender.add(new ColorSetting.Builder()
         .name("break-side-color")
-        .description("The side color for anchors to be broken.")
+        .description("锚点被破坏的侧面颜色.")
         .defaultValue(new SettingColor(255, 0, 0, 75))
         .visible(renderBreak::get)
         .build()
@@ -217,7 +217,7 @@ public class AnchorAura extends Module {
 
     private final Setting<SettingColor> breakLineColor = sgRender.add(new ColorSetting.Builder()
         .name("break-line-color")
-        .description("The line color for anchors to be broken.")
+        .description("要断开的锚点的线条颜色.")
         .defaultValue(new SettingColor(255, 0, 0, 255))
         .visible(renderBreak::get)
         .build()
@@ -228,7 +228,7 @@ public class AnchorAura extends Module {
     private PlayerEntity target;
 
     public AnchorAura() {
-        super(Categories.Combat, "anchor-aura", "Automatically places and breaks Respawn Anchors to harm entities.");
+        super(Categories.Combat, "锚定光环", "自动放置和破坏重生锚以伤害实体.");
     }
 
     @Override
@@ -241,7 +241,7 @@ public class AnchorAura extends Module {
     @EventHandler
     private void onTick(TickEvent.Post event) {
         if (mc.world.getDimension().isRespawnAnchorWorking()) {
-            error("You are in the Nether... disabling.");
+            error("你在末地...禁用.");
             toggle();
             return;
         }
