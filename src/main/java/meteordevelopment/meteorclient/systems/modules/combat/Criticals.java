@@ -48,7 +48,7 @@ public class Criticals extends Module {
     private boolean sendPackets;
     private int sendTimer;
     public Criticals() {
-        super(Categories.Combat, "criticals", "Performs critical attacks when you hit your target.");
+        super(Categories.Combat, "批评者", "击中目标时进行致命一击.");
     }
 
     @Override
