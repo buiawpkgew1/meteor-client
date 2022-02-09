@@ -32,7 +32,7 @@ public class Config extends System<Config> {
     public final Setting<Boolean> customFont = sgVisual.add(new BoolSetting.Builder()
         .name("自定义字体")
         .description("使用自定义字体.")
-        .defaultValue(true)
+        .defaultValue(false)
         .build()
     );
 
