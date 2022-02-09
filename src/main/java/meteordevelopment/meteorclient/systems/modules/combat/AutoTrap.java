@@ -132,7 +132,7 @@ public class AutoTrap extends Module {
     private int timer;
 
     public AutoTrap() {
-        super(Categories.Combat, "auto-trap", "Traps people in an obsidian box to prevent them from moving.");
+        super(Categories.Combat, "自动陷阱", "将人困在黑曜石盒子中以防止他们移动.");
     }
 
     @Override
