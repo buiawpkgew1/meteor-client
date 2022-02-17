@@ -88,6 +88,7 @@ public class MeteorGuiTheme extends GuiTheme {
     public final Setting<SettingColor> checkboxColor = color("checkbox", "复选框颜色.", new SettingColor(135, 0, 255));
     public final Setting<SettingColor> plusColor = color("plus", "加号按钮的颜色.", new SettingColor(255, 255, 255));
     public final Setting<SettingColor> minusColor = color("minus", "减号按钮的颜色.", new SettingColor(255, 255, 255));
+    public final Setting<SettingColor> favoriteColor = color("favorite", "Color of checked favorite button.", new SettingColor(255, 255, 0));
 
     // Text
 
@@ -168,8 +169,8 @@ public class MeteorGuiTheme extends GuiTheme {
     // Widgets
 
     @Override
-    public WWindow window(String title) {
-        return w(new WMeteorWindow(title));
+    public WWindow window(WWidget icon, String title) {
+        return w(new WMeteorWindow(icon, title));
     }
 
     @Override
@@ -261,6 +262,11 @@ public class MeteorGuiTheme extends GuiTheme {
     @Override
     public WTopBar topBar() {
         return w(new WMeteorTopBar());
+    }
+
+    @Override
+    public WFavorite favorite(boolean checked) {
+        return w(new WMeteorFavorite(checked));
     }
 
     // Colors
