@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.0.1
+  node: circleci/node@5.0.0
 
 parameters:
   version:
@@ -15,7 +15,7 @@ general:
 jobs:
   build:
     docker:
-      - image: cimg/openjdk:17.0.0
+      - image: cimg/openjdk:17.0.2
 
     working_directory: ~/repo
 
