@@ -1,6 +1,6 @@
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client/).
- * Copyright (c) 2021 Meteor Development.
+ * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
+ * Copyright (c) Meteor Development.
  */
 
 package meteordevelopment.meteorclient.gui.tabs.builtin;
@@ -13,6 +13,7 @@ import meteordevelopment.meteorclient.gui.renderer.GuiRenderer;
 import meteordevelopment.meteorclient.gui.tabs.Tab;
 import meteordevelopment.meteorclient.gui.tabs.TabScreen;
 import meteordevelopment.meteorclient.gui.tabs.WindowTabScreen;
+import meteordevelopment.meteorclient.gui.utils.StarscriptTextBoxRenderer;
 import meteordevelopment.meteorclient.gui.widgets.WKeybind;
 import meteordevelopment.meteorclient.gui.widgets.containers.WTable;
 import meteordevelopment.meteorclient.gui.widgets.input.WTextBox;
@@ -49,32 +50,48 @@ public class MacrosTab extends Tab {
         }
 
         @Override
-        public void initWidgets() {
-            // Macros
-            if (Macros.get().getAll().size() > 0) {
-                WTable table = add(theme.table()).expandX().widget();
+        protected void init() {
+            super.init();
 
-                for (Macro macro : Macros.get()) {
-                    table.add(theme.label(macro.name + " (" + macro.keybind + ")"));
-
-                    WButton edit = table.add(theme.button(GuiRenderer.EDIT)).expandCellX().right().widget();
-                    edit.action = () -> mc.setScreen(new MacroEditorScreen(theme, macro));
-
-                    WMinus remove = table.add(theme.minus()).widget();
-                    remove.action = () -> {
-                        Macros.get().remove(macro);
-
-                        clear();
-                        initWidgets();
-                    };
-
-                    table.row();
-                }
+            if (!firstInit) {
+                clear();
+                initWidgets();
             }
+        }
 
-            // New
-            WButton create = add(theme.button("Create")).expandX().widget();
+        @Override
+        public void initWidgets() {
+            WTable table = add(theme.table()).expandX().minWidth(400).widget();
+
+            initTable(table);
+
+            table.add(theme.horizontalSeparator()).expandX();
+            table.row();
+
+            // Create
+            WButton create = table.add(theme.button("Create")).expandX().widget();
             create.action = () -> mc.setScreen(new MacroEditorScreen(theme, null));
+        }
+
+        private void initTable(WTable table) {
+            if (Macros.get().getAll().size() == 0) return;
+
+            for (Macro macro : Macros.get()) {
+                table.add(theme.label(macro.name + " (" + macro.keybind + ")"));
+
+                WButton edit = table.add(theme.button(GuiRenderer.EDIT)).expandCellX().right().widget();
+                edit.action = () -> mc.setScreen(new MacroEditorScreen(theme, macro));
+
+                WMinus remove = table.add(theme.minus()).widget();
+                remove.action = () -> {
+                    Macros.get().remove(macro);
+
+                    clear();
+                    initWidgets();
+                };
+
+                table.row();
+            }
         }
 
         @Override
@@ -150,8 +167,8 @@ public class MacrosTab extends Tab {
             for (int i = 0; i < macro.messages.size(); i++) {
                 int ii = i;
 
-                WTextBox line = lines.add(theme.textBox(macro.messages.get(i))).minWidth(400).expandX().widget();
-                line.action = () -> macro.messages.set(ii, line.get().trim());
+                WTextBox line = lines.add(theme.textBox(macro.messages.get(i), ".say Hello, World!", (text, c) -> true, StarscriptTextBoxRenderer.class)).minWidth(400).expandX().widget();
+                line.action = () -> macro.setMessage(ii, line.get().trim());
 
                 if (i != macro.messages.size() - 1) {
                     WMinus remove = lines.add(theme.minus()).widget();
@@ -161,7 +178,8 @@ public class MacrosTab extends Tab {
                         clear();
                         initWidgets(macro);
                     };
-                } else {
+                }
+                else {
                     WPlus add = lines.add(theme.plus()).widget();
                     add.action = () -> {
                         macro.addMessage("");

@@ -1,20 +1,16 @@
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client/).
- * Copyright (c) 2021 Meteor Development.
+ * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
+ * Copyright (c) Meteor Development.
  */
 
 package meteordevelopment.meteorclient.systems.friends;
 
-import com.mojang.util.UUIDTypeAdapter;
 import meteordevelopment.meteorclient.systems.System;
 import meteordevelopment.meteorclient.systems.Systems;
-import meteordevelopment.meteorclient.utils.network.Http;
-import meteordevelopment.meteorclient.utils.render.color.RainbowColors;
-import meteordevelopment.meteorclient.utils.render.color.SettingColor;
+import meteordevelopment.meteorclient.utils.misc.NbtUtils;
+import meteordevelopment.meteorclient.utils.network.MeteorExecutor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -23,10 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class Friends extends System<Friends> implements Iterable<Friend> {
-    private List<Friend> friends = new ArrayList<>();
-
-    public final SettingColor color = new SettingColor(0, 255, 180);
-    public boolean attack = false;
+    private final List<Friend> friends = new ArrayList<>();
 
     public Friends() {
         super("friends");
@@ -34,11 +27,6 @@ public class Friends extends System<Friends> implements Iterable<Friend> {
 
     public static Friends get() {
         return Systems.get(Friends.class);
-    }
-
-    @Override
-    public void init() {
-        RainbowColors.add(color);
     }
 
     public boolean add(Friend friend) {
@@ -63,16 +51,6 @@ public class Friends extends System<Friends> implements Iterable<Friend> {
         return false;
     }
 
-    public Friend get(String name) {
-        for (Friend friend : friends) {
-            if (friend.name.equals(name)) {
-                return friend;
-            }
-        }
-
-        return null;
-    }
-
     public Friend get(UUID uuid) {
         for (Friend friend : friends) {
             if (friend.id.equals(uuid)) {
@@ -92,7 +70,7 @@ public class Friends extends System<Friends> implements Iterable<Friend> {
     }
 
     public boolean shouldAttack(PlayerEntity player) {
-        return !isFriend(player) || attack;
+        return !isFriend(player);
     }
 
     public int count() {
@@ -107,48 +85,30 @@ public class Friends extends System<Friends> implements Iterable<Friend> {
     @Override
     public NbtCompound toTag() {
         NbtCompound tag = new NbtCompound();
-        NbtList friendsTag = new NbtList();
 
-        for (Friend friend : friends) friendsTag.add(friend.toTag());
-        tag.put("friends", friendsTag);
-        tag.put("color", color.toTag());
-        tag.putBoolean("attack", attack);
+        tag.put("friends", NbtUtils.listToTag(friends));
 
         return tag;
     }
 
     @Override
     public Friends fromTag(NbtCompound tag) {
-        NbtList friendList = tag.getList("friends", 10);
+        List<Friend> saved = NbtUtils.listFromTag(tag.getList("friends", 10), nbt -> {
+            NbtCompound friendTag = (NbtCompound) nbt;
+            if (!friendTag.contains("id")) return null;
+            return new Friend(friendTag);
+        });
 
-        friends = new ArrayList<>();
-        for (NbtElement friendTag : friendList) {
-            NbtCompound compound = (NbtCompound) friendTag;
+        friends.clear();
 
-            Friend friend;
-            if (compound.contains("name")) {
-                friend = getFromName(compound.getString("name"));
-            } else {
-                friend = new Friend(compound);
-            }
-
-            if (friend != null) friends.add(friend);
+        for (Friend friend : saved) {
+            MeteorExecutor.execute(() -> {
+                if (friend.updateName()) {
+                    friends.add(friend);
+                }
+            });
         }
 
-        if (tag.contains("color")) color.fromTag(tag.getCompound("color"));
-        attack = tag.contains("attack") && tag.getBoolean("attack");
         return this;
-    }
-
-    public Friend getFromName(String username) {
-        Response resp = Http.get("https://api.mojang.com/users/profiles/minecraft/" + username).sendJson(Response.class);
-        if (resp != null) {
-            return new Friend(username, UUIDTypeAdapter.fromString(resp.id));
-        }
-        return null;
-    }
-
-    private static class Response {
-        String id;
     }
 }
