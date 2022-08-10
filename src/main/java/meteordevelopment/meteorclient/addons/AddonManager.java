@@ -36,7 +36,7 @@ public class AddonManager {
 
                 @Override
                 public GithubRepo getRepo() {
-                    return new GithubRepo("MeteorDevelopment", "meteor-client");
+                    return new GithubRepo("MeteorDevelopment", "meteor-client-v");
                 }
 
                 @Override
