@@ -47,7 +47,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
 
-      - name: Publish
+      - name: 发布
         run: ./gradlew publish -Pcommit=${{ github.sha }} -Pdevbuild=${{ steps.dev-build.outputs.number }}
         env:
           MAVEN_METEOR_ALIAS: ${{ secrets.MAVEN_METEOR_ALIAS }}
