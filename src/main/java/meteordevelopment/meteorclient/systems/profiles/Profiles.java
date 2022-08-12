@@ -25,7 +25,7 @@ public class Profiles extends System<Profiles> implements Iterable<Profile> {
     private List<Profile> profiles = new ArrayList<>();
 
     public Profiles() {
-        super("profiles");
+        super("概况");
     }
 
     public static Profiles get() {

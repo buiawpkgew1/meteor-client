@@ -32,23 +32,23 @@ public class Config extends System<Config> {
     // Visual
 
     public final Setting<Boolean> customFont = sgVisual.add(new BoolSetting.Builder()
-        .name("custom-font")
-        .description("使用自定义字体.")
+        .name("自定义字体")
+        .description("使用自定义字体")
         .defaultValue(false)
         .build()
     );
 
     public final Setting<FontFace> font = sgVisual.add(new FontFaceSetting.Builder()
         .name("font")
-        .description("Custom font to use.")
+        .description("Custom font to use")
         .visible(customFont::get)
         .onChanged(Fonts::load)
         .build()
     );
 
     public final Setting<Double> rainbowSpeed = sgVisual.add(new DoubleSetting.Builder()
-        .name("rainbow-speed")
-        .description("The global rainbow speed.")
+        .name("彩虹速度")
+        .description("全球彩虹速度")
         .defaultValue(0.5)
         .range(0, 10)
         .sliderMax(5)
@@ -56,40 +56,40 @@ public class Config extends System<Config> {
     );
 
     public final Setting<Boolean> titleScreenCredits = sgVisual.add(new BoolSetting.Builder()
-        .name("title-screen-credits")
-        .description("Show Meteor credits on title screen")
+        .name("标题屏幕学分")
+        .description("在标题屏幕上显示 Meteor 学分")
         .defaultValue(true)
         .build()
     );
 
     public final Setting<Boolean> titleScreenSplashes = sgVisual.add(new BoolSetting.Builder()
-        .name("title-screen-splashes")
-        .description("Show Meteor splash texts on title screen")
+        .name("标题屏幕飞溅")
+        .description("在标题屏幕上显示流星启动文本")
         .defaultValue(true)
         .build()
     );
 
     public final Setting<Boolean> customWindowTitle = sgVisual.add(new BoolSetting.Builder()
-        .name("custom-window-title")
-        .description("Show custom text in the window title.")
-        .defaultValue(false)
+        .name("自定义窗口标题")
+        .description("在窗口标题中显示自定义文本")
+        .defaultValue(true)
         .onModuleActivated(setting -> mc.updateWindowTitle())
         .onChanged(value -> mc.updateWindowTitle())
         .build()
     );
 
     public final Setting<String> customWindowTitleText = sgVisual.add(new StringSetting.Builder()
-        .name("window-title-text")
-        .description("The text it displays in the window title.")
+        .name("窗口标题文本")
+        .description("它在窗口标题中显示的文本")
         .visible(customWindowTitle::get)
-        .defaultValue("Minecraft {mc_version} - Meteor Client {version}")
+        .defaultValue("Minecraft {mc_version} - Meteor Client 汉化 {version} by:wateTina")
         .onChanged(value -> mc.updateWindowTitle())
         .build()
     );
 
     public final Setting<SettingColor> friendColor = sgVisual.add(new ColorSetting.Builder()
-        .name("friend-color")
-        .description("The color used to show friends.")
+        .name("好友颜色")
+        .description("用来显示好友的颜色")
         .defaultValue(new SettingColor(0, 255, 180))
         .build()
     );
@@ -98,21 +98,21 @@ public class Config extends System<Config> {
 
     public final Setting<String> prefix = sgChat.add(new StringSetting.Builder()
         .name("prefix")
-        .description("Prefix.")
+        .description("字首")
         .defaultValue(".")
         .build()
     );
 
     public final Setting<Boolean> chatFeedback = sgChat.add(new BoolSetting.Builder()
-        .name("chat-feedback")
-        .description("Sends chat feedback when meteor performs certain actions.")
+        .name("聊天反馈")
+        .description("当流星执行某些操作时发送聊天反馈")
         .defaultValue(true)
         .build()
     );
 
     public final Setting<Boolean> deleteChatFeedback = sgChat.add(new BoolSetting.Builder()
-        .name("delete-chat-feedback")
-        .description("Delete previous matching chat feedback to keep chat clear.")
+        .name("删除聊天反馈")
+        .description("删除以前匹配的聊天反馈以保持聊天清晰")
         .visible(chatFeedback::get)
         .defaultValue(true)
         .build()
@@ -121,15 +121,15 @@ public class Config extends System<Config> {
     // Misc
 
     public final Setting<Integer> rotationHoldTicks = sgMisc.add(new IntSetting.Builder()
-        .name("rotation-hold")
-        .description("Hold long to hold server side rotation when not sending any packets.")
+        .name("旋转保持")
+        .description("不发送任何数据包时保持长时间保持服务器端轮换")
         .defaultValue(4)
         .build()
     );
 
     public final Setting<Boolean> useTeamColor = sgMisc.add(new BoolSetting.Builder()
-        .name("use-team-color")
-        .description("Uses player's team color for rendering things like esp and tracers.")
+        .name("使用团队颜色")
+        .description("使用玩家的团队颜色来渲染诸如 esp 和跟踪器之类的东西.")
         .defaultValue(true)
         .build()
     );
@@ -137,7 +137,7 @@ public class Config extends System<Config> {
     public List<String> dontShowAgainPrompts = new ArrayList<>();
 
     public Config() {
-        super("config");
+        super("配置");
     }
 
     public static Config get() {

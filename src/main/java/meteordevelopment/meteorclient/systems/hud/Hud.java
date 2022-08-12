@@ -40,8 +40,8 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
     // General
 
     private final Setting<Boolean> customFont = sgGeneral.add(new BoolSetting.Builder()
-        .name("custom-font")
-        .description("Text will use custom font.")
+        .name("自定义字体")
+        .description("文本将使用自定义字体.")
         .defaultValue(true)
         .onChanged(aBoolean -> {
             for (HudElement element : elements) element.onFontChanged();
@@ -50,8 +50,8 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
     );
 
     private final Setting<Double> textScale = sgGeneral.add(new DoubleSetting.Builder()
-        .name("text-scale")
-        .description("Scale of text if not overriden by the element.")
+        .name("文本尺度")
+        .description("如果没有被元素覆盖，则文本的比例.")
         .defaultValue(1)
         .min(0.5)
         .sliderRange(0.5, 3)
@@ -59,8 +59,8 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
     );
 
     public final Setting<List<SettingColor>> textColors = sgGeneral.add(new ColorListSetting.Builder()
-        .name("text-colors")
-        .description("Colors used for the Text element.")
+        .name("文字颜色")
+        .description("用于文本元素的颜色.")
         .defaultValue(List.of(new SettingColor(), new SettingColor(175, 175, 175), new SettingColor(25, 225, 25), new SettingColor(225, 25, 25)))
         .build()
     );
@@ -68,16 +68,16 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
     // Editor
 
     public final Setting<Integer> border = sgEditor.add(new IntSetting.Builder()
-        .name("border")
-        .description("Space around the edges of the screen.")
+        .name("边界")
+        .description("屏幕边缘周围的空间.")
         .defaultValue(4)
         .sliderMax(20)
         .build()
     );
 
     public final Setting<Integer> snappingRange = sgEditor.add(new IntSetting.Builder()
-        .name("snapping-range")
-        .description("Snapping range in editor.")
+        .name("捕捉范围")
+        .description("在编辑器中捕捉范围.")
         .defaultValue(10)
         .sliderMax(20)
         .build()
