@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: latest
 
-      - name: Get current dev build number
+      - name: 获取当前的开发版本号
         id: dev-build
         run: |
           cd .github/devbuilds
@@ -38,11 +38,11 @@ jobs:
       - name: Build
         run: ./gradlew build -Pcommit=${{ github.sha }} -Pdevbuild=${{ steps.dev-build.outputs.number }}
 
-      - name: Webhook Failure
+      - name: Webhook 失败
         if: ${{ failure() }}
         run: |
           cd .github/devbuilds
-          npm start ${{ github.ref_name }} https://api.github.com/repos/MeteorDevelopment/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} false
+          npm start ${{ github.ref_name }} https://api.github.com/repos/buiawpkgew1/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} false
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
