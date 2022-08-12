@@ -24,7 +24,7 @@ import java.util.List;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class Fonts {
-    public static final String[] BUILTIN_FONTS = { "Zkc yt-W02", "Zkc yt-W03", "RiBenHuaYuanMingChaoTi-2", "NotoSansCJK-Thin-2" };
+    public static final String[] BUILTIN_FONTS = { "Zkcyt", "Zkc yt-W03", "RiBenHuaYuanMingChaoTi-2", "NotoSansCJK-Thin-2" };
 
     public static String DEFAULT_FONT_FAMILY;
     public static FontFace DEFAULT_FONT;
