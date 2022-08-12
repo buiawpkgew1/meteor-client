@@ -33,8 +33,8 @@ public class Config extends System<Config> {
 
     public final Setting<Boolean> customFont = sgVisual.add(new BoolSetting.Builder()
         .name("custom-font")
-        .description("Use a custom font.")
-        .defaultValue(true)
+        .description("使用自定义字体.")
+        .defaultValue(false)
         .build()
     );
 

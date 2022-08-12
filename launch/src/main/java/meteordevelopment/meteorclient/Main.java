@@ -18,7 +18,7 @@ public class Main {
 
         int option = JOptionPane.showOptionDialog(
                 null,
-                "To install Meteor Client you need to put it in your mods folder and run Fabric for latest Minecraft version.",
+                "\u8981\u5b89\u88c5\u0020\u004d\u0065\u0074\u0065\u006f\u0072\u0020\u0043\u006c\u0069\u0065\u006e\u0074\uff0c\u60a8\u9700\u8981\u5c06\u5176\u653e\u5165\u60a8\u7684\u006d\u006f\u0064\u0073\u6587\u4ef6\u5939\u5e76\u8fd0\u884c\u0046\u0061\u0062\u0072\u0069\u0063\u4ee5\u83b7\u53d6\u6700\u65b0\u7684\u0020\u0069\u006e\u0065\u0063\u0072\u0061\u0066\u0074\u0020\u7248\u672c.",
                 "Meteor Client",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.ERROR_MESSAGE,
