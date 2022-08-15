@@ -44,6 +44,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "dew"
           prerelease: true
-          title: "hwid自动构建版本"
+          title: "自动构建版本"
           files: |
             ./build/libs/*.jar
