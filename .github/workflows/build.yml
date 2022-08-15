@@ -46,13 +46,6 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
-
-      - name: 发布
-        run: ./gradlew publish -Pcommit=${{ github.sha }} -Pdevbuild=${{ steps.dev-build.outputs.number }}
-        env:
-          MAVEN_METEOR_ALIAS: ${{ secrets.MAVEN_METEOR_ALIAS }}
-          MAVEN_METEOR_TOKEN: ${{ secrets.MAVEN_METEOR_TOKEN }}
-
       - name: 将文件上传到 Discord webhook
         run: |
           cd .github/devbuilds
