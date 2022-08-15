@@ -38,18 +38,12 @@ jobs:
       - name: Build
         run: ./gradlew build -Pcommit=${{ github.sha }} -Pdevbuild=${{ steps.dev-build.outputs.number }}
 
-      - name: Webhook 失败
-        if: ${{ failure() }}
-        run: |
-          cd .github/devbuilds
-          npm start ${{ github.ref_name }} https://api.github.com/repos/buiawpkgew1/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} false
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-
-      - name: 将文件上传到 Discord webhook
-        run: |
-          cd .github/devbuilds
-          npm start ${{ github.ref_name }} https://api.github.com/repos/buiawpkgew1/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} true
-        env:
-          SERVER_TOKEN: ${{ secrets.SERVER_TOKEN }}
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+    - name: 自动释放贰
+      uses: marvinpinto/action-automatic-releases@v1.2.1
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "dew"
+        prerelease: true
+        title: "hwid自动构建版本"
+        files: |
+          ./build/libs/*.jar
