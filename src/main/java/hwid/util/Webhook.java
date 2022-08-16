@@ -250,7 +250,7 @@ public class Webhook {
             return this;
         }
 
-        private class Footer {
+        private static class Footer {
             private String text;
             private String iconUrl;
 
