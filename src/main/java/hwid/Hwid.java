@@ -20,7 +20,7 @@ public class Hwid {
             // 用您自己的网址替换示例
             URL url = new URL("https://raw.iqiq.io/buiawpkgew1e/HWID/main/hwid.json?hwid=" + hwid);
             URLConnection conn = url.openConnection();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),Charset.defaultCharset()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
             while ((line=reader.readLine())!=null){
                 if (line.contains(hwid))return true;
