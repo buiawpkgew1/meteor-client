@@ -59,7 +59,7 @@ public class Hwid {
         return returnhwid.toString();
     }
     public static String getTime(){
-        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss");
         Date date=new Date();
         return formatter.format(date);
     }
