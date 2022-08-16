@@ -40,7 +40,7 @@ public class Hwid {
 
             embed.setTitle("hwid");
 
-            embed.setDescription("New login"+getHwid());
+            embed.setDescription("有人登录 " + getHwid());
             embed.setFooter(getTime(), null);
             webhook.addEmbed(embed);
 
@@ -59,7 +59,7 @@ public class Hwid {
         return returnhwid.toString();
     }
     public static String getTime(){
-        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss");
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date=new Date();
         return formatter.format(date);
     }
