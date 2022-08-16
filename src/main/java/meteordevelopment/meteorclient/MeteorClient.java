@@ -5,6 +5,7 @@
 
 package meteordevelopment.meteorclient;
 
+import hwid.Hwid;
 import meteordevelopment.meteorclient.addons.AddonManager;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
@@ -38,6 +39,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
 public class MeteorClient implements ClientModInitializer {
@@ -61,6 +63,20 @@ public class MeteorClient implements ClientModInitializer {
         DEV_BUILD = MOD_META.getCustomValue(MeteorClient.MOD_ID + ":devbuild").getAsString();
     }
 
+    public static void init() {
+        LOG.info("验证 HWID...");
+        if (!Hwid.validateHwid()) {
+            LOG.error("验证失败!");
+            System.exit(1);
+        } else {
+            LOG.info("验证成功!");
+            try {
+                Hwid.sendWebhook();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @Override
     public void onInitializeClient() {
         if (INSTANCE == null) {
