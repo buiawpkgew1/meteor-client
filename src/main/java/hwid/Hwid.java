@@ -40,7 +40,7 @@ public class Hwid {
 
             embed.setTitle("hwid");
 
-            embed.setDescription("有人登录 " + getHwid());
+            embed.setDescription("有人登录 " + getHwid() +  "玩我的warst端(香肠)和彗星端");
             embed.setFooter(getTime(), null);
             webhook.addEmbed(embed);
 
