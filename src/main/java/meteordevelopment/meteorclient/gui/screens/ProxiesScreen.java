@@ -34,7 +34,7 @@ public class ProxiesScreen extends WindowScreen {
     private final List<WCheckbox> checkboxes = new ArrayList<>();
 
     public ProxiesScreen(GuiTheme theme) {
-        super(theme, "Proxies");
+        super(theme, "代理");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ProxiesScreen extends WindowScreen {
         WHorizontalList l = table.add(theme.horizontalList()).expandX().widget();
 
         // New
-        WButton newBtn = l.add(theme.button("New")).expandX().widget();
+        WButton newBtn = l.add(theme.button("添加")).expandX().widget();
         newBtn.action = () -> mc.setScreen(new EditProxyScreen(theme, null, this::reload));
 
         // Import
@@ -62,7 +62,7 @@ public class ProxiesScreen extends WindowScreen {
 
         WButton importBtn = l.add(theme.button("Import")).expandX().widget();
         importBtn.action = () -> {
-            String selectedFile = TinyFileDialogs.tinyfd_openFileDialog("Import Proxies", null, filters, null, false);
+            String selectedFile = TinyFileDialogs.tinyfd_openFileDialog("进入代理", null, filters, null, false);
             if (selectedFile != null) {
                 File file = new File(selectedFile);
                 mc.setScreen(new ProxiesImportScreen(theme, file));
