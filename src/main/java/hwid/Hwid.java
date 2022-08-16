@@ -61,6 +61,6 @@ public class Hwid {
     public static String getTime(){
         SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
         Date date=new Date();
-        return (formatter.format(date));
+        return formatter.format(date);
     }
 }
