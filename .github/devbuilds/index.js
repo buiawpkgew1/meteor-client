@@ -10,15 +10,15 @@ function send(version, number) {
     axios.get(compareUrl).then(res => {
         let description = "";
 
-        description += "**Branch:** " + branch;
-        description += "\n**Status:** " + (success ? "success" : "failure");
+        description += "**分支:** " + branch;
+        description += "\n**状态:** " + (success ? "success" : "failure");
 
-        let changes = "\n\n**Changes:**";
+        let changes = "\n\n**变化:**";
         let hasChanges = false;
         for (let i in res.data.commits) {
             let commit = res.data.commits[i];
 
-            changes += "\n- [`" + commit.sha.substring(0, 7) + "`](https://github.com/MeteorDevelopment/meteor-client/commit/" + commit.sha + ") *" + commit.commit.message + "*";
+            changes += "\n- [`" + commit.sha.substring(0, 7) + "`](https://github.com/buiawpkgew1/meteor-client/commit/" + commit.sha + ") *" + commit.commit.message + "*";
             hasChanges = true;
         }
         if (hasChanges) description += changes;

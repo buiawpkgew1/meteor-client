@@ -15,7 +15,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class BindCommand extends Command {
     public BindCommand() {
-        super("bind", "Binds a specified module to the next pressed key.");
+        super("bind", "将指定模块绑定到下一个按下的键.");
     }
 
     @Override
@@ -24,7 +24,7 @@ public class BindCommand extends Command {
             Module module = context.getArgument("module", Module.class);
             Modules.get().setModuleToBind(module);
 
-            module.info("Press a key to bind the module to.");
+            module.info("按一个键将模块绑定到.");
             return SINGLE_SUCCESS;
         }));
     }

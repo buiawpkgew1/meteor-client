@@ -23,7 +23,7 @@ public class Proxies extends System<Proxies> implements Iterable<Proxy> {
     private List<Proxy> proxies = new ArrayList<>();
 
     public Proxies() {
-        super("proxies");
+        super("代理");
     }
 
     public static Proxies get() {

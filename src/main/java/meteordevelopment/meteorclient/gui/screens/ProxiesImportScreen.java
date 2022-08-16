@@ -24,7 +24,7 @@ public class ProxiesImportScreen extends WindowScreen {
 
     private final File file;
     public ProxiesImportScreen(GuiTheme theme, File file) {
-        super(theme, "Import Proxies");
+        super(theme, "进入代理");
         this.file = file;
         this.onClosed(() -> {
             if (parent instanceof ProxiesScreen screen) {
@@ -56,16 +56,16 @@ public class ProxiesImportScreen extends WindowScreen {
                             .build();
 
                         if (proxies.add(proxy)) {
-                            list.add(theme.label("Imported proxy: " + proxy.name.get()).color(Color.GREEN));
+                            list.add(theme.label("进口代理: " + proxy.name.get()).color(Color.GREEN));
                             pog++;
                         }
                         else {
-                            list.add(theme.label("Proxy already exists: " + proxy.name.get()).color(Color.ORANGE));
+                            list.add(theme.label("代理已存在: " + proxy.name.get()).color(Color.ORANGE));
                             bruh++;
                         }
                     }
                     else {
-                        list.add(theme.label("Invalid proxy: " + line).color(Color.RED));
+                        list.add(theme.label("无效的代理: " + line).color(Color.RED));
                         bruh++;
                     }
                 }
@@ -77,10 +77,10 @@ public class ProxiesImportScreen extends WindowScreen {
                 e.printStackTrace();
             }
         } else {
-            add(theme.label("Invalid File!"));
+            add(theme.label("无效文件!"));
         }
         add(theme.horizontalSeparator()).expandX();
-        WButton btnBack = add(theme.button("Back")).expandX().widget();
+        WButton btnBack = add(theme.button("返回")).expandX().widget();
         btnBack.action = this::close;
     }
 }

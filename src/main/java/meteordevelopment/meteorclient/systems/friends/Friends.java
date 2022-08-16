@@ -22,7 +22,7 @@ public class Friends extends System<Friends> implements Iterable<Friend> {
     private final List<Friend> friends = new ArrayList<>();
 
     public Friends() {
-        super("friends");
+        super("好友");
     }
 
     public static Friends get() {
