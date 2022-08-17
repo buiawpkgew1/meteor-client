@@ -59,7 +59,7 @@ public class SelfWeb extends Module {
     );
 
     public SelfWeb() {
-        super(Categories.Combat, "self-web", "Automatically places webs on you.");
+        super(Categories.Combat, "自网", "Automatically places webs on you.");
     }
 
     @EventHandler

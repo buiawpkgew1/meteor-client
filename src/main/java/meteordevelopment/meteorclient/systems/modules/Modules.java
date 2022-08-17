@@ -351,7 +351,7 @@ public class Modules extends System<Modules> {
     public void add(Module module) {
         // Check if the module's category is registered
         if (!CATEGORIES.contains(module.category)) {
-            throw new RuntimeException("Modules.addModule - Module's category was not registered.");
+            throw new RuntimeException("Modules.addModule - 模块的类别未注册.");
         }
 
         // Remove the previous module with the same name

@@ -228,7 +228,7 @@ public class AnchorAura extends Module {
     private PlayerEntity target;
 
     public AnchorAura() {
-        super(Categories.Combat, "anchor-aura", "Automatically places and breaks Respawn Anchors to harm entities.");
+        super(Categories.Combat, "锚定光环", "Automatically places and breaks Respawn Anchors to harm entities.");
     }
 
     @Override

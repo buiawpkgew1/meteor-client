@@ -120,7 +120,7 @@ public class SelfTrap extends Module {
     private int delay;
 
     public SelfTrap(){
-        super(Categories.Combat, "self-trap", "Places obsidian above your head.");
+        super(Categories.Combat, "自我陷阱", "Places obsidian above your head.");
     }
 
     @Override

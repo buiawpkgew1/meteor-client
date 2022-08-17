@@ -47,7 +47,7 @@ public class Quiver extends Module {
     private final List<Integer> arrowSlots = new ArrayList<>();
 
     public Quiver() {
-        super(Categories.Combat, "quiver", "Shoots arrows at yourself.");
+        super(Categories.Combat, "颤动", "Shoots arrows at yourself.");
     }
 
     @Override

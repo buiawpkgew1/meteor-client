@@ -104,7 +104,7 @@ public class ArrowDodge extends Module {
     private final List<Vec3> points = new ArrayList<>();
 
     public ArrowDodge() {
-        super(Categories.Combat, "arrow-dodge", "Tries to dodge arrows coming at you.");
+        super(Categories.Combat, "箭头闪避", "Tries to dodge arrows coming at you.");
     }
 
     @EventHandler
