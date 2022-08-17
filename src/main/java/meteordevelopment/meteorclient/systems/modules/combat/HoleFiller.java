@@ -34,18 +34,18 @@ import java.util.List;
 
 public class HoleFiller extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgRender = settings.createGroup("Render");
+    private final SettingGroup sgRender = settings.createGroup("渲染");
 
     private final Setting<List<Block>> blocks = sgGeneral.add(new BlockListSetting.Builder()
         .name("blocks")
-        .description("Which blocks can be used to fill holes.")
+        .description("哪些积木可以用来填孔.")
         .defaultValue(Blocks.OBSIDIAN)
         .build()
     );
 
     private final Setting<Integer> horizontalRadius = sgGeneral.add(new IntSetting.Builder()
-        .name("horizontal-radius")
-        .description("Horizontal radius in which to search for holes.")
+        .name("水平-半径")
+        .description("搜索孔洞的水平半径.")
         .defaultValue(4)
         .min(0)
         .sliderMax(6)
@@ -53,8 +53,8 @@ public class HoleFiller extends Module {
     );
 
     private final Setting<Integer> verticalRadius = sgGeneral.add(new IntSetting.Builder()
-        .name("vertical-radius")
-        .description("Vertical radius in which to search for holes.")
+        .name("纵向半径")
+        .description("搜索孔洞的垂直半径.")
         .defaultValue(4)
         .min(0)
         .sliderMax(6)
@@ -63,23 +63,23 @@ public class HoleFiller extends Module {
 
 
     private final Setting<Boolean> doubles = sgGeneral.add(new BoolSetting.Builder()
-        .name("doubles")
-        .description("Fills double holes.")
+        .name("双打")
+        .description("填充双孔.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Integer> placeDelay = sgGeneral.add(new IntSetting.Builder()
-        .name("delay")
-        .description("The ticks delay between placement.")
+        .name("延迟")
+        .description("摆放的时间间隔.")
         .defaultValue(1)
         .min(0)
         .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-        .name("rotate")
-        .description("Automatically rotates towards the holes being filled.")
+        .name("轮换")
+        .description("自动向被填充的孔旋转.")
         .defaultValue(true)
         .build()
     );
@@ -134,7 +134,7 @@ public class HoleFiller extends Module {
     private int timer;
 
     public HoleFiller() {
-        super(Categories.Combat, "填孔", "用指定的块填充孔.");
+        super(Categories.Combat, "填洞", "用指定的块填充洞.");
     }
 
     @Override

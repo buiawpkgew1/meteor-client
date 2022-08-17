@@ -30,42 +30,42 @@ public class Offhand extends Module {
 
     private final Setting<Item> item = sgGeneral.add(new EnumSetting.Builder<Item>()
         .name("item")
-        .description("Which item to hold in your offhand.")
+        .description("哪件物品应该拿在你的手边.")
         .defaultValue(Item.Crystal)
         .build()
     );
 
     private final Setting<Boolean> hotbar = sgGeneral.add(new BoolSetting.Builder()
-        .name("hotbar")
-        .description("Whether to use items from your hotbar.")
+        .name("热门栏目")
+        .description("是否使用你的热键栏中的项目.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> rightClick = sgGeneral.add(new BoolSetting.Builder()
-        .name("right-click")
-        .description("Only holds the item in your offhand when you are holding right click.")
+        .name("右键点击")
+        .description("当你按住右键时,只在你的手边持有物品.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> swordGap = sgGeneral.add(new BoolSetting.Builder()
-        .name("sword-gap")
-        .description("Holds an Enchanted Golden Apple when you are holding a sword.")
+        .name("剑隙")
+        .description("当你拿着一把剑的时候,可以持有一个魔法金苹果.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> crystalCa = sgGeneral.add(new BoolSetting.Builder()
-        .name("crystal-on-ca")
-        .description("Holds a crystal when you have Crystal Aura enabled.")
+        .name("晶体对卡")
+        .description("当你启用水晶光环时,可容纳一块水晶。.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> crystalMine = sgGeneral.add(new BoolSetting.Builder()
-        .name("crystal-on-mine")
-        .description("Holds a crystal when you are mining.")
+        .name("矿山上水晶")
+        .description("采矿时可容纳一块水晶.")
         .defaultValue(false)
         .build()
     );
@@ -75,7 +75,7 @@ public class Offhand extends Module {
     private Item currentItem;
 
     public Offhand() {
-        super(Categories.Combat, "副手", "Allows you to hold specified items in your offhand.");
+        super(Categories.Combat, "副手", "允许你在你的副手上持有指定的物品.");
     }
 
     @Override

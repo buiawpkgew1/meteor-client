@@ -36,7 +36,7 @@ import java.util.function.Predicate;
 
 public class Surround extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgRender = settings.createGroup("Render");
+    private final SettingGroup sgRender = settings.createGroup("渲染");
 
     // General
 
@@ -155,7 +155,7 @@ public class Surround extends Module {
     private int ticks;
 
     public Surround() {
-        super(Categories.Combat, "环绕", "Surrounds you in blocks to prevent massive crystal damage.");
+        super(Categories.Combat, "自我包围", "用方块包围你以防止大量水晶爆炸.");
     }
 
     // Render

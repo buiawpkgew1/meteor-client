@@ -44,8 +44,8 @@ import java.util.List;
 
 public class KillAura extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgTargeting = settings.createGroup("Targeting");
-    private final SettingGroup sgDelay = settings.createGroup("Delay");
+    private final SettingGroup sgTargeting = settings.createGroup("锁定目标");
+    private final SettingGroup sgDelay = settings.createGroup("延迟");
 
     // General
 
@@ -244,7 +244,7 @@ public class KillAura extends Module {
     private boolean wasPathing;
 
     public KillAura() {
-        super(Categories.Combat, "杀光环", "Attacks specified entities around you.");
+        super(Categories.Combat, "杀戮光环", "攻击你周围的指定实体.");
     }
 
     @Override

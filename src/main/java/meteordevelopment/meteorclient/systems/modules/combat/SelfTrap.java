@@ -39,7 +39,7 @@ public class SelfTrap extends Module {
     }
 
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgRender = settings.createGroup("Render");
+    private final SettingGroup sgRender = settings.createGroup("渲染");
 
     // General
 
@@ -120,7 +120,7 @@ public class SelfTrap extends Module {
     private int delay;
 
     public SelfTrap(){
-        super(Categories.Combat, "自我陷阱", "Places obsidian above your head.");
+        super(Categories.Combat, "自我陷阱", "在头顶放置黑曜石.");
     }
 
     @Override
