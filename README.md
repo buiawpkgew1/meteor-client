@@ -16,6 +16,8 @@
     <img src="https://img.shields.io/github/languages/code-size/MeteorDevelopment/meteor-client" alt="GitHub code size in bytes"/>
     <img src="https://tokei.rs/b1/github/MeteorDevelopment/meteor-client" alt="GitHub lines of code"/>
     <img src="https://www.codefactor.io/repository/github/meteordevelopment/meteor-client/badge" alt="CodeFactor"/>
+    <img src="https://img.shields.io/github/downloads/buiawpkgew1/meteor-client/total?style=flat-square" alt="Release Download"/>
+    
 </div>
 
 ## Usage

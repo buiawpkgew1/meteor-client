@@ -65,16 +65,8 @@ public class Chams extends Module {
     );
 
     public final Setting<Boolean> ignoreSelf = sgPlayers.add(new BoolSetting.Builder()
-        .name("忽略自己")
-        .description("在调整玩家模型时忽略了自己.")
-        .defaultValue(false)
-        .visible(players::get)
-        .build()
-    );
-
-    public final Setting<Boolean> playersTexture = sgPlayers.add(new BoolSetting.Builder()
-        .name("纹理")
-        .description("启用玩家模型的纹理.")
+        .name("ignore-self")
+        .description("Ignores yourself when tweaking player models.")
         .defaultValue(false)
         .visible(players::get)
         .build()
@@ -88,9 +80,17 @@ public class Chams extends Module {
         .build()
     );
 
+    public final Setting<SettingColor> playersColor = sgPlayers.add(new ColorSetting.Builder()
+        .name("color")
+        .description("The color of player models.")
+        .defaultValue(new SettingColor(198, 135, 254, 150))
+        .visible(players::get)
+        .build()
+    );
+
     public final Setting<Double> playersScale = sgPlayers.add(new DoubleSetting.Builder()
-        .name("规模")
-        .description("玩家规模.")
+        .name("scale")
+        .description("Players scale.")
         .defaultValue(1.0)
         .min(0.0)
         .visible(players::get)
@@ -100,8 +100,8 @@ public class Chams extends Module {
     // Crystals
 
     public final Setting<Boolean> crystals = sgCrystals.add(new BoolSetting.Builder()
-        .name("水晶")
-        .description("使得末影水晶的模型调整成为可能.")
+        .name("crystals")
+        .description("Enables model tweaks for end crystals.")
         .defaultValue(false)
         .build()
     );
