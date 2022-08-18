@@ -14,7 +14,7 @@ public class Categories {
     public static final Category Player = new Category("玩家", Items.ARMOR_STAND.getDefaultStack());
     public static final Category Movement = new Category("移动", Items.DIAMOND_BOOTS.getDefaultStack());
     public static final Category Render = new Category("渲染", Items.GLASS.getDefaultStack());
-    public static final Category World = new Category("时间", Items.GRASS_BLOCK.getDefaultStack());
+    public static final Category World = new Category("世界", Items.GRASS_BLOCK.getDefaultStack());
     public static final Category Misc = new Category("杂项", Items.LAVA_BUCKET.getDefaultStack());
 
     public static boolean REGISTERING;
