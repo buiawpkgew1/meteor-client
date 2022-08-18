@@ -410,7 +410,7 @@ public class CrystalAura extends Module {
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
         .name("形状-模式")
-        .description("形状是如何被渲染的")。
+        .description("形状是如何被渲染的")
         .defaultValue(ShapeMode.Both)
         .build()
     );
