@@ -18,22 +18,22 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.Identifier;
 
 public class Chams extends Module {
-    private final SettingGroup sgThroughWalls = settings.createGroup("穿墙");
-    private final SettingGroup sgPlayers = settings.createGroup("玩家");
-    private final SettingGroup sgCrystals = settings.createGroup("水晶");
-    private final SettingGroup sgHand = settings.createGroup("手");
+    private final SettingGroup sgThroughWalls = settings.createGroup("Through Walls");
+    private final SettingGroup sgPlayers = settings.createGroup("Players");
+    private final SettingGroup sgCrystals = settings.createGroup("Crystals");
+    private final SettingGroup sgHand = settings.createGroup("Hand");
 
     // Through walls
 
     public final Setting<Object2BooleanMap<EntityType<?>>> entities = sgThroughWalls.add(new EntityTypeListSetting.Builder()
-        .name("实体")
-        .description("选择实体来显示穿墙.")
+        .name("entities")
+        .description("Select entities to show through walls.")
         .build()
     );
 
     public final Setting<Shader> shader = sgThroughWalls.add(new EnumSetting.Builder<Shader>()
-        .name("着色器")
-        .description("渲染一个实体的着色器.")
+        .name("shader")
+        .description("Renders a shader over of the entities.")
         .defaultValue(Shader.Image)
         .onModuleActivated(setting -> updateShader(setting.get()))
         .onChanged(this::updateShader)
@@ -41,16 +41,16 @@ public class Chams extends Module {
     );
 
     public final Setting<SettingColor> shaderColor = sgThroughWalls.add(new ColorSetting.Builder()
-        .name("颜色")
-        .description("着色器被绘制的颜色.")
+        .name("color")
+        .description("The color that the shader is drawn with.")
         .defaultValue(new SettingColor(255, 255, 255, 150))
         .visible(() -> shader.get() != Shader.None)
         .build()
     );
 
     public final Setting<Boolean> ignoreSelfDepth = sgThroughWalls.add(new BoolSetting.Builder()
-        .name("忽略自己")
-        .description("忽略自己画的玩家.")
+        .name("ignore-self")
+        .description("Ignores yourself drawing the player.")
         .defaultValue(true)
         .build()
     );
@@ -58,8 +58,8 @@ public class Chams extends Module {
     // Players
 
     public final Setting<Boolean> players = sgPlayers.add(new BoolSetting.Builder()
-        .name("玩家")
-        .description("启用玩家的模型调整.")
+        .name("players")
+        .description("Enables model tweaks for players.")
         .defaultValue(false)
         .build()
     );
@@ -72,10 +72,10 @@ public class Chams extends Module {
         .build()
     );
 
-    public final Setting<SettingColor> playersColor = sgPlayers.add(new ColorSetting.Builder()
-        .name("颜色")
-        .description("玩家模型的颜色.")
-        .defaultValue(new SettingColor(198, 135, 254, 150))
+    public final Setting<Boolean> playersTexture = sgPlayers.add(new BoolSetting.Builder()
+        .name("texture")
+        .description("Enables player model textures.")
+        .defaultValue(false)
         .visible(players::get)
         .build()
     );
@@ -107,8 +107,8 @@ public class Chams extends Module {
     );
 
     public final Setting<Double> crystalsScale = sgCrystals.add(new DoubleSetting.Builder()
-        .name("规模")
-        .description("水晶刻度.")
+        .name("scale")
+        .description("Crystal scale.")
         .defaultValue(0.6)
         .min(0)
         .visible(crystals::get)
@@ -116,8 +116,8 @@ public class Chams extends Module {
     );
 
     public final Setting<Double> crystalsBounce = sgCrystals.add(new DoubleSetting.Builder()
-        .name("蹦蹦跳跳")
-        .description("晶体的弹跳力有多高.")
+        .name("bounce")
+        .description("How high crystals bounce.")
         .defaultValue(0.6)
         .min(0.0)
         .visible(crystals::get)
@@ -125,8 +125,8 @@ public class Chams extends Module {
     );
 
     public final Setting<Double> crystalsRotationSpeed = sgCrystals.add(new DoubleSetting.Builder()
-        .name("旋转速度")
-        .description("v.")
+        .name("rotation-speed")
+        .description("Multiplies the rotation speed of the crystal.")
         .defaultValue(0.3)
         .min(0)
         .visible(crystals::get)
@@ -134,8 +134,8 @@ public class Chams extends Module {
     );
 
     public final Setting<Boolean> crystalsTexture = sgCrystals.add(new BoolSetting.Builder()
-        .name("纹理")
-        .description("是否渲染晶体模型纹理.")
+        .name("texture")
+        .description("Whether to render crystal model textures.")
         .defaultValue(true)
         .visible(crystals::get)
         .build()
@@ -193,14 +193,14 @@ public class Chams extends Module {
 
     public final Setting<Boolean> hand = sgHand.add(new BoolSetting.Builder()
         .name("enabled")
-        .description("启用手绘的调整功能.")
+        .description("Enables tweaks of hand rendering.")
         .defaultValue(false)
         .build()
     );
 
     public final Setting<Boolean> handTexture = sgHand.add(new BoolSetting.Builder()
         .name("texture")
-        .description("是否渲染手部纹理.")
+        .description("Whether to render hand textures.")
         .defaultValue(false)
         .visible(hand::get)
         .build()
@@ -208,7 +208,7 @@ public class Chams extends Module {
 
     public final Setting<SettingColor> handColor = sgHand.add(new ColorSetting.Builder()
         .name("hand-color")
-        .description("你的手的颜色.")
+        .description("The color of your hand.")
         .defaultValue(new SettingColor(198, 135, 254, 150))
         .visible(hand::get)
         .build()
