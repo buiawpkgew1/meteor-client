@@ -58,7 +58,7 @@ public class Offhand extends Module {
 
     private final Setting<Boolean> crystalCa = sgGeneral.add(new BoolSetting.Builder()
         .name("晶体对卡")
-        .description("当你启用水晶光环时,可容纳一块水晶。.")
+        .description("当你启用水晶光环时,可容纳一块水晶.")
         .defaultValue(true)
         .build()
     );

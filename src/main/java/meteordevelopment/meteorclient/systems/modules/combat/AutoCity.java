@@ -49,7 +49,7 @@ public class AutoCity extends Module {
 
     private final Setting<Boolean> support = sgGeneral.add(new BoolSetting.Builder()
         .name("支持")
-        .description("如果城市街区下方没有街区，它将在采矿前放置一个.")
+        .description("如果城市街区下方没有街区,它将在采矿前放置一个.")
         .defaultValue(true)
         .build()
     );

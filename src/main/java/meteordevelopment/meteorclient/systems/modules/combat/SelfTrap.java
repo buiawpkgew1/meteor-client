@@ -44,73 +44,73 @@ public class SelfTrap extends Module {
     // General
 
     private final Setting<TopMode> topPlacement = sgGeneral.add(new EnumSetting.Builder<TopMode>()
-            .name("top-mode")
-            .description("Which positions to place on your top half.")
+            .name("顶部模式")
+            .description("在你的上半身放置哪些位置.")
             .defaultValue(TopMode.Top)
             .build()
     );
 
     private final Setting<BottomMode> bottomPlacement = sgGeneral.add(new EnumSetting.Builder<BottomMode>()
-            .name("bottom-mode")
-            .description("Which positions to place on your bottom half.")
+            .name("底层模式")
+            .description("在你的下半身放置哪些位置.")
             .defaultValue(BottomMode.None)
             .build()
     );
 
     private final Setting<Integer> delaySetting = sgGeneral.add(new IntSetting.Builder()
-            .name("place-delay")
-            .description("How many ticks between block placements.")
+            .name("地点-延迟")
+            .description("块状放置之间有多少个刻度.")
             .defaultValue(1)
             .build()
     );
 
     private final Setting<Boolean> center = sgGeneral.add(new BoolSetting.Builder()
-            .name("center")
-            .description("Centers you on the block you are standing on before placing.")
+            .name("中心")
+            .description("以你所站的区块为中心,然后再放置.")
             .defaultValue(true)
             .build()
     );
 
     private final Setting<Boolean> turnOff = sgGeneral.add(new BoolSetting.Builder()
-            .name("turn-off")
-            .description("Turns off after placing.")
+            .name("关掉")
+            .description("放置后关闭.")
             .defaultValue(true)
             .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-            .name("rotate")
-            .description("Sends rotation packets to the server when placing.")
+            .name("轮换")
+            .description("放置时向服务器发送旋转数据包。.")
             .defaultValue(true)
             .build()
     );
 
-    // Render
+    // 渲染
 
     private final Setting<Boolean> render = sgRender.add(new BoolSetting.Builder()
-            .name("render")
-            .description("Renders a block overlay where the obsidian will be placed.")
+            .name("渲染")
+            .description("渲染一个放置黑曜石的区块覆盖层.")
             .defaultValue(true)
             .build()
     );
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
-            .name("shape-mode")
-            .description("How the shapes are rendered.")
+            .name("形状-模式")
+            .description("形状是如何呈现的.")
             .defaultValue(ShapeMode.Both)
             .build()
     );
 
     private final Setting<SettingColor> sideColor = sgRender.add(new ColorSetting.Builder()
-            .name("side-color")
-            .description("The color of the sides of the blocks being rendered.")
+            .name("侧面颜色")
+            .description("被渲染的块的边的颜色.")
             .defaultValue(new SettingColor(204, 0, 0, 10))
             .build()
     );
 
     private final Setting<SettingColor> lineColor = sgRender.add(new ColorSetting.Builder()
-            .name("line-color")
-            .description("The color of the lines of the blocks being rendered.")
+            .name("线条颜色")
+            .description("被渲染的块的线条的颜色.")
             .defaultValue(new SettingColor(204, 0, 0, 255))
             .build()
     );

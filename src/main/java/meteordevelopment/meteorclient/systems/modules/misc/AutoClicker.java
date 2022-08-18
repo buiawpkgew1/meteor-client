@@ -29,22 +29,22 @@ public class AutoClicker extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Mode> mode = sgGeneral.add(new EnumSetting.Builder<Mode>()
-            .name("mode")
-            .description("The method of clicking.")
+            .name("模式")
+            .description("点击的方法.")
             .defaultValue(Mode.Press)
             .build()
     );
 
     private final Setting<Button> button = sgGeneral.add(new EnumSetting.Builder<Button>()
-            .name("button")
-            .description("Which button to press.")
+            .name("按钮")
+            .description("按哪个按钮.")
             .defaultValue(Button.Right)
             .build()
     );
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
-            .name("click-delay")
-            .description("The amount of delay between clicks in ticks.")
+            .name("点击-延迟")
+            .description("点击之间的延迟量，单位为ticks.")
             .defaultValue(2)
             .min(0)
             .sliderMax(60)
@@ -54,7 +54,7 @@ public class AutoClicker extends Module {
     private int timer;
 
     public AutoClicker() {
-        super(Categories.Player, "auto-clicker", "Automatically clicks.");
+        super(Categories.Player, "自动点击", "自动点击.");
     }
 
     @Override

@@ -23,7 +23,7 @@ public class SwarmWorker extends Thread {
             socket = new Socket(ip, port);
         } catch (Exception e) {
             socket = null;
-            ChatUtils.warning("Swarm", "Server not found at %s on port %s.", ip, port);
+            ChatUtils.warning("Swarm", "在%s的端口没有找到服务器 %s.", ip, port);
             e.printStackTrace();
         }
 
@@ -32,7 +32,7 @@ public class SwarmWorker extends Thread {
 
     @Override
     public void run() {
-        ChatUtils.info("Swarm", "Connected to Swarm host on at %s on port %s.", getIp(socket.getInetAddress().getHostAddress()), socket.getPort());
+        ChatUtils.info("Swarm", "已连接到Swarm主机上的%s，端口为%s.", getIp(socket.getInetAddress().getHostAddress()), socket.getPort());
 
         try {
             DataInputStream in = new DataInputStream(socket.getInputStream());
@@ -42,12 +42,12 @@ public class SwarmWorker extends Thread {
                 String read = in.readUTF();
 
                 if (!read.equals("")) {
-                    ChatUtils.info("Swarm", "Received command: (highlight)%s", read);
+                    ChatUtils.info("Swarm", "收到的命令。(突出显示)%s", read);
 
                     try {
                         Commands.get().dispatch(read);
                     } catch (Exception e) {
-                        ChatUtils.error("Error fetching command.");
+                        ChatUtils.error("获取命令的错误.");
                         e.printStackTrace();
                     }
                 }
@@ -55,7 +55,7 @@ public class SwarmWorker extends Thread {
 
             in.close();
         } catch (IOException e) {
-            ChatUtils.error("Swarm", "Error in connection to host.");
+            ChatUtils.error("Swarm", "与主机的连接出现错误.");
             e.printStackTrace();
             disconnect();
         }
@@ -70,7 +70,7 @@ public class SwarmWorker extends Thread {
 
         BaritoneAPI.getProvider().getPrimaryBaritone().getPathingBehavior().cancelEverything();
 
-        ChatUtils.info("Swarm", "Disconnected from host.");
+        ChatUtils.info("Swarm", "与主机断开连接.");
 
         interrupt();
     }

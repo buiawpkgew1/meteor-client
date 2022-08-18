@@ -39,7 +39,7 @@ public class Quiver extends Module {
 
     private final Setting<Boolean> checkEffects = sgGeneral.add(new BoolSetting.Builder()
         .name("检查现有效果")
-        .description("不会用你已经拥有的效果向你开枪。.")
+        .description("不会用你已经拥有的效果向你开枪.")
         .defaultValue(true)
         .build()
     );

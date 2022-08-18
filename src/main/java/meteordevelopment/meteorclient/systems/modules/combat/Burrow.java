@@ -115,19 +115,19 @@ public class Burrow extends Module {
     @Override
     public void onActivate() {
         if (!mc.world.getBlockState(mc.player.getBlockPos()).getMaterial().isReplaceable()) {
-            error("已经钻进了洞，失去了能力.");
+            error("已经钻进了洞,失去了能力.");
             toggle();
             return;
         }
 
         if (!PlayerUtils.isInHole(false) && onlyInHole.get()) {
-            error("不是在洞里，是失能.");
+            error("不是在洞里,是失能.");
             toggle();
             return;
         }
 
         if (!checkHead()) {
-            error("没有足够的头部空间来钻洞，使其丧失能力.");
+            error("没有足够的头部空间来钻洞,使其丧失能力.");
             toggle();
             return;
         }
@@ -135,7 +135,7 @@ public class Burrow extends Module {
         FindItemResult result = getItem();
 
         if (!result.isHotbar() && !result.isOffhand()) {
-            error("没有发现洞穴区块，禁用.");
+            error("没有发现洞穴区块,禁用.");
             toggle();
             return;
         }

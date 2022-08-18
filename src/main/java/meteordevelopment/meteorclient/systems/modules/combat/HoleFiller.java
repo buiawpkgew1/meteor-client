@@ -87,43 +87,43 @@ public class HoleFiller extends Module {
     // Render
 
     private final Setting<Boolean> render = sgRender.add(new BoolSetting.Builder()
-        .name("render")
-        .description("Renders an overlay where blocks will be placed.")
+        .name("渲染")
+        .description("渲染一个将放置块的覆盖层")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
-        .name("shape-mode")
-        .description("How the shapes are rendered.")
+        .name("形状-模式")
+        .description("形状是如何被渲染的")
         .defaultValue(ShapeMode.Both)
         .build()
     );
 
     private final Setting<SettingColor> sideColor = sgRender.add(new ColorSetting.Builder()
-        .name("side-color")
-        .description("The side color of the target block rendering.")
+        .name("侧面颜色")
+        .description("目标块渲染的侧面颜色")
         .defaultValue(new SettingColor(197, 137, 232, 10))
         .build()
     );
 
     private final Setting<SettingColor> lineColor = sgRender.add(new ColorSetting.Builder()
-        .name("line-color")
-        .description("The line color of the target block rendering.")
+        .name("线条颜色")
+        .description("目标块渲染的线条颜色")
         .defaultValue(new SettingColor(197, 137, 232))
         .build()
     );
 
     private final Setting<SettingColor> nextSideColor = sgRender.add(new ColorSetting.Builder()
-        .name("next-side-color")
-        .description("The side color of the next block to be placed.")
+        .name("下一页-侧面-颜色")
+        .description("下一个要放置的块的侧面颜色")
         .defaultValue(new SettingColor(227, 196, 245, 10))
         .build()
     );
 
     private final Setting<SettingColor> nextLineColor = sgRender.add(new ColorSetting.Builder()
-        .name("next-line-color")
-        .description("The line color of the next block to be placed.")
+        .name("下一页--颜色")
+        .description("下一个要放置的块的线的颜色")
         .defaultValue(new SettingColor(227, 196, 245))
         .build()
     );

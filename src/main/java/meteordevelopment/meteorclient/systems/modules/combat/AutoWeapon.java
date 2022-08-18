@@ -30,7 +30,7 @@ public class AutoWeapon extends Module {
 
     private final Setting<Integer> threshold = sgGeneral.add(new IntSetting.Builder()
         .name("阈值")
-        .description("如果非首选的武器产生这么多的伤害，这将有利于它而不是你的首选武器。.")
+        .description("如果非首选的武器产生这么多的伤害，这将有利于它而不是你的首选武器.")
         .defaultValue(4)
         .build()
     );

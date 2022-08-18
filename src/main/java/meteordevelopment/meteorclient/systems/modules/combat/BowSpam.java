@@ -22,7 +22,7 @@ public class BowSpam extends Module {
 
     private final Setting<Integer> charge = sgGeneral.add(new IntSetting.Builder()
         .name("收费")
-        .description("弓箭在释放前要充多长时间，以刻度为单位.")
+        .description("弓箭在释放前要充多长时间,以刻度为单位.")
         .defaultValue(5)
         .range(5, 20)
         .sliderRange(5, 20)

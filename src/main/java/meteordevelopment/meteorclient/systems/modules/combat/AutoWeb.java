@@ -38,7 +38,7 @@ public class AutoWeb extends Module {
 
     private final Setting<Boolean> doubles = sgGeneral.add(new BoolSetting.Builder()
         .name("双打")
-        .description("在目标的上部命中框和下部命中框中放置网状物。.")
+        .description("在目标的上部命中框和下部命中框中放置网状物.")
         .defaultValue(false)
         .build()
     );

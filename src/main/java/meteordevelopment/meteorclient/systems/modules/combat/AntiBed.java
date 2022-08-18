@@ -29,28 +29,28 @@ public class AntiBed extends Module {
 
     private final Setting<Boolean> placeStringTop = sgGeneral.add(new BoolSetting.Builder()
         .name("放置字符串顶部")
-        .description("在您上方放置字符串.")
+        .description("在您上方放置字符串")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> placeStringMiddle = sgGeneral.add(new BoolSetting.Builder()
         .name("位置字符串中间")
-        .description("将字符串放置在您的上碰撞箱中.")
+        .description("将字符串放置在您的上碰撞箱中")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> placeStringBottom = sgGeneral.add(new BoolSetting.Builder()
         .name("放置字符串底部")
-        .description("将绳子放在你的脚下.")
+        .description("将绳子放在你的脚下")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> onlyInHole = sgGeneral.add(new BoolSetting.Builder()
         .name("仅在洞中")
-        .description("仅当您站在洞中时才起作用.")
+        .description("仅当您站在洞中时才起作用")
         .defaultValue(true)
         .build()
     );
@@ -58,7 +58,7 @@ public class AntiBed extends Module {
     private boolean breaking;
 
     public AntiBed() {
-        super(Categories.Combat, "防床", "放置方块以防止床铺在你身上.");
+        super(Categories.Combat, "防床", "放置方块以防止床铺在你身上");
     }
 
     @EventHandler

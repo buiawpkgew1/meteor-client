@@ -23,20 +23,20 @@ public class AntiAnchor extends Module {
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
         .name("旋转")
-        .description("让你在放置时旋转.")
+        .description("让你在放置时旋转")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> swing = sgGeneral.add(new BoolSetting.Builder()
         .name("摇摆")
-        .description("放置时挥动你的手.")
+        .description("放置时挥动你的手")
         .defaultValue(true)
         .build()
     );
 
     public AntiAnchor() {
-        super(Categories.Combat, "反锚", "通过在头上放置一块石板来自动防止锚光环.");
+        super(Categories.Combat, "反锚", "通过在头上放置一块石板来自动防止锚光环");
     }
 
     @EventHandler

@@ -73,7 +73,7 @@ public class AutoAnvil extends Module {
 
     private final Setting<Boolean> multiPlace = sgGeneral.add(new BoolSetting.Builder()
         .name("多地点")
-        .description("一次放置多个铁砧..")
+        .description("一次放置多个铁砧.")
         .defaultValue(true)
         .build()
     );

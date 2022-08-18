@@ -34,42 +34,42 @@ import java.util.regex.PatternSyntaxException;
 
 public class BetterChat extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgFilter = settings.createGroup("Filter");
-    private final SettingGroup sgLongerChat = settings.createGroup("Longer Chat");
-    private final SettingGroup sgPrefix = settings.createGroup("Prefix");
-    private final SettingGroup sgSuffix = settings.createGroup("Suffix");
+    private final SettingGroup sgFilter = settings.createGroup("排除");
+    private final SettingGroup sgLongerChat = settings.createGroup("更长的聊天时间");
+    private final SettingGroup sgPrefix = settings.createGroup("前缀");
+    private final SettingGroup sgSuffix = settings.createGroup("后缀");
 
     private final Setting<Boolean> annoy = sgGeneral.add(new BoolSetting.Builder()
-        .name("annoy")
-        .description("Makes your messages aNnOyInG.")
+        .name("恼人的")
+        .description("让你的信息变得更有价值.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> fancy = sgGeneral.add(new BoolSetting.Builder()
-        .name("fancy-chat")
-        .description("Makes your messages ғᴀɴᴄʏ!")
+        .name("花式聊天")
+        .description("使你的信息ғᴀɴᴄʏ!")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> timestamps = sgGeneral.add(new BoolSetting.Builder()
-        .name("timestamps")
-        .description("Adds client-side time stamps to the beginning of chat messages.")
+        .name("时间戳")
+        .description("在聊天信息的开头添加客户端的时间戳.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> playerHeads = sgGeneral.add(new BoolSetting.Builder()
-        .name("player-heads")
-        .description("Displays player heads next to their messages.")
+        .name("玩家头像")
+        .description("在信息旁边显示玩家的头像.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> coordsProtection = sgGeneral.add(new BoolSetting.Builder()
-        .name("coords-protection")
-        .description("Prevents you from sending messages in chat that may contain coordinates.")
+        .name("共轭保护")
+        .description("防止你在聊天中发送可能包含坐标的信息.")
         .defaultValue(true)
         .build()
     );
@@ -77,15 +77,15 @@ public class BetterChat extends Module {
     // Filter
 
     private final Setting<Boolean> antiSpam = sgFilter.add(new BoolSetting.Builder()
-        .name("anti-spam")
-        .description("Blocks duplicate messages from filling your chat.")
+        .name("反垃圾邮件")
+        .description("阻止重复的消息充斥您的聊天室.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Integer> antiSpamDepth = sgFilter.add(new IntSetting.Builder()
-        .name("depth")
-        .description("How many messages to filter.")
+        .name("深度")
+        .description("要过滤多少条信息.")
         .defaultValue(20)
         .min(1)
         .sliderMin(1)
@@ -94,15 +94,15 @@ public class BetterChat extends Module {
     );
 
     private final Setting<Boolean> filterRegex = sgFilter.add(new BoolSetting.Builder()
-        .name("filter-regex")
-        .description("Filter out chat messages that match the regex filter.")
+        .name("筛选-搜索")
+        .description("筛选出符合regex过滤器的聊天信息.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<List<String>> regexFilters = sgFilter.add(new StringListSetting.Builder()
-        .name("regex-filter")
-        .description("Regex filter used for filtering chat messages.")
+        .name("反义词-过滤器")
+        .description("用于过滤聊天信息的Regex过滤器.")
         .visible(filterRegex::get)
         .onChanged(strings -> compileFilterRegexList())
         .build()
@@ -112,22 +112,22 @@ public class BetterChat extends Module {
     // Longer chat
 
     private final Setting<Boolean> infiniteChatBox = sgLongerChat.add(new BoolSetting.Builder()
-        .name("infinite-chat-box")
-        .description("Lets you type infinitely long messages.")
+        .name("无限的聊天盒")
+        .description("让你输入无限长的信息.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> longerChatHistory = sgLongerChat.add(new BoolSetting.Builder()
-        .name("longer-chat-history")
-        .description("Extends chat length.")
+        .name("更长的聊天历史")
+        .description("延长聊天时间.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Integer> longerChatLines = sgLongerChat.add(new IntSetting.Builder()
-        .name("extra-lines")
-        .description("The amount of extra chat lines.")
+        .name("额外的线")
+        .description("额外的聊天线的数量.")
         .defaultValue(1000)
         .min(100)
         .sliderRange(100, 1000)
@@ -138,30 +138,30 @@ public class BetterChat extends Module {
     // Prefix
 
     private final Setting<Boolean> prefix = sgPrefix.add(new BoolSetting.Builder()
-        .name("prefix")
-        .description("Adds a prefix to your chat messages.")
+        .name("前缀")
+        .description("在您的聊天信息中添加一个前缀.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> prefixRandom = sgPrefix.add(new BoolSetting.Builder()
-        .name("random")
-        .description("Uses a random number as your prefix.")
+        .name("随机")
+        .description("使用一个随机数作为你的前缀.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<String> prefixText = sgPrefix.add(new StringSetting.Builder()
         .name("text")
-        .description("The text to add as your prefix.")
+        .description("作为前缀添加的文本.")
         .defaultValue("> ")
         .visible(() -> !prefixRandom.get())
         .build()
     );
 
     private final Setting<Boolean> prefixSmallCaps = sgPrefix.add(new BoolSetting.Builder()
-        .name("small-caps")
-        .description("Uses small caps in the prefix.")
+        .name("小盘股")
+        .description("在前缀中使用小写字母.")
         .defaultValue(false)
         .visible(() -> !prefixRandom.get())
         .build()
@@ -203,7 +203,7 @@ public class BetterChat extends Module {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
     public BetterChat() {
-        super(Categories.Misc, "better-chat", "Improves your chat experience in various ways.");
+        super(Categories.Misc, "更好的聊天", "以各种方式改善您的聊天体验.");
 
         String[] a = "abcdefghijklmnopqrstuvwxyz".split("");
         String[] b = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴩqʀꜱᴛᴜᴠᴡxyᴢ".split("");

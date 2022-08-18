@@ -94,7 +94,7 @@ public class BedAura extends Module {
 
     private final Setting<Boolean> antiSuicide = sgTargeting.add(new BoolSetting.Builder()
         .name("反自杀")
-        .description("不会放置和破坏床铺，如果它们会杀了你。.")
+        .description("不会放置和破坏床铺,如果它们会杀了你.")
         .defaultValue(true)
         .build()
     );

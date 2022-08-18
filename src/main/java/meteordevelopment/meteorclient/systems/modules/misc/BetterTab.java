@@ -71,7 +71,7 @@ public class BetterTab extends Module {
 
 
     public BetterTab() {
-        super(Categories.Misc, "better-tab", "Various improvements to the tab list.");
+        super(Categories.Misc, "更好标签", "标签列表的各种改进.");
     }
 
     public Text getPlayerName(PlayerListEntry playerListEntry) {

@@ -68,21 +68,21 @@ public class ArrowDodge extends Module {
 
     private final Setting<Boolean> allProjectiles = sgGeneral.add(new BoolSetting.Builder()
         .name("全弹")
-        .description("躲避所有射弹，不仅是箭.")
+        .description("躲避所有射弹,不仅是箭.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> ignoreOwn = sgGeneral.add(new BoolSetting.Builder()
         .name("忽略自己")
-        .description("忽略你自己的弹丸.")
+        .description("忽略你自己的弹丸")
         .defaultValue(false)
         .build()
     );
 
     public final Setting<Integer> simulationSteps = sgGeneral.add(new IntSetting.Builder()
         .name("模拟步骤")
-        .description("模拟弹丸需要多少步。 零无限制")
+        .description("模拟弹丸需要多少步. 零无限制")
         .defaultValue(500)
         .sliderMax(5000)
         .build()
@@ -104,7 +104,7 @@ public class ArrowDodge extends Module {
     private final List<Vec3> points = new ArrayList<>();
 
     public ArrowDodge() {
-        super(Categories.Combat, "箭矢闪避", "试图躲避射向你的箭矢.");
+        super(Categories.Combat, "箭矢闪避", "试图躲避射向你的箭矢");
     }
 
     @EventHandler

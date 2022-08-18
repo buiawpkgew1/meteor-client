@@ -55,7 +55,7 @@ public class AutoArmor extends Module {
 
     private final Setting<Boolean> blastLeggings = sgGeneral.add(new BoolSetting.Builder()
         .name("防爆护腿")
-        .description("无论首选保护如何，都对紧身裤使用防爆保护.")
+        .description("无论首选保护如何,都对紧身裤使用防爆保护.")
         .defaultValue(true)
         .build()
     );
@@ -69,7 +69,7 @@ public class AutoArmor extends Module {
 
     private final Setting<Boolean> ignoreElytra = sgGeneral.add(new BoolSetting.Builder()
         .name("忽略鞘翅")
-        .description("如果你装备了它，它不会替换你的鞘翅.")
+        .description("如果你装备了它,它不会替换你的鞘翅.")
         .defaultValue(true)
         .build()
     );
