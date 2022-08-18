@@ -10,6 +10,6 @@ import meteordevelopment.meteorclient.systems.modules.Module;
 
 public class AntiPacketKick extends Module {
     public AntiPacketKick() {
-        super(Categories.Misc, "anti-packet-kick", "Attempts to prevent you from being disconnected by large packets.");
+        super(Categories.Misc, "反包踢", "试图防止你被大数据包断开连接");
     }
 }

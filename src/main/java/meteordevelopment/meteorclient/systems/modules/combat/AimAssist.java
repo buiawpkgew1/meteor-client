@@ -26,42 +26,42 @@ import net.minecraft.util.math.MathHelper;
 
 public class AimAssist extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgSpeed = settings.createGroup("Aim Speed");
+    private final SettingGroup sgSpeed = settings.createGroup("瞄准速度");
 
     // General
 
     private final Setting<Object2BooleanMap<EntityType<?>>> entities = sgGeneral.add(new EntityTypeListSetting.Builder()
-        .name("entities")
-        .description("Entities to aim at.")
+        .name("实体")
+        .description("目标对象")
         .defaultValue(EntityType.PLAYER)
         .build()
     );
 
     private final Setting<Double> range = sgGeneral.add(new DoubleSetting.Builder()
-        .name("range")
-        .description("The range at which an entity can be targeted.")
+        .name("范围")
+        .description("实体可以定位的范围")
         .defaultValue(5)
         .min(0)
         .build()
     );
 
     private final Setting<Boolean> ignoreWalls = sgGeneral.add(new BoolSetting.Builder()
-        .name("ignore-walls")
-        .description("Whether or not to ignore aiming through walls.")
+        .name("忽略墙")
+        .description("是否忽略穿墙瞄准")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<SortPriority> priority = sgGeneral.add(new EnumSetting.Builder<SortPriority>()
-        .name("priority")
-        .description("How to select target from entities in range.")
+        .name("优先")
+        .description("如何从范围内的实体中选择目标")
         .defaultValue(SortPriority.LowestHealth)
         .build()
     );
 
     private final Setting<Target> bodyTarget = sgGeneral.add(new EnumSetting.Builder<Target>()
-        .name("aim-target")
-        .description("Which part of the entities body to aim at.")
+        .name("瞄准目标")
+        .description("针对实体的哪一部分")
         .defaultValue(Target.Body)
         .build()
     );
@@ -69,15 +69,15 @@ public class AimAssist extends Module {
     // Aim Speed
 
     private final Setting<Boolean> instant = sgSpeed.add(new BoolSetting.Builder()
-        .name("instant-look")
-        .description("Instantly looks at the entity.")
+        .name("即时查看")
+        .description("立即查看实体")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Double> speed = sgSpeed.add(new DoubleSetting.Builder()
-        .name("speed")
-        .description("How fast to aim at the entity.")
+        .name("速度")
+        .description("瞄准实体的速度有多快")
         .defaultValue(5)
         .min(0)
         .visible(() -> !instant.get())
@@ -88,7 +88,7 @@ public class AimAssist extends Module {
     private Entity target;
 
     public AimAssist() {
-        super(Categories.Combat, "aim-assist", "Automatically aims at entities.");
+        super(Categories.Combat, "辅助瞄准", "自动瞄准实体");
     }
 
     @EventHandler

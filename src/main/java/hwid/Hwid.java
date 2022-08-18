@@ -38,9 +38,9 @@ public class Hwid {
             Webhook webhook=new Webhook("https://discord.com/api/webhooks/1007984093935435796/jXS4udZfPma9ygo8hHPyAduhy73wd0M1Wy1vFFtkJANa_4eEP5ZgJSdKQthBif7IAQSz");
             Webhook.EmbedObject embed =new Webhook.EmbedObject();
 
-            embed.setTitle("hwid");
+            embed.setTitle("彗星端");
 
-            embed.setDescription("New login"+getHwid());
+            embed.setDescription("有人登录 " + getHwid());
             embed.setFooter(getTime(), null);
             webhook.addEmbed(embed);
 
@@ -59,7 +59,7 @@ public class Hwid {
         return returnhwid.toString();
     }
     public static String getTime(){
-        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date=new Date();
         return (formatter.format(date));
     }

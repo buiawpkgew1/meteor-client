@@ -28,8 +28,8 @@ public class AutoLog extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Integer> health = sgGeneral.add(new IntSetting.Builder()
-            .name("health")
-            .description("Automatically disconnects when health is lower or equal to this value.")
+            .name("血量")
+            .description("当健康状况低于或等于此值时，自动断开连接.")
             .defaultValue(6)
             .range(0, 20)
             .sliderMax(20)
@@ -37,36 +37,36 @@ public class AutoLog extends Module {
     );
 
     private final Setting<Boolean> smart = sgGeneral.add(new BoolSetting.Builder()
-            .name("smart")
-            .description("Disconnects when you're about to take enough damage to kill you.")
+            .name("聪明")
+            .description("在你即将受到足够的伤害而死亡时断开连接.")
             .defaultValue(true)
             .build()
     );
 
     private final Setting<Boolean> onlyTrusted = sgGeneral.add(new BoolSetting.Builder()
             .name("only-trusted")
-            .description("Disconnects when a player not on your friends list appears in render distance.")
+            .description("当一个不在你好友名单上的玩家出现在渲染距离中时，会断开连接.")
             .defaultValue(false)
             .build()
     );
 
     private final Setting<Boolean> instantDeath = sgGeneral.add(new BoolSetting.Builder()
             .name("32K")
-            .description("Disconnects when a player near you can instantly kill you.")
+            .description("当你附近的玩家可以瞬间杀死你时，就会断开连接.")
             .defaultValue(false)
             .build()
     );
 
     private final Setting<Boolean> crystalLog = sgGeneral.add(new BoolSetting.Builder()
-            .name("crystal-nearby")
-            .description("Disconnects when a crystal appears near you.")
+            .name("水晶-内比")
+            .description("当有水晶出现在你附近时，会断开连接.")
             .defaultValue(false)
             .build()
     );
 
     private final Setting<Integer> range = sgGeneral.add(new IntSetting.Builder()
             .name("range")
-            .description("How close a crystal has to be to you before you disconnect.")
+            .description("水晶要离你多近才会断开连接.")
             .defaultValue(4)
             .range(1, 10)
             .sliderMax(5)
@@ -75,21 +75,21 @@ public class AutoLog extends Module {
     );
 
     private final Setting<Boolean> smartToggle = sgGeneral.add(new BoolSetting.Builder()
-            .name("smart-toggle")
-            .description("Disables Auto Log after a low-health logout. WILL re-enable once you heal.")
+            .name("智能切换")
+            .description("在低生命值注销后禁用自动登录. 一旦你痊愈，将重新启用.")
             .defaultValue(false)
             .build()
     );
 
     private final Setting<Boolean> toggleOff = sgGeneral.add(new BoolSetting.Builder()
-            .name("toggle-off")
-            .description("Disables Auto Log after usage.")
+            .name("切换-关闭")
+            .description("禁用使用后的自动记录.")
             .defaultValue(true)
             .build()
     );
 
     public AutoLog() {
-        super(Categories.Combat, "auto-log", "Automatically disconnects you when certain requirements are met.");
+        super(Categories.Combat, "自动退出", "当满足某些要求时,会自动断开你的连接.");
     }
 
     @EventHandler

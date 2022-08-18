@@ -19,8 +19,8 @@ public class AutoReconnect extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     public final Setting<Double> time = sgGeneral.add(new DoubleSetting.Builder()
-            .name("delay")
-            .description("The amount of seconds to wait before reconnecting to the server.")
+            .name("延迟")
+            .description("重新连接到服务器前的等待秒数.")
             .defaultValue(3.5)
             .min(0)
             .decimalPlaces(1)
@@ -30,7 +30,7 @@ public class AutoReconnect extends Module {
     public ServerInfo lastServerInfo;
 
     public AutoReconnect() {
-        super(Categories.Misc, "auto-reconnect", "Automatically reconnects when disconnected from a server.");
+        super(Categories.Misc, "自动重连", "与服务器断开连接时自动重新连接.");
         MeteorClient.EVENT_BUS.subscribe(new StaticListener());
     }
 

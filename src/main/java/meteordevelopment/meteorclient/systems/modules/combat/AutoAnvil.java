@@ -31,8 +31,8 @@ public class AutoAnvil extends Module {
     // General
 
     private final Setting<Double> range = sgGeneral.add(new DoubleSetting.Builder()
-        .name("target-range")
-        .description("The radius in which players get targeted.")
+        .name("目标范围")
+        .description("玩家成为目标的半径.")
         .defaultValue(4)
         .min(0)
         .sliderMax(5)
@@ -40,15 +40,15 @@ public class AutoAnvil extends Module {
     );
 
     private final Setting<SortPriority> priority = sgGeneral.add(new EnumSetting.Builder<SortPriority>()
-        .name("target-priority")
-        .description("How to select the player to target.")
+        .name("目标优先")
+        .description("如何选择目标玩家.")
         .defaultValue(SortPriority.LowestHealth)
         .build()
     );
 
     private final Setting<Integer> height = sgGeneral.add(new IntSetting.Builder()
-        .name("height")
-        .description("The height to place anvils at.")
+        .name("高度")
+        .description("放置铁砧的高度.")
         .defaultValue(2)
         .range(0, 5)
         .sliderMax(5)
@@ -56,8 +56,8 @@ public class AutoAnvil extends Module {
     );
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
-        .name("delay")
-        .description("The delay in between anvil placements.")
+        .name("延迟")
+        .description("砧座放置之间的延迟.")
         .defaultValue(10)
         .min(0)
         .sliderMax(50)
@@ -65,29 +65,29 @@ public class AutoAnvil extends Module {
     );
 
     private final Setting<Boolean> placeButton = sgGeneral.add(new BoolSetting.Builder()
-        .name("place-at-feet")
-        .description("Automatically places a button or pressure plate at the targets feet to break the anvils.")
+        .name("脚下的地方")
+        .description("自动将按钮或压力板放置在目标脚上以破坏铁砧.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> multiPlace = sgGeneral.add(new BoolSetting.Builder()
-        .name("multi-place")
-        .description("Places multiple anvils at once..")
+        .name("多地点")
+        .description("一次放置多个铁砧.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> toggleOnBreak = sgGeneral.add(new BoolSetting.Builder()
-        .name("toggle-on-break")
-        .description("Toggles when the target's helmet slot is empty.")
+        .name("开关切换")
+        .description("当目标的头盔槽为空时切换.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-        .name("rotate")
-        .description("Automatically rotates towards the position anvils/pressure plates/buttons are placed.")
+        .name("旋转")
+        .description("自动向放置砧座/压板/按钮的位置旋转.")
         .defaultValue(true)
         .build()
     );
@@ -96,7 +96,7 @@ public class AutoAnvil extends Module {
     private int timer;
 
     public AutoAnvil() {
-        super(Categories.Combat, "auto-anvil", "Automatically places anvils above players to destroy helmets.");
+        super(Categories.Combat, "自动铁砧", "自动在玩家上方放置铁砧以摧毁头盔.");
     }
 
     @Override
@@ -114,7 +114,7 @@ public class AutoAnvil extends Module {
     private void onTick(TickEvent.Pre event) {
         // Head check
         if (toggleOnBreak.get() && target != null && target.getInventory().getArmorStack(3).isEmpty()) {
-            error("Target head slot is empty... disabling.");
+            error("目标头插槽是空的...禁用.");
             toggle();
             return;
         }

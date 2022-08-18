@@ -33,8 +33,8 @@ public class BowAimbot extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> range = sgGeneral.add(new DoubleSetting.Builder()
-        .name("range")
-        .description("The maximum range the entity can be to aim at it.")
+        .name("范围")
+        .description("实体可以对准的最大范围.")
         .defaultValue(20)
         .range(0, 100)
         .sliderMax(100)
@@ -42,37 +42,37 @@ public class BowAimbot extends Module {
     );
 
     private final Setting<Object2BooleanMap<EntityType<?>>> entities = sgGeneral.add(new EntityTypeListSetting.Builder()
-        .name("entities")
-        .description("Entities to attack.")
+        .name("实体")
+        .description("要攻击的实体.")
         .onlyAttackable()
         .build()
     );
 
     private final Setting<SortPriority> priority = sgGeneral.add(new EnumSetting.Builder<SortPriority>()
-        .name("priority")
-        .description("What type of entities to target.")
+        .name("优先权")
+        .description("以什么类型的实体为目标.")
         .defaultValue(SortPriority.LowestHealth)
         .build()
     );
 
     private final Setting<Boolean> babies = sgGeneral.add(new BoolSetting.Builder()
-        .name("babies")
-        .description("Whether or not to attack baby variants of the entity.")
+        .name("婴儿")
+        .description("是否攻击实体的婴儿变体.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> nametagged = sgGeneral.add(new BoolSetting.Builder()
-        .name("nametagged")
-        .description("Whether or not to attack mobs with a name tag.")
+        .name("有名字的")
+        .description("是否攻击有名字标签的暴徒.")
         .defaultValue(false)
         .build()
     );
 
 
     private final Setting<Boolean> pauseOnCombat = sgGeneral.add(new BoolSetting.Builder()
-        .name("pause-on-combat")
-        .description("Freezes Baritone temporarily until you released the bow.")
+        .name("战斗时暂停")
+        .description("暂时冻结男中音,直到你松开弓.")
         .defaultValue(false)
         .build()
     );
@@ -81,7 +81,7 @@ public class BowAimbot extends Module {
     private Entity target;
 
     public BowAimbot() {
-        super(Categories.Combat, "bow-aimbot", "Automatically aims your bow for you.");
+        super(Categories.Combat, "弓瞄准器", "自动瞄准你的弓.");
     }
 
     @Override
@@ -111,7 +111,7 @@ public class BowAimbot extends Module {
 
         if (target == null) {
             if (wasPathing) {
-                BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("resume");
+                BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("复原");
                 wasPathing = false;
             }
             return;
@@ -119,7 +119,7 @@ public class BowAimbot extends Module {
 
         if (mc.options.useKey.isPressed() && itemInHand()) {
             if (pauseOnCombat.get() && BaritoneAPI.getProvider().getPrimaryBaritone().getPathingBehavior().isPathing() && !wasPathing) {
-                BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("pause");
+                BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("暂停");
                 wasPathing = true;
             }
             aim(event.tickDelta);

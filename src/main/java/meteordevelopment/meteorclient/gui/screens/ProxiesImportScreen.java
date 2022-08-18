@@ -36,7 +36,7 @@ public class ProxiesImportScreen extends WindowScreen {
     @Override
     public void initWidgets() {
         if (file.exists() && file.isFile()) {
-            add(theme.label("Importing proxies from " + file.getName() + "...").color(Color.GREEN));
+            add(theme.label("导入代理 " + file.getName() + "...").color(Color.GREEN));
             WVerticalList list = add(theme.section("Log", false)).widget().add(theme.verticalList()).expandX().widget();
             Proxies proxies = Proxies.get();
             try {
@@ -70,7 +70,7 @@ public class ProxiesImportScreen extends WindowScreen {
                     }
                 }
                 add(theme
-                    .label("Successfully imported " + pog + "/" + (bruh + pog) + " proxies.")
+                    .label("成功导入 " + pog + "/" + (bruh + pog) + " 代理.")
                     .color(Utils.lerp(Color.RED, Color.GREEN, (float) pog / (pog + bruh)))
                 );
             } catch (IOException e) {

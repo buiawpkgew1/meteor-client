@@ -24,22 +24,22 @@ public class AutoEXP extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Mode> mode = sgGeneral.add(new EnumSetting.Builder<Mode>()
-        .name("mode")
-        .description("Which items to repair.")
+        .name("模式")
+        .description("维修哪些项目.")
         .defaultValue(Mode.Both)
         .build()
     );
 
     private final Setting<Boolean> replenish = sgGeneral.add(new BoolSetting.Builder()
-        .name("replenish")
-        .description("Automatically replenishes exp into a selected hotbar slot.")
+        .name("补充")
+        .description("自动将 exp 补充到选定的快捷栏插槽中.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Integer> slot = sgGeneral.add(new IntSetting.Builder()
-        .name("exp-slot")
-        .description("The slot to replenish exp into.")
+        .name("exp槽")
+        .description("将exp补充到的槽.")
         .visible(replenish::get)
         .defaultValue(6)
         .range(1, 9)
@@ -48,8 +48,8 @@ public class AutoEXP extends Module {
     );
 
     private final Setting<Integer> minThreshold = sgGeneral.add(new IntSetting.Builder()
-        .name("min-threshold")
-        .description("The minimum durability percentage that an item needs to fall to, to be repaired.")
+        .name("最小值")
+        .description("一件物品需要跌落到被修复的最低耐久百分比.")
         .defaultValue(30)
         .range(1, 100)
         .sliderRange(1, 100)
@@ -57,8 +57,8 @@ public class AutoEXP extends Module {
     );
 
     private final Setting<Integer> maxThreshold = sgGeneral.add(new IntSetting.Builder()
-        .name("max-threshold")
-        .description("The maximum durability percentage to repair items to.")
+        .name("最大值")
+        .description("修复物品的最大耐久百分比.")
         .defaultValue(80)
         .range(1, 100)
         .sliderRange(1, 100)
@@ -68,7 +68,7 @@ public class AutoEXP extends Module {
     private int repairingI;
 
     public AutoEXP() {
-        super(Categories.Combat, "auto-exp", "Automatically repairs your armor and tools in pvp.");
+        super(Categories.Combat, "自动-exp", "在 pvp 中自动修复你的盔甲和工具.");
     }
 
     @Override

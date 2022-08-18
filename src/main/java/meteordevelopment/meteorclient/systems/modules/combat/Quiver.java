@@ -31,15 +31,15 @@ public class Quiver extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<List<StatusEffect>> effects = sgGeneral.add(new StatusEffectListSetting.Builder()
-        .name("effects")
-        .description("Which effects to shoot you with.")
+        .name("影响")
+        .description("用哪些效果来拍摄你.")
         .defaultValue(StatusEffects.STRENGTH)
         .build()
     );
 
     private final Setting<Boolean> checkEffects = sgGeneral.add(new BoolSetting.Builder()
-        .name("check-existing-effects")
-        .description("Won't shoot you with effects you already have.")
+        .name("检查现有效果")
+        .description("不会用你已经拥有的效果向你开枪.")
         .defaultValue(true)
         .build()
     );
@@ -47,7 +47,7 @@ public class Quiver extends Module {
     private final List<Integer> arrowSlots = new ArrayList<>();
 
     public Quiver() {
-        super(Categories.Combat, "quiver", "Shoots arrows at yourself.");
+        super(Categories.Combat, "颤动", "向自己射箭.");
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Quiver extends Module {
         FindItemResult bow = InvUtils.findInHotbar(Items.BOW);
 
         if (!bow.isHotbar()) {
-            error("No bow found... disabling.");
+            error("没有找到弓......禁用.");
             toggle();
         }
 

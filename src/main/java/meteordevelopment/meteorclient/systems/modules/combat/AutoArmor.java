@@ -31,15 +31,15 @@ public class AutoArmor extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Protection> preferredProtection = sgGeneral.add(new EnumSetting.Builder<Protection>()
-        .name("preferred-protection")
-        .description("Which type of protection to prefer.")
+        .name("优先保护")
+        .description("首选哪种类型的保护.")
         .defaultValue(Protection.Protection)
         .build()
     );
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
-        .name("swap-delay")
-        .description("The delay between equipping armor pieces.")
+        .name("交换延迟")
+        .description("装备盔甲之间的延迟.")
         .defaultValue(1)
         .min(0)
         .sliderMax(5)
@@ -47,29 +47,29 @@ public class AutoArmor extends Module {
     );
 
     private final Setting<List<Enchantment>> avoidedEnchantments = sgGeneral.add(new EnchantmentListSetting.Builder()
-        .name("avoided-enchantments")
-        .description("Enchantments that should be avoided.")
+        .name("避免附魔")
+        .description("应该避免的魔法.")
         .defaultValue(Enchantments.BINDING_CURSE, Enchantments.FROST_WALKER)
         .build()
     );
 
     private final Setting<Boolean> blastLeggings = sgGeneral.add(new BoolSetting.Builder()
-        .name("blast-prot-leggings")
-        .description("Uses blast protection for leggings regardless of preferred protection.")
+        .name("防爆护腿")
+        .description("无论首选保护如何,都对紧身裤使用防爆保护.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> antiBreak = sgGeneral.add(new BoolSetting.Builder()
-        .name("anti-break")
-        .description("Takes off armor if it is about to break.")
+        .name("防破")
+        .description("即将断裂时脱掉盔甲.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> ignoreElytra = sgGeneral.add(new BoolSetting.Builder()
-        .name("ignore-elytra")
-        .description("Will not replace your elytra if you have it equipped.")
+        .name("忽略鞘翅")
+        .description("如果你装备了它,它不会替换你的鞘翅.")
         .defaultValue(true)
         .build()
     );
@@ -83,7 +83,7 @@ public class AutoArmor extends Module {
     private int timer;
 
     public AutoArmor() {
-        super(Categories.Combat, "auto-armor", "Automatically equips armor.");
+        super(Categories.Combat, "自动盔甲", "自动装备盔甲.");
 
         armorPieces[0] = helmet;
         armorPieces[1] = chestplate;

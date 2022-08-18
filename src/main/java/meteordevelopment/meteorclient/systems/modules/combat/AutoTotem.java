@@ -24,23 +24,23 @@ public class AutoTotem extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Mode> mode = sgGeneral.add(new EnumSetting.Builder<Mode>()
-        .name("mode")
-        .description("Determines when to hold a totem, strict will always hold.")
+        .name("模式")
+        .description("确定何时持有图腾，严格将始终持有.")
         .defaultValue(Mode.Smart)
         .build()
     );
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
-        .name("delay")
-        .description("The ticks between slot movements.")
+        .name("延迟")
+        .description("插槽移动之间的滴答声.")
         .defaultValue(0)
         .min(0)
         .build()
     );
 
     private final Setting<Integer> health = sgGeneral.add(new IntSetting.Builder()
-        .name("health")
-        .description("The health to hold a totem at.")
+        .name("血量")
+        .description("托起图腾的血量.")
         .defaultValue(10)
         .range(0, 36)
         .sliderMax(36)
@@ -49,24 +49,24 @@ public class AutoTotem extends Module {
     );
 
     private final Setting<Boolean> elytra = sgGeneral.add(new BoolSetting.Builder()
-        .name("elytra")
-        .description("Will always hold a totem when flying with elytra.")
+        .name("鞘翅")
+        .description("与鞘翅一起飞行时将始终持有图腾.")
         .defaultValue(true)
         .visible(() -> mode.get() == Mode.Smart)
         .build()
     );
 
     private final Setting<Boolean> fall = sgGeneral.add(new BoolSetting.Builder()
-        .name("fall")
-        .description("Will hold a totem when fall damage could kill you.")
+        .name("坠落")
+        .description("当坠落伤害可能会杀死你时,将持有图腾.")
         .defaultValue(true)
         .visible(() -> mode.get() == Mode.Smart)
         .build()
     );
 
     private final Setting<Boolean> explosion = sgGeneral.add(new BoolSetting.Builder()
-        .name("explosion")
-        .description("Will hold a totem when explosion damage could kill you.")
+        .name("爆炸")
+        .description("当爆炸伤害可能会杀死你时会持有图腾.")
         .defaultValue(true)
         .visible(() -> mode.get() == Mode.Smart)
         .build()
@@ -76,7 +76,7 @@ public class AutoTotem extends Module {
     private int totems, ticks;
 
     public AutoTotem() {
-        super(Categories.Combat, "auto-totem", "Automatically equips a totem in your offhand.");
+        super(Categories.Combat, "自动图腾", "自动为你的副手装备一个图腾.");
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

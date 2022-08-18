@@ -35,20 +35,20 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class MeteorGuiTheme extends GuiTheme {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgColors = settings.createGroup("Colors");
+    private final SettingGroup sgColors = settings.createGroup("颜色");
     private final SettingGroup sgTextColors = settings.createGroup("Text");
-    private final SettingGroup sgBackgroundColors = settings.createGroup("Background");
+    private final SettingGroup sgBackgroundColors = settings.createGroup("背景");
     private final SettingGroup sgOutline = settings.createGroup("Outline");
-    private final SettingGroup sgSeparator = settings.createGroup("Separator");
-    private final SettingGroup sgScrollbar = settings.createGroup("Scrollbar");
-    private final SettingGroup sgSlider = settings.createGroup("Slider");
+    private final SettingGroup sgSeparator = settings.createGroup("分隔器");
+    private final SettingGroup sgScrollbar = settings.createGroup("滚动条");
+    private final SettingGroup sgSlider = settings.createGroup("滑块");
     private final SettingGroup sgStarscript = settings.createGroup("Starscript");
 
     // General
 
     public final Setting<Double> scale = sgGeneral.add(new DoubleSetting.Builder()
             .name("scale")
-            .description("Scale of the GUI.")
+            .description("GUI的规模.")
             .defaultValue(1)
             .min(0.75)
             .sliderRange(0.75, 4)
@@ -61,21 +61,21 @@ public class MeteorGuiTheme extends GuiTheme {
 
     public final Setting<AlignmentX> moduleAlignment = sgGeneral.add(new EnumSetting.Builder<AlignmentX>()
             .name("module-alignment")
-            .description("How module titles are aligned.")
+            .description("模块标题如何对齐.")
             .defaultValue(AlignmentX.Center)
             .build()
     );
 
     public final Setting<Boolean> categoryIcons = sgGeneral.add(new BoolSetting.Builder()
             .name("category-icons")
-            .description("Adds item icons to module categories.")
+            .description("将项目图标添加到模块类别.")
             .defaultValue(false)
             .build()
     );
 
     public final Setting<Boolean> hideHUD = sgGeneral.add(new BoolSetting.Builder()
             .name("hide-HUD")
-            .description("Hide HUD when in GUI.")
+            .description("在 GUI 中隐藏 HUD.")
             .defaultValue(false)
             .onChanged(v -> {
                 if (mc.currentScreen instanceof WidgetScreen) mc.options.hudHidden = v;
@@ -85,20 +85,20 @@ public class MeteorGuiTheme extends GuiTheme {
 
     // Colors
 
-    public final Setting<SettingColor> accentColor = color("accent", "Main color of the GUI.", new SettingColor(145, 61, 226));
-    public final Setting<SettingColor> checkboxColor = color("checkbox", "Color of checkbox.", new SettingColor(145, 61, 226));
-    public final Setting<SettingColor> plusColor = color("plus", "Color of plus button.", new SettingColor(50, 255, 50));
-    public final Setting<SettingColor> minusColor = color("minus", "Color of minus button.", new SettingColor(255, 50, 50));
-    public final Setting<SettingColor> favoriteColor = color("favorite", "Color of checked favorite button.", new SettingColor(250, 215, 0));
+    public final Setting<SettingColor> accentColor = color("accent", "GUI的主要颜色.", new SettingColor(145, 61, 226));
+    public final Setting<SettingColor> checkboxColor = color("复选框", "复选框颜色.", new SettingColor(145, 61, 226));
+    public final Setting<SettingColor> plusColor = color("加号", "加号按钮的颜色.", new SettingColor(50, 255, 50));
+    public final Setting<SettingColor> minusColor = color("减号", "减号按钮的颜色.", new SettingColor(255, 50, 50));
+    public final Setting<SettingColor> favoriteColor = color("喜爱", "选中的收藏按钮的颜色.", new SettingColor(250, 215, 0));
 
     // Text
 
-    public final Setting<SettingColor> textColor = color(sgTextColors, "text", "Color of text.", new SettingColor(255, 255, 255));
-    public final Setting<SettingColor> textSecondaryColor = color(sgTextColors, "text-secondary-text", "Color of secondary text.", new SettingColor(150, 150, 150));
-    public final Setting<SettingColor> textHighlightColor = color(sgTextColors, "text-highlight", "Color of text highlighting.", new SettingColor(45, 125, 245, 100));
-    public final Setting<SettingColor> titleTextColor = color(sgTextColors, "title-text", "Color of title text.", new SettingColor(255, 255, 255));
-    public final Setting<SettingColor> loggedInColor = color(sgTextColors, "logged-in-text", "Color of logged in account name.", new SettingColor(45, 225, 45));
-    public final Setting<SettingColor> placeholderColor = color(sgTextColors, "placeholder", "Color of placeholder text.", new SettingColor(255, 255, 255, 20));
+    public final Setting<SettingColor> textColor = color(sgTextColors, "text", "文字颜色.", new SettingColor(255, 255, 255));
+    public final Setting<SettingColor> textSecondaryColor = color(sgTextColors, "文本辅助文本", "辅助文本的颜色.", new SettingColor(150, 150, 150));
+    public final Setting<SettingColor> textHighlightColor = color(sgTextColors, "文本高亮", "文本突出显示的颜色.", new SettingColor(45, 125, 245, 100));
+    public final Setting<SettingColor> titleTextColor = color(sgTextColors, "题目文本", "标题文本的颜色.", new SettingColor(255, 255, 255));
+    public final Setting<SettingColor> loggedInColor = color(sgTextColors, "登录文本", "登录帐户名称的颜色.", new SettingColor(45, 225, 45));
+    public final Setting<SettingColor> placeholderColor = color(sgTextColors, "placeholder", "占位符文本的颜色.", new SettingColor(255, 255, 255, 20));
 
     // Background
 
@@ -110,7 +110,7 @@ public class MeteorGuiTheme extends GuiTheme {
             new SettingColor(40, 40, 40, 200)
     );
 
-    public final Setting<SettingColor> moduleBackground = color(sgBackgroundColors, "module-background", "Color of module background when active.", new SettingColor(50, 50, 50));
+    public final Setting<SettingColor> moduleBackground = color(sgBackgroundColors, "模块背景", "激活时模块背景的颜色.", new SettingColor(50, 50, 50));
 
     // Outline
 
@@ -124,9 +124,9 @@ public class MeteorGuiTheme extends GuiTheme {
 
     // Separator
 
-    public final Setting<SettingColor> separatorText = color(sgSeparator, "separator-text", "Color of separator text", new SettingColor(255, 255, 255));
-    public final Setting<SettingColor> separatorCenter = color(sgSeparator, "separator-center", "Center color of separators.", new SettingColor(255, 255, 255));
-    public final Setting<SettingColor> separatorEdges = color(sgSeparator, "separator-edges", "Color of separator edges.", new SettingColor(225, 225, 225, 150));
+    public final Setting<SettingColor> separatorText = color(sgSeparator, "分隔符文本", "分隔符文本的颜色", new SettingColor(255, 255, 255));
+    public final Setting<SettingColor> separatorCenter = color(sgSeparator, "分隔中心", "分隔符的中心颜色.", new SettingColor(255, 255, 255));
+    public final Setting<SettingColor> separatorEdges = color(sgSeparator, "分隔边", "分隔符边缘的颜色.", new SettingColor(225, 225, 225, 150));
 
     // Scrollbar
 
@@ -148,21 +148,21 @@ public class MeteorGuiTheme extends GuiTheme {
             new SettingColor(150, 60, 255)
     );
 
-    public final Setting<SettingColor> sliderLeft = color(sgSlider, "slider-left", "Color of slider left part.", new SettingColor(100,35,170));
-    public final Setting<SettingColor> sliderRight = color(sgSlider, "slider-right", "Color of slider right part.", new SettingColor(50, 50, 50));
+    public final Setting<SettingColor> sliderLeft = color(sgSlider, "slider-left", "滑块左侧部分的颜色.", new SettingColor(100,35,170));
+    public final Setting<SettingColor> sliderRight = color(sgSlider, "slider-right", "滑块右侧部分的颜色.", new SettingColor(50, 50, 50));
 
     // Starscript
 
-    private final Setting<SettingColor> starscriptText = color(sgStarscript, "starscript-text", "Color of text in Starscript code.", new SettingColor(169, 183, 198));
-    private final Setting<SettingColor> starscriptBraces = color(sgStarscript, "starscript-braces", "Color of braces in Starscript code.", new SettingColor(150, 150, 150));
-    private final Setting<SettingColor> starscriptParenthesis = color(sgStarscript, "starscript-parenthesis", "Color of parenthesis in Starscript code.", new SettingColor(169, 183, 198));
-    private final Setting<SettingColor> starscriptDots = color(sgStarscript, "starscript-dots", "Color of dots in starscript code.", new SettingColor(169, 183, 198));
-    private final Setting<SettingColor> starscriptCommas = color(sgStarscript, "starscript-commas", "Color of commas in starscript code.", new SettingColor(169, 183, 198));
-    private final Setting<SettingColor> starscriptOperators = color(sgStarscript, "starscript-operators", "Color of operators in Starscript code.", new SettingColor(169, 183, 198));
-    private final Setting<SettingColor> starscriptStrings = color(sgStarscript, "starscript-strings", "Color of strings in Starscript code.", new SettingColor(106, 135, 89));
-    private final Setting<SettingColor> starscriptNumbers = color(sgStarscript, "starscript-numbers", "Color of numbers in Starscript code.", new SettingColor(104, 141, 187));
-    private final Setting<SettingColor> starscriptKeywords = color(sgStarscript, "starscript-keywords", "Color of keywords in Starscript code.", new SettingColor(204, 120, 50));
-    private final Setting<SettingColor> starscriptAccessedObjects = color(sgStarscript, "starscript-accessed-objects", "Color of accessed objects (before a dot) in Starscript code.", new SettingColor(152, 118, 170));
+    private final Setting<SettingColor> starscriptText = color(sgStarscript, "starscript-text", "Starscript 代码中文本的颜色.", new SettingColor(169, 183, 198));
+    private final Setting<SettingColor> starscriptBraces = color(sgStarscript, "starscript-braces", "Starscript 代码中大括号的颜色.", new SettingColor(150, 150, 150));
+    private final Setting<SettingColor> starscriptParenthesis = color(sgStarscript, "starscript-parenthesis", "Starscript代码中括号的颜色.", new SettingColor(169, 183, 198));
+    private final Setting<SettingColor> starscriptDots = color(sgStarscript, "starscript-dots", "Starscript代码中点的颜色.", new SettingColor(169, 183, 198));
+    private final Setting<SettingColor> starscriptCommas = color(sgStarscript, "starscript-commas", "Starscript代码中逗号的颜色.", new SettingColor(169, 183, 198));
+    private final Setting<SettingColor> starscriptOperators = color(sgStarscript, "starscript-operators", "Starscript 代码中运算符的颜色.", new SettingColor(169, 183, 198));
+    private final Setting<SettingColor> starscriptStrings = color(sgStarscript, "starscript-strings", "Starscript 代码中字符串的颜色.", new SettingColor(106, 135, 89));
+    private final Setting<SettingColor> starscriptNumbers = color(sgStarscript, "starscript-numbers", "Starscript 代码中数字的颜色.", new SettingColor(104, 141, 187));
+    private final Setting<SettingColor> starscriptKeywords = color(sgStarscript, "starscript-keywords", "Starscript 代码中关键字的颜色.", new SettingColor(204, 120, 50));
+    private final Setting<SettingColor> starscriptAccessedObjects = color(sgStarscript, "starscript-accessed-objects", "Starscript 代码中访问对象的颜色（点前）.", new SettingColor(152, 118, 170));
 
     public MeteorGuiTheme() {
         super("Meteor");
@@ -376,7 +376,7 @@ public class MeteorGuiTheme extends GuiTheme {
         public ThreeStateColorSetting(SettingGroup group, String name, SettingColor c1, SettingColor c2, SettingColor c3) {
             normal = color(group, name, "Color of " + name + ".", c1);
             hovered = color(group, "hovered-" + name, "Color of " + name + " when hovered.", c2);
-            pressed = color(group, "pressed-" + name, "Color of " + name + " when pressed.", c3);
+            pressed = color(group, "按下-" + name, "按下时 " + name + " 的颜色.", c3);
         }
 
         public SettingColor get() {

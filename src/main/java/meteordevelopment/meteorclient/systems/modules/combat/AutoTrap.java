@@ -29,55 +29,55 @@ import java.util.List;
 
 public class AutoTrap extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgRender = settings.createGroup("Render");
+    private final SettingGroup sgRender = settings.createGroup("渲染");
 
     // General
 
     private final Setting<Integer> range = sgGeneral.add(new IntSetting.Builder()
-        .name("target-range")
-        .description("The range players can be targeted.")
+        .name("目标范围")
+        .description("可以锁定的球员范围.")
         .defaultValue(4)
         .build()
     );
 
     private final Setting<SortPriority> priority = sgGeneral.add(new EnumSetting.Builder<SortPriority>()
-        .name("target-priority")
-        .description("How to select the player to target.")
+        .name("目标优先级")
+        .description("如何选择目标玩家.")
         .defaultValue(SortPriority.LowestHealth)
         .build()
     );
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
-        .name("place-delay")
-        .description("How many ticks between block placements.")
+        .name("位置延迟")
+        .description("块状放置之间有多少个刻度.")
         .defaultValue(1)
         .build()
     );
 
     private final Setting<TopMode> topPlacement = sgGeneral.add(new EnumSetting.Builder<TopMode>()
-        .name("top-blocks")
-        .description("Which blocks to place on the top half of the target.")
+        .name("顶块")
+        .description("在目标的上半部分放置哪些积木.")
         .defaultValue(TopMode.Full)
         .build()
     );
 
     private final Setting<BottomMode> bottomPlacement = sgGeneral.add(new EnumSetting.Builder<BottomMode>()
-        .name("bottom-blocks")
-        .description("Which blocks to place on the bottom half of the target.")
+        .name("底层建筑")
+        .description("在目标的下半部分放置哪些积木.")
         .defaultValue(BottomMode.Platform)
         .build()
     );
 
     private final Setting<Boolean> selfToggle = sgGeneral.add(new BoolSetting.Builder()
-        .name("self-toggle")
-        .description("Turns off after placing all blocks.")
+        .name("自动切换")
+        .description("放置所有积木后关闭.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-        .name("rotate")
-        .description("Rotates towards blocks when placing.")
+        .name("轮换")
+        .description("摆放时向块状物旋转.")
         .defaultValue(true)
         .build()
     );
@@ -85,43 +85,43 @@ public class AutoTrap extends Module {
     // Render
 
     private final Setting<Boolean> render = sgRender.add(new BoolSetting.Builder()
-        .name("render")
-        .description("Renders an overlay where blocks will be placed.")
+        .name("渲染")
+        .description("渲染一个将放置块的覆盖层.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
-        .name("shape-mode")
-        .description("How the shapes are rendered.")
+        .name("形状模式")
+        .description("形状是如何呈现的.")
         .defaultValue(ShapeMode.Both)
         .build()
     );
 
     private final Setting<SettingColor> sideColor = sgRender.add(new ColorSetting.Builder()
-        .name("side-color")
-        .description("The side color of the target block rendering.")
+        .name("侧面颜色")
+        .description("渲染目标块的侧面颜色.")
         .defaultValue(new SettingColor(197, 137, 232, 10))
         .build()
     );
 
     private final Setting<SettingColor> lineColor = sgRender.add(new ColorSetting.Builder()
-        .name("line-color")
-        .description("The line color of the target block rendering.")
+        .name("线条颜色")
+        .description("渲染目标块的线条颜色.")
         .defaultValue(new SettingColor(197, 137, 232))
         .build()
     );
 
     private final Setting<SettingColor> nextSideColor = sgRender.add(new ColorSetting.Builder()
-        .name("next-side-color")
-        .description("The side color of the next block to be placed.")
+        .name("下一页-侧面-颜色")
+        .description("下一个要放置的区块的侧面颜色.")
         .defaultValue(new SettingColor(227, 196, 245, 10))
         .build()
     );
 
     private final Setting<SettingColor> nextLineColor = sgRender.add(new ColorSetting.Builder()
-        .name("next-line-color")
-        .description("The line color of the next block to be placed.")
+        .name("下一页-颜色")
+        .description("下一个要放置的区块的线条颜色.")
         .defaultValue(new SettingColor(227, 196, 245))
         .build()
     );
@@ -132,7 +132,7 @@ public class AutoTrap extends Module {
     private int timer;
 
     public AutoTrap() {
-        super(Categories.Combat, "auto-trap", "Traps people in an obsidian box to prevent them from moving.");
+        super(Categories.Combat, "自动陷阱", "将人困在黑曜石盒子中以防止他们移动.");
     }
 
     @Override

@@ -38,9 +38,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class InventoryTweaks extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgSorting = settings.createGroup("Sorting");
-    private final SettingGroup sgAutoDrop = settings.createGroup("Auto Drop");
-    private final SettingGroup sgAutoSteal = settings.createGroup("Auto Steal");
+    private final SettingGroup sgSorting = settings.createGroup("分类");
+    private final SettingGroup sgAutoDrop = settings.createGroup("自动落地");
+    private final SettingGroup sgAutoSteal = settings.createGroup("自动偷窃");
 
     // General
 

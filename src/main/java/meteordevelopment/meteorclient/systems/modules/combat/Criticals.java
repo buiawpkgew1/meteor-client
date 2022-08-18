@@ -31,14 +31,14 @@ public class Criticals extends Module {
 
     private final Setting<Mode> mode = sgGeneral.add(new EnumSetting.Builder<Mode>()
         .name("mode")
-        .description("The mode on how Criticals will function.")
+        .description("关于Criticals将如何运作的模式.")
         .defaultValue(Mode.Packet)
         .build()
     );
 
     private final Setting<Boolean> ka = sgGeneral.add(new BoolSetting.Builder()
         .name("only-killaura")
-        .description("Only performs crits when using killaura.")
+        .description("只有在使用killaura时才会进行粉碎性攻击.")
         .defaultValue(false)
         .build()
     );
@@ -48,7 +48,7 @@ public class Criticals extends Module {
     private boolean sendPackets;
     private int sendTimer;
     public Criticals() {
-        super(Categories.Combat, "criticals", "Performs critical attacks when you hit your target.");
+        super(Categories.Combat, "批评者", "当你击中目标时执行致命攻击.");
     }
 
     @Override

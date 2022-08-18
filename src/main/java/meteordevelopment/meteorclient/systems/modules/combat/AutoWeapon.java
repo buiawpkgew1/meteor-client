@@ -22,28 +22,28 @@ public class AutoWeapon extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Weapon> weapon = sgGeneral.add(new EnumSetting.Builder<Weapon>()
-        .name("weapon")
-        .description("What type of weapon to use.")
+        .name("武器")
+        .description("使用什么类型的武器.")
         .defaultValue(Weapon.Sword)
         .build()
     );
 
     private final Setting<Integer> threshold = sgGeneral.add(new IntSetting.Builder()
-        .name("threshold")
-        .description("If the non-preferred weapon produces this much damage this will favor it over your preferred weapon.")
+        .name("阈值")
+        .description("如果非首选的武器产生这么多的伤害，这将有利于它而不是你的首选武器.")
         .defaultValue(4)
         .build()
     );
 
     private final Setting<Boolean> antiBreak = sgGeneral.add(new BoolSetting.Builder()
-        .name("anti-break")
-        .description("Prevents you from breaking your weapon.")
+        .name("防断裂")
+        .description("防止你打破你的武器.")
         .defaultValue(false)
         .build()
     );
 
     public AutoWeapon() {
-        super(Categories.Combat, "auto-weapon", "Finds the best weapon to use in your hotbar.");
+        super(Categories.Combat, "自动武器", "在你的快捷栏中找到最好的武器.");
     }
 
     @EventHandler
