@@ -20,6 +20,8 @@ import meteordevelopment.meteorclient.systems.config.Config;
 import meteordevelopment.meteorclient.systems.modules.Categories;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.misc.DiscordPresence;
+import meteordevelopment.meteorclient.utils.PostInit;
+import meteordevelopment.meteorclient.utils.PreInit;
 import meteordevelopment.meteorclient.utils.ReflectInit;
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.meteorclient.utils.misc.Version;
@@ -107,7 +109,7 @@ public class MeteorClient implements ClientModInitializer {
         ReflectInit.registerPackages();
 
         // Pre init
-        ReflectInit.preInit();
+        ReflectInit.init(PreInit.class);
 
         // Register module categories
         Categories.init();
@@ -128,7 +130,7 @@ public class MeteorClient implements ClientModInitializer {
         Systems.load();
 
         // Post init
-        ReflectInit.postInit();
+        ReflectInit.init(PostInit.class);
 
         // Save on shutdown
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
