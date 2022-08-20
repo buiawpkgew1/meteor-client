@@ -74,7 +74,7 @@ public class ChamsShader extends EntityShader {
     }
 
     @EventHandler
-    private static void onResourcePacksReloaded(ResourcePacksReloadedEvent event) {
+    private static void onResourcePacksReloaded() {
         load();
     }
 
