@@ -12,9 +12,9 @@ group = project.maven_group
 
 repositories {
     maven {
-        name = "meteor-maven"
-        url = "https://maven.meteordev.org/releases"
-    }
+		name = "meteor-maven"
+		url = "https://maven.meteordev.org/releases"
+	}
     maven {
         name = "meteor-maven-snapshots"
         url = "https://maven.meteordev.org/snapshots"
@@ -26,38 +26,38 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    // include mods
+    modImplementation.extendsFrom(modInclude)
+    include.extendsFrom(modInclude)
+
+    // include libraries
+    implementation.extendsFrom(library)
+    shadow.extendsFrom(library)
+}
+
 dependencies {
-    def library = { id ->
-        implementation(id) { exclude group: "org.slf4j" }
-        shadow(id) { exclude group: "org.slf4j" }
-    }
+	// Fabric
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modInclude fabricApi.module("fabric-resource-loader-v0", project.fapi_version)
 
-    // Fabric
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-    // Compat fixes
+	// Compat fixes
     modCompileOnly fabricApi.module("fabric-renderer-indigo", project.fapi_version)
     modCompileOnly("me.jellysquid.mods:sodium-fabric:${project.sodium_version}") { transitive = false }
-    modCompileOnly("io.vram:canvas-fabric-mc118:1.0.+") { transitive = false }
+    modCompileOnly("io.vram:canvas-fabric-mc119:1.0.+") { transitive = false }
 
-    // Baritone (https://github.com/MeteorDevelopment/baritone)
-    modImplementation "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
-    include "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
+	// Baritone (https://github.com/MeteorDevelopment/baritone)
+    modInclude "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
 
     // Libraries
     library "meteordevelopment:orbit:${project.orbit_version}"
     library "meteordevelopment:starscript:${project.starscript_version}"
     library "meteordevelopment:discord-ipc:${project.discordipc_version}"
     library "org.reflections:reflections:${project.reflections_version}"
-
-    // Proxies
-    implementation("io.netty:netty-handler-proxy:${project.netty_version}") { transitive = false }
-    shadow("io.netty:netty-handler-proxy:${project.netty_version}") { transitive = false }
-
-    implementation("io.netty:netty-codec-socks:${project.netty_version}") { transitive = false }
-    shadow("io.netty:netty-codec-socks:${project.netty_version}") { transitive = false }
+    library("io.netty:netty-handler-proxy:${project.netty_version}") { transitive = false }
+    library("io.netty:netty-codec-socks:${project.netty_version}") { transitive = false }
 
     // Launch sub project
     shadow project(":launch")
@@ -68,14 +68,14 @@ loom {
 }
 
 shadowJar {
-    configurations = [ project.configurations.shadow ]
+	configurations = [ project.configurations.shadow ]
 }
 
 processResources {
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
-            "devbuild": project.findProperty("devbuild") ?: "",
-            "commit": project.findProperty("commit") ?: ""
+               "devbuild": project.findProperty("devbuild") ?: "",
+               "commit": project.findProperty("commit") ?: ""
     }
 }
 
@@ -84,16 +84,16 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
-    from "LICENSE"
+	from "LICENSE"
 
-    manifest {
-        attributes("Main-Class": "meteordevelopment.meteorclient.Main")
-    }
+	manifest {
+		attributes("Main-Class": "meteordevelopment.meteorclient.Main")
+	}
 }
 
 remapJar {
-    dependsOn shadowJar
-    input.set(shadowJar.archiveFile)
+	dependsOn shadowJar
+	input.set(shadowJar.archiveFile)
 }
 
 javadoc {
@@ -103,7 +103,7 @@ javadoc {
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     archiveClassifier.set("sources")
-    from sourceSets.main.allSource
+	from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar) {
