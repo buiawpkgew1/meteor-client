@@ -26,7 +26,7 @@ public class MiddleClickFriend extends Module {
 
     private final Setting<Boolean> message = sgGeneral.add(new BoolSetting.Builder()
             .name("message")
-            .description("Sends a message to the player when you add them as a friend.")
+            .description("当你添加玩家为好友时，向他们发送一条信息.")
             .defaultValue(false)
             .build()
     );

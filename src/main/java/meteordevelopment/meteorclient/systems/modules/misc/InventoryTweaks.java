@@ -46,14 +46,14 @@ public class InventoryTweaks extends Module {
 
     private final Setting<Boolean> mouseDragItemMove = sgGeneral.add(new BoolSetting.Builder()
             .name("mouse-drag-item-move")
-            .description("Moving mouse over items while holding shift will transfer it to the other container.")
+            .description("在按住shift的同时将鼠标移到物品上，会将其转移到另一个容器中.")
             .defaultValue(true)
             .build()
     );
 
     private final Setting<List<Item>> antiDropItems = sgGeneral.add(new ItemListSetting.Builder()
             .name("anti-drop-items")
-            .description("Items to prevent dropping. Doesn't work in creative inventory screen.")
+            .description("防止掉落的物品。在创意库存屏幕中不起作用.")
             .build()
     );
 

@@ -24,14 +24,14 @@ public class MessageAura extends Module {
 
     private final Setting<String> message = sgGeneral.add(new StringSetting.Builder()
             .name("message")
-            .description("The specified message sent to the player.")
+            .description("发送给玩家的指定信息.")
             .defaultValue("Meteor on Crack!")
             .build()
     );
 
     private final Setting<Boolean> ignoreFriends = sgGeneral.add(new BoolSetting.Builder()
             .name("ignore-friends")
-            .description("Will not send any messages to people friended.")
+            .description("不会向加为好友的人发送任何信息.")
             .defaultValue(false)
             .build()
     );
