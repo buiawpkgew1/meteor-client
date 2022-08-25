@@ -81,7 +81,7 @@ public class CrystalAura extends Module {
     // General
 
     private final Setting<Double> targetRange = sgGeneral.add(new DoubleSetting.Builder()
-        .name("目标范围")
+        .name("目标-范围")
         .description("目标玩家的范围.")
         .defaultValue(10)
         .min(0)
@@ -90,14 +90,14 @@ public class CrystalAura extends Module {
     );
 
     private final Setting<Boolean> predictMovement = sgGeneral.add(new BoolSetting.Builder()
-        .name("预测运动")
+        .name("预测-运动")
         .description("预测目标运动.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> ignoreTerrain = sgGeneral.add(new BoolSetting.Builder()
-        .name("忽略地形")
+        .name("忽略-地形")
         .description("完全无视地形,如果它能被末端的晶体炸毁的话.")
         .defaultValue(true)
         .build()
@@ -113,7 +113,7 @@ public class CrystalAura extends Module {
     );
 
     private final Setting<Double> maxDamage = sgGeneral.add(new DoubleSetting.Builder()
-        .name("最大伤害")
+        .name("最大-伤害")
         .description("水晶能对自己造成的最大伤害.")
         .defaultValue(6)
         .range(0, 36)
@@ -122,14 +122,14 @@ public class CrystalAura extends Module {
     );
 
     private final Setting<AutoSwitchMode> autoSwitch = sgGeneral.add(new EnumSetting.Builder<AutoSwitchMode>()
-        .name("自动转换")
+        .name("自动-转换")
         .description("一旦发现目标,就会切换到你的热栏中的晶体.")
         .defaultValue(AutoSwitchMode.Normal)
         .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-        .name("轮换")
+        .name("轮-换")
         .description("朝着被击中/放置的水晶旋转服务器端.")
         .defaultValue(true)
         .build()
@@ -274,7 +274,7 @@ public class CrystalAura extends Module {
     );
 
     private final Setting<Integer> breakDelay = sgBreak.add(new IntSetting.Builder()
-        .name("断裂-延迟")
+        .name("断裂延迟")
         .description("晶体放置后,等待打破晶体的延迟时间,以滴答为单位.")
         .defaultValue(0)
         .min(0)
@@ -290,7 +290,7 @@ public class CrystalAura extends Module {
     );
 
     private final Setting<Integer> switchDelay = sgBreak.add(new IntSetting.Builder()
-        .name("开关-延迟")
+        .name("开关延迟")
         .description("切换热键槽后,等待打破晶体的延迟时间,以滴答为单位.")
         .defaultValue(0)
         .min(0)
