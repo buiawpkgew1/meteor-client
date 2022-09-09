@@ -40,43 +40,43 @@ import java.util.function.Predicate;
 public class Surround extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
     private final SettingGroup sgToggles = settings.createGroup("Toggles");
-    private final SettingGroup sgRender = settings.createGroup("渲染");
+    private final SettingGroup sgRender = settings.createGroup("Render");
 
     // General
 
     private final Setting<List<Block>> blocks = sgGeneral.add(new BlockListSetting.Builder()
         .name("blocks")
-        .description("用什么区块来做环绕.")
+        .description("What blocks to use for surround.")
         .defaultValue(Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.NETHERITE_BLOCK)
         .filter(this::blockFilter)
         .build()
     );
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
-        .name("延迟")
-        .description("块放置之间的延迟，以刻度为单位.")
+        .name("delay")
+        .description("Delay, in ticks, between block placements.")
         .min(0)
         .defaultValue(0)
         .build()
     );
 
     private final Setting<Center> center = sgGeneral.add(new EnumSetting.Builder<Center>()
-        .name("中心")
-        .description("将你传送到街区的中心.")
+        .name("center")
+        .description("Teleports you to the center of the block.")
         .defaultValue(Center.Incomplete)
         .build()
     );
 
     private final Setting<Boolean> doubleHeight = sgGeneral.add(new BoolSetting.Builder()
-        .name("双高")
-        .description("将黑曜石放在原来的环绕块之上，以防止人们对你进行脸部定位.")
+        .name("double-height")
+        .description("Places obsidian on top of the original surround blocks to prevent people from face-placing you.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> onlyOnGround = sgGeneral.add(new BoolSetting.Builder()
-        .name("只有在地面上")
-        .description("只有当你站在积木上时才会工作.")
+        .name("only-on-ground")
+        .description("Works only when you are standing on blocks.")
         .defaultValue(true)
         .build()
     );
@@ -103,31 +103,16 @@ public class Surround extends Module {
         .build()
     );
 
-    private final Setting<Boolean> toggleBack = sgGeneral.add(new BoolSetting.Builder()
-        .name("toggle-back-on")
-        .description("Turn the other modules back on when surround is deactivated.")
-        .defaultValue(false)
-        .visible(toggleModules::get)
-        .build()
-    );
-
-    private final Setting<List<Module>> modules = sgGeneral.add(new ModuleListSetting.Builder()
-        .name("modules")
-        .description("Which modules to disable on activation.")
-        .visible(toggleModules::get)
-        .build()
-    );
-
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-        .name("轮换")
-        .description("自动朝向被放置的黑曜石.")
+        .name("rotate")
+        .description("Automatically faces towards the obsidian being placed.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> protect = sgGeneral.add(new BoolSetting.Builder()
-        .name("保护")
-        .description("试图打破环绕位置的晶体，以防止环绕断裂.")
+        .name("protect")
+        .description("Attempts to break crystals around surround positions to prevent surround break.")
         .defaultValue(true)
         .build()
     );
@@ -165,8 +150,8 @@ public class Surround extends Module {
     );
 
     private final Setting<Boolean> render = sgRender.add(new BoolSetting.Builder()
-        .name("渲染")
-        .description("渲染一个放置黑曜石的区块覆盖层.")
+        .name("render")
+        .description("Renders a block overlay where the obsidian will be placed.")
         .defaultValue(true)
         .build()
     );
@@ -240,7 +225,7 @@ public class Surround extends Module {
     private int ticks;
 
     public Surround() {
-        super(Categories.Combat, "自我包围", "用方块包围你以防止大量水晶爆炸.");
+        super(Categories.Combat, "surround", "Surrounds you in blocks to prevent massive crystal damage.");
     }
 
     // Render
