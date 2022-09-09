@@ -5,6 +5,7 @@
 
 package meteordevelopment.meteorclient.systems.modules.combat;
 
+import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.events.render.Render3DEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.mixin.WorldRendererAccessor;
@@ -27,15 +28,18 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
+import net.minecraft.network.packet.s2c.play.DeathMessageS2CPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class Surround extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
+    private final SettingGroup sgToggles = settings.createGroup("Toggles");
     private final SettingGroup sgRender = settings.createGroup("渲染");
 
     // General
@@ -43,7 +47,7 @@ public class Surround extends Module {
     private final Setting<List<Block>> blocks = sgGeneral.add(new BlockListSetting.Builder()
         .name("blocks")
         .description("用什么区块来做环绕.")
-        .defaultValue(Blocks.OBSIDIAN)
+        .defaultValue(Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.NETHERITE_BLOCK)
         .filter(this::blockFilter)
         .build()
     );
@@ -77,17 +81,41 @@ public class Surround extends Module {
         .build()
     );
 
-    private final Setting<Boolean> toggleOnYChange = sgGeneral.add(new BoolSetting.Builder()
-        .name("变化时的切换")
-        .description("当你的Y水平发生变化时，自动关闭（阶梯，跳跃等）.")
-        .defaultValue(true)
+    private final Setting<Boolean> toggleModules = sgGeneral.add(new BoolSetting.Builder()
+        .name("toggle-modules")
+        .description("Turn off other modules when surround is activated.")
+        .defaultValue(false)
         .build()
     );
 
-    private final Setting<Boolean> toggleOnComplete = sgGeneral.add(new BoolSetting.Builder()
-        .name("完成时切换")
-        .description("当所有区块放置完毕后切换为关闭状态.")
+    private final Setting<Boolean> toggleBack = sgGeneral.add(new BoolSetting.Builder()
+        .name("toggle-back-on")
+        .description("Turn the other modules back on when surround is deactivated.")
         .defaultValue(false)
+        .visible(toggleModules::get)
+        .build()
+    );
+
+    private final Setting<List<Module>> modules = sgGeneral.add(new ModuleListSetting.Builder()
+        .name("modules")
+        .description("Which modules to disable on activation.")
+        .visible(toggleModules::get)
+        .build()
+    );
+
+    private final Setting<Boolean> toggleBack = sgGeneral.add(new BoolSetting.Builder()
+        .name("toggle-back-on")
+        .description("Turn the other modules back on when surround is deactivated.")
+>>>>>>> upstream/master
+        .defaultValue(false)
+        .visible(toggleModules::get)
+        .build()
+    );
+
+    private final Setting<List<Module>> modules = sgGeneral.add(new ModuleListSetting.Builder()
+        .name("modules")
+        .description("Which modules to disable on activation.")
+        .visible(toggleModules::get)
         .build()
     );
 
@@ -105,7 +133,37 @@ public class Surround extends Module {
         .build()
     );
 
+    // Toggles
+
+    private final Setting<Boolean> toggleOnYChange = sgToggles.add(new BoolSetting.Builder()
+        .name("toggle-on-y-change")
+        .description("Automatically disables when your y level changes (step, jumping, etc).")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Boolean> toggleOnComplete = sgToggles.add(new BoolSetting.Builder()
+        .name("toggle-on-complete")
+        .description("Toggles off when all blocks are placed.")
+        .defaultValue(false)
+        .build()
+    );
+
+    private final Setting<Boolean> toggleOnDeath = sgToggles.add(new BoolSetting.Builder()
+        .name("toggle-on-death")
+        .description("Toggles off when you die.")
+        .defaultValue(true)
+        .build()
+    );
+
     // Render
+
+    private final Setting<Boolean> swing = sgRender.add(new BoolSetting.Builder()
+        .name("swing")
+        .description("Render your hand swinging when placing surround blocks.")
+        .defaultValue(true)
+        .build()
+    );
 
     private final Setting<Boolean> render = sgRender.add(new BoolSetting.Builder()
         .name("渲染")
@@ -115,43 +173,71 @@ public class Surround extends Module {
     );
 
     private final Setting<Boolean> renderBelow = sgRender.add(new BoolSetting.Builder()
-        .name("以下是")
-        .description("渲染你下面的区块.")
-        .defaultValue(true)
+        .name("below")
+        .description("Renders the block below you.")
+        .defaultValue(false)
         .build()
     );
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
-        .name("形状-模式")
-        .description("形状是如何呈现的.")
-        .defaultValue(ShapeMode.Sides)
+        .name("shape-mode")
+        .description("How the shapes are rendered.")
+        .defaultValue(ShapeMode.Both)
         .build()
     );
 
-    private final Setting<SettingColor> safeColor = sgRender.add(new ColorSetting.Builder()
-        .name("安全颜色")
-        .description("安全区块的颜色.")
-        .defaultValue(new SettingColor(13, 255, 0, 50))
+    private final Setting<SettingColor> safeSideColor = sgRender.add(new ColorSetting.Builder()
+        .name("safe-side-color")
+        .description("The side color for safe blocks.")
+        .defaultValue(new SettingColor(13, 255, 0, 0))
+        .visible(() -> render.get() && shapeMode.get() != ShapeMode.Lines)
         .build()
     );
 
-    private final Setting<SettingColor> normalColor = sgRender.add(new ColorSetting.Builder()
-        .name("正常颜色")
-        .description("正常环绕块的颜色.")
-        .defaultValue(new SettingColor(0, 255, 238, 50))
+    private final Setting<SettingColor> safeLineColor = sgRender.add(new ColorSetting.Builder()
+        .name("safe-line-color")
+        .description("The line color for safe blocks.")
+        .defaultValue(new SettingColor(13, 255, 0, 0))
+        .visible(() -> render.get() && shapeMode.get() != ShapeMode.Sides)
         .build()
     );
 
-    private final Setting<SettingColor> unSafeColor = sgRender.add(new ColorSetting.Builder()
-        .name("不安全颜色")
-        .description("不安全区块的颜色.")
-        .defaultValue(new SettingColor(204, 0, 0, 50))
+    private final Setting<SettingColor> normalSideColor = sgRender.add(new ColorSetting.Builder()
+        .name("normal-side-color")
+        .description("The side color for normal blocks.")
+        .defaultValue(new SettingColor(0, 255, 238, 12))
+        .visible(() -> render.get() && shapeMode.get() != ShapeMode.Lines)
+        .build()
+    );
+
+    private final Setting<SettingColor> normalLineColor = sgRender.add(new ColorSetting.Builder()
+        .name("normal-line-color")
+        .description("The line color for normal blocks.")
+        .defaultValue(new SettingColor(0, 255, 238, 100))
+        .visible(() -> render.get() && shapeMode.get() != ShapeMode.Sides)
+        .build()
+    );
+
+    private final Setting<SettingColor> unsafeSideColor = sgRender.add(new ColorSetting.Builder()
+        .name("unsafe-side-color")
+        .description("The side color for unsafe blocks.")
+        .defaultValue(new SettingColor(204, 0, 0, 12))
+        .visible(() -> render.get() && shapeMode.get() != ShapeMode.Lines)
+        .build()
+    );
+
+    private final Setting<SettingColor> unsafeLineColor = sgRender.add(new ColorSetting.Builder()
+        .name("unsafe-line-color")
+        .description("The line color for unsafe blocks.")
+        .defaultValue(new SettingColor(204, 0, 0, 100))
+        .visible(() -> render.get() && shapeMode.get() != ShapeMode.Sides)
         .build()
     );
 
     private final BlockPos.Mutable placePos = new BlockPos.Mutable();
     private final BlockPos.Mutable renderPos = new BlockPos.Mutable();
     private final BlockPos.Mutable testPos = new BlockPos.Mutable();
+    public ArrayList<Module> toActivate = new ArrayList<>();
     private int ticks;
 
     public Surround() {
@@ -182,8 +268,9 @@ public class Surround extends Module {
 
     private void draw(Render3DEvent event, CardinalDirection direction, int y, int exclude) {
         renderPos.set(offsetPosFromPlayer(direction, y));
-        Color color = getBlockColor(renderPos);
-        event.renderer.box(renderPos, color, color, shapeMode.get(), exclude);
+        Color sideColor = getSideColor(renderPos);
+        Color lineColor = getLineColor(renderPos);
+        event.renderer.box(renderPos, sideColor, lineColor, shapeMode.get(), exclude);
     }
 
     // Function
@@ -195,12 +282,41 @@ public class Surround extends Module {
 
         // Reset delay
         ticks = 0;
+
+        if (toggleModules.get() && !modules.get().isEmpty() && mc.world != null && mc.player != null) {
+            for (Module module : modules.get()) {
+                if (module.isActive()) {
+                    module.toggle();
+                    toActivate.add(module);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onDeactivate() {
+        if (toggleBack.get() && !toActivate.isEmpty() && mc.world != null && mc.player != null) {
+            for (Module module : toActivate) {
+                if (!module.isActive()) {
+                    module.toggle();
+                }
+            }
+        }
     }
 
     @EventHandler
     private void onTick(TickEvent.Pre event) {
+        // Tick the placement timer, should always happen
+        if (ticks > 0) {
+            ticks--;
+            return;
+        }
+        else {
+            ticks = delay.get();
+        }
+
         // Toggle if Y level changed
-        if (toggleOnYChange.get() && mc.player.prevY < mc.player.getY()) {
+        if (toggleOnYChange.get() && mc.player.prevY != mc.player.getY()) {
             toggle();
             return;
         }
@@ -213,15 +329,6 @@ public class Surround extends Module {
 
         // Centering player
         if (center.get() == Center.Always) PlayerUtils.centerPlayer();
-
-        // Tick the placement timer
-        if (ticks > 0) {
-            ticks--;
-            return;
-        }
-        else {
-            ticks = delay.get();
-        }
 
         // Check surround blocks in order and place the first missing one if present
         int safe = 0;
@@ -261,6 +368,7 @@ public class Surround extends Module {
             getInvBlock(),
             rotate.get(),
             100,
+            swing.get(),
             true
         );
 
@@ -301,6 +409,17 @@ public class Surround extends Module {
         return placed;
     }
 
+    @EventHandler
+    private void onPacketReceive(PacketEvent.Receive event)  {
+        if (event.packet instanceof DeathMessageS2CPacket packet) {
+            Entity entity = mc.world.getEntityById(packet.getEntityId());
+            if (entity == mc.player && toggleOnDeath.get()) {
+                toggle();
+                info("Toggled off because you died.");
+            }
+        }
+    }
+
     private BlockPos.Mutable offsetPosFromPlayer(CardinalDirection direction, int y) {
         return offsetPos(mc.player.getBlockPos(), direction, y);
     }
@@ -332,11 +451,19 @@ public class Surround extends Module {
         else return BlockType.Unsafe;
     }
 
-    private Color getBlockColor(BlockPos pos) {
+    private Color getSideColor(BlockPos pos) {
         return switch (getBlockType(pos)) {
-            case Safe -> safeColor.get();
-            case Normal -> normalColor.get();
-            case Unsafe -> unSafeColor.get();
+            case Safe -> safeSideColor.get();
+            case Normal -> normalSideColor.get();
+            case Unsafe -> unsafeSideColor.get();
+        };
+    }
+
+    private Color getLineColor(BlockPos pos) {
+        return switch (getBlockType(pos)) {
+            case Safe -> safeLineColor.get();
+            case Normal -> normalLineColor.get();
+            case Unsafe -> unsafeLineColor.get();
         };
     }
 
