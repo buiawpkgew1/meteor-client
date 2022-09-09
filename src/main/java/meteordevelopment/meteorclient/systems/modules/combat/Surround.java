@@ -106,7 +106,6 @@ public class Surround extends Module {
     private final Setting<Boolean> toggleBack = sgGeneral.add(new BoolSetting.Builder()
         .name("toggle-back-on")
         .description("Turn the other modules back on when surround is deactivated.")
->>>>>>> upstream/master
         .defaultValue(false)
         .visible(toggleModules::get)
         .build()
