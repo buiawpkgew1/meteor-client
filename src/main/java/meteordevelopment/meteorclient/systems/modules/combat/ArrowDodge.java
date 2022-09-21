@@ -28,15 +28,15 @@ public class ArrowDodge extends Module {
     private final SettingGroup sgMovement = settings.createGroup("移动");
 
     private final Setting<MoveType> moveType = sgMovement.add(new EnumSetting.Builder<MoveType>()
-        .name("移动方式")
-        .description("你被这个模块感动的方式")
+        .name("move-type")
+        .description("The way you are moved by this module.")
         .defaultValue(MoveType.Velocity)
         .build()
     );
 
     private final Setting<Double> moveSpeed = sgMovement.add(new DoubleSetting.Builder()
-        .name("移动速度")
-        .description("躲箭时你应该多快")
+        .name("move-speed")
+        .description("How fast should you be when dodging arrow.")
         .defaultValue(1)
         .min(0.01)
         .sliderRange(0.01, 5)
@@ -81,8 +81,8 @@ public class ArrowDodge extends Module {
     );
 
     public final Setting<Integer> simulationSteps = sgGeneral.add(new IntSetting.Builder()
-        .name("模拟步骤")
-        .description("模拟弹丸需要多少步. 零无限制")
+        .name("simulation-steps")
+        .description("How many steps to simulate projectiles. Zero for no limit.")
         .defaultValue(500)
         .sliderMax(5000)
         .build()

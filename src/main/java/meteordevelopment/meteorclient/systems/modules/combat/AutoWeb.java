@@ -30,8 +30,8 @@ public class AutoWeb extends Module {
     );
 
     private final Setting<SortPriority> priority = sgGeneral.add(new EnumSetting.Builder<SortPriority>()
-        .name("目标优先")
-        .description("如何选择目标玩家.")
+        .name("target-priority")
+        .description("How to filter targets within range.")
         .defaultValue(SortPriority.LowestDistance)
         .build()
     );

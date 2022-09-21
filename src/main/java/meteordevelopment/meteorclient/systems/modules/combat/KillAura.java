@@ -50,8 +50,8 @@ public class KillAura extends Module {
     // General
 
     private final Setting<Weapon> weapon = sgGeneral.add(new EnumSetting.Builder<Weapon>()
-        .name("武器")
-        .description("只有当你手中有指定物品时才会攻击一个实体.")
+        .name("weapon")
+        .description("Only attacks an entity when a specified weapon is in your hand.")
         .defaultValue(Weapon.Both)
         .build()
     );
@@ -64,8 +64,8 @@ public class KillAura extends Module {
     );
 
     private final Setting<Boolean> onlyOnClick = sgGeneral.add(new BoolSetting.Builder()
-        .name("只有在点击时")
-        .description("只在按住左键时攻击.")
+        .name("only-on-click")
+        .description("Only attacks when holding left click.")
         .defaultValue(false)
         .build()
     );

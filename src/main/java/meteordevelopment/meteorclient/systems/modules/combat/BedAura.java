@@ -68,8 +68,8 @@ public class BedAura extends Module {
     );
 
     private final Setting<SortPriority> priority = sgTargeting.add(new EnumSetting.Builder<SortPriority>()
-        .name("目标优先级")
-        .description("如何筛选出目标球员.")
+        .name("target-priority")
+        .description("How to filter targets within range.")
         .defaultValue(SortPriority.LowestHealth)
         .build()
     );
