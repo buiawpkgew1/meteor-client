@@ -50,8 +50,8 @@ public class KillAura extends Module {
     // General
 
     private final Setting<Weapon> weapon = sgGeneral.add(new EnumSetting.Builder<Weapon>()
-        .name("武器")
-        .description("只有当你手中有指定物品时才会攻击一个实体.")
+        .name("weapon")
+        .description("Only attacks an entity when a specified weapon is in your hand.")
         .defaultValue(Weapon.Both)
         .build()
     );
@@ -64,8 +64,8 @@ public class KillAura extends Module {
     );
 
     private final Setting<Boolean> onlyOnClick = sgGeneral.add(new BoolSetting.Builder()
-        .name("只有在点击时")
-        .description("只在按住左键时攻击.")
+        .name("only-on-click")
+        .description("Only attacks when holding left click.")
         .defaultValue(false)
         .build()
     );
@@ -327,10 +327,10 @@ public class KillAura extends Module {
         if (entity.equals(mc.player) || entity.equals(mc.cameraEntity)) return false;
         if ((entity instanceof LivingEntity && ((LivingEntity) entity).isDead()) || !entity.isAlive()) return false;
         if (noRightClick.get() && (mc.interactionManager.isBreakingBlock() || mc.player.isUsingItem())) return false;
-        if (PlayerUtils.distanceTo(entity) > range.get()) return false;
+        if (!PlayerUtils.isWithin(entity, range.get())) return false;
         if (!entities.get().getBoolean(entity.getType())) return false;
         if (!nametagged.get() && entity.hasCustomName()) return false;
-        if (!PlayerUtils.canSeeEntity(entity) && PlayerUtils.distanceTo(entity) > wallsRange.get()) return false;
+        if (!PlayerUtils.canSeeEntity(entity) && !PlayerUtils.isWithin(entity, wallsRange.get())) return false;
         if (ignoreTamed.get()) {
             if (entity instanceof Tameable tameable
                 && tameable.getOwnerUuid() != null

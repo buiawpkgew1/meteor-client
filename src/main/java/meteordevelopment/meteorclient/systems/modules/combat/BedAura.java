@@ -68,8 +68,8 @@ public class BedAura extends Module {
     );
 
     private final Setting<SortPriority> priority = sgTargeting.add(new EnumSetting.Builder<SortPriority>()
-        .name("目标优先级")
-        .description("如何筛选出目标球员.")
+        .name("target-priority")
+        .description("How to filter targets within range.")
         .defaultValue(SortPriority.LowestHealth)
         .build()
     );
@@ -283,7 +283,7 @@ public class BedAura extends Module {
             BlockPos bedPos = blockEntity.getPos();
             Vec3d bedVec = Utils.vec3d(bedPos);
 
-            if (PlayerUtils.distanceTo(bedVec) <= mc.interactionManager.getReachDistance()
+            if (PlayerUtils.isWithinReach(bedVec)
                 && DamageUtils.bedDamage(target, bedVec) >= minDamage.get()
                 && DamageUtils.bedDamage(mc.player, bedVec) < maxSelfDamage.get()
                 && (!antiSuicide.get() || PlayerUtils.getTotalHealth() - DamageUtils.bedDamage(mc.player, bedVec) > 0)) {
