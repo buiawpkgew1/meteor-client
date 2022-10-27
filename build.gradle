@@ -11,7 +11,6 @@ version = project.mod_version + (project.hasProperty("devbuild") ? ("-" + projec
 group = project.maven_group
 
 repositories {
-    maven { url "https://jitpack.io" }
     maven {
 		name = "meteor-maven"
 		url = "https://maven.meteordev.org/releases"
@@ -50,8 +49,7 @@ dependencies {
     modCompileOnly("io.vram:canvas-fabric-mc119:1.0.+") { transitive = false }
 
 	// Baritone (https://github.com/MeteorDevelopment/baritone)
-    // modInclude "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
-    implementation "com.github.buiawpkgew1:baritone:${project.minecraft_version}-SNAPSHOT"
+    modInclude "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
 
     // Libraries
     library "meteordevelopment:orbit:${project.orbit_version}"
