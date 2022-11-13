@@ -1,4 +1,11 @@
 {
   "key.meteor-client.open-gui": "打开GUI",
-  "key.meteor-client.open-commands": "输入命令"
+  "key.meteor-client.open-commands": "输入命令",
+  "Combat":"战斗",
+  "Player":"玩家",
+  "Misc":"杂项",
+  "World":"世界",
+  "Render":"渲染",
+  "Movement":"移动",
+  "Modules":"模块"
 }

@@ -41,6 +41,7 @@ import meteordevelopment.meteorclient.utils.misc.input.Input;
 import meteordevelopment.meteorclient.utils.misc.input.KeyAction;
 import meteordevelopment.orbit.EventHandler;
 import meteordevelopment.orbit.EventPriority;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
@@ -74,7 +75,7 @@ public class Modules extends System<Modules> {
     private Module moduleToBind;
 
     public Modules() {
-        super("模块");
+        super(I18n.translate("Modules"));
     }
 
     public static Modules get() {

@@ -1,4 +1,11 @@
 {
   "key.meteor-client.open-gui": "Open GUI",
-  "key.meteor-client.open-commands": "Open Commands"
+  "key.meteor-client.open-commands": "Open Commands",
+  "Combat":"Combat",
+  "Player":"Player",
+  "Misc":"Misc",
+  "World":"World",
+  "Render":"Render",
+  "Movement":"Movement",
+  "Modules":"Modules"
 }
