@@ -52,7 +52,7 @@ dependencies {
 	// Baritone (https://github.com/MeteorDevelopment/baritone)
     //modInclude "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
     // Baritone (https://github.com/buiawpkgew1/baritone)
-    implementation 'com.github.buiawpkgew1:baritone:Latest-1.19.2.1'
+    implementation 'com.github.buiawpkgew1.baritone:baritone-fabric:a565b5ff33'
 
     // Libraries
     library "meteordevelopment:orbit:${project.orbit_version}"
