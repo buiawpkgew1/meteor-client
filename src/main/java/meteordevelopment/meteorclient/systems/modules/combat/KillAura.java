@@ -241,7 +241,7 @@ public class KillAura extends Module {
 
     private final List<Entity> targets = new ArrayList<>();
     private int hitDelayTimer, switchTimer;
-    private boolean wasPathing;
+    private boolean wasPathing = false;
 
     public KillAura() {
         super(Categories.Combat, "杀戮光环", "攻击你周围的指定实体.");
@@ -265,11 +265,6 @@ public class KillAura extends Module {
                 wasPathing = false;
             }
             return;
-        }
-
-        if (pauseOnCombat.get() && BaritoneAPI.getProvider().getPrimaryBaritone().getPathingBehavior().isPathing() && !wasPathing) {
-            BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("pause");
-            wasPathing = true;
         }
 
         Entity primary = targets.get(0);
@@ -304,6 +299,11 @@ public class KillAura extends Module {
         }
 
         if (!itemInHand()) return;
+
+        if (pauseOnCombat.get() && BaritoneAPI.getProvider().getPrimaryBaritone().getPathingBehavior().isPathing() && !wasPathing) {
+            BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("pause");
+            wasPathing = true;
+        }
 
         if (delayCheck()) targets.forEach(this::attack);
 
