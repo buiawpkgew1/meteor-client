@@ -9,6 +9,7 @@ on:
     branches:
       - master
       - dev
+      - 1.19.2
       - main
 
 jobs:
@@ -43,7 +44,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "Latest-1.19.2"
+          automatic_release_tag: "Latest-1.19.3"
           prerelease: true
           title: "自动构建版本"
           files: |

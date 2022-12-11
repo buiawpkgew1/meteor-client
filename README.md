@@ -19,7 +19,7 @@
     
 </div>
 
-## Usage
+## Usage.
 
 ### Building
 - Clone this repository

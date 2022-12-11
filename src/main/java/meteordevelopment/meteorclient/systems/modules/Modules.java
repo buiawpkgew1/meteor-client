@@ -7,7 +7,6 @@ package meteordevelopment.meteorclient.systems.modules;
 
 import com.google.common.collect.Ordering;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Lifecycle;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.events.game.GameJoinedEvent;
@@ -45,13 +44,14 @@ import net.minecraft.client.resource.language.I18n;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.SimpleRegistry;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.entry.RegistryEntryList;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryEntryList;
-import net.minecraft.util.registry.RegistryKey;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
@@ -570,7 +570,7 @@ public class Modules extends System<Modules> {
         add(new InventoryTweaks());
     }
 
-    public static class ModuleRegistry extends Registry<Module> {
+    public static class ModuleRegistry extends SimpleRegistry<Module> {
         public ModuleRegistry() {
             super(RegistryKey.ofRegistry(new MeteorIdentifier("modules")), Lifecycle.stable());
         }
@@ -651,7 +651,7 @@ public class Modules extends System<Modules> {
         }
 
         @Override
-        public Optional<RegistryEntry<Module>> getRandom(Random random) {
+        public Optional<RegistryEntry.Reference<Module>> getRandom(Random random) {
             return Optional.empty();
         }
 
@@ -661,27 +661,17 @@ public class Modules extends System<Modules> {
         }
 
         @Override
-        public RegistryEntry<Module> getOrCreateEntry(RegistryKey<Module> key) {
-            return null;
-        }
-
-        @Override
-        public DataResult<RegistryEntry<Module>> getOrCreateEntryDataResult(RegistryKey<Module> key) {
-            return null;
-        }
-
-        @Override
         public RegistryEntry.Reference<Module> createEntry(Module value) {
             return null;
         }
 
         @Override
-        public Optional<RegistryEntry<Module>> getEntry(int rawId) {
+        public Optional<RegistryEntry.Reference<Module>> getEntry(int rawId) {
             return Optional.empty();
         }
 
         @Override
-        public Optional<RegistryEntry<Module>> getEntry(RegistryKey<Module> key) {
+        public Optional<RegistryEntry.Reference<Module>> getEntry(RegistryKey<Module> key) {
             return Optional.empty();
         }
 
@@ -711,19 +701,10 @@ public class Modules extends System<Modules> {
         }
 
         @Override
-        public boolean containsTag(TagKey<Module> tag) {
-            return false;
-        }
+        public void clearTags() {}
 
         @Override
-        public void clearTags() {
-
-        }
-
-        @Override
-        public void populateTags(Map<TagKey<Module>, List<RegistryEntry<Module>>> tagEntries) {
-
-        }
+        public void populateTags(Map<TagKey<Module>, List<RegistryEntry<Module>>> tagEntries) {}
 
         private static class ModuleIterator implements Iterator<Module> {
             private final Iterator<Module> iterator = Modules.get().getAll().iterator();
