@@ -23,7 +23,7 @@ public class CommitsScreen extends WindowScreen {
     private Commit[] commits;
 
     public CommitsScreen(GuiTheme theme, MeteorAddon addon) {
-        super(theme, "提交给 " + addon.name);
+        super(theme, "Commits for " + addon.name);
 
         this.addon = addon;
 
@@ -51,12 +51,12 @@ public class CommitsScreen extends WindowScreen {
         // Top
         WHorizontalList l = add(theme.horizontalList()).expandX().widget();
 
-        String text = "有 %d 个新提交";
-        if (commits.length == 1) text = "有 %d 个新提交";
+        String text = "There are %d new commits";
+        if (commits.length == 1) text = "There is %d new commit";
         l.add(theme.label(String.format(text, commits.length))).expandX();
 
         String website = addon.getWebsite();
-        if (website != null) l.add(theme.button("网站")).widget().action = () -> Util.getOperatingSystem().open(website);
+        if (website != null) l.add(theme.button("Website")).widget().action = () -> Util.getOperatingSystem().open(website);
 
         l.add(theme.button("GitHub")).widget().action = () -> {
             GithubRepo repo = addon.getRepo();

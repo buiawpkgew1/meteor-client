@@ -7,7 +7,6 @@ import meteordevelopment.meteorclient.systems.accounts.UuidToProfileResponse;
 import meteordevelopment.meteorclient.utils.PostInit;
 import meteordevelopment.meteorclient.utils.network.Http;
 
-import java.nio.charset.Charset;
 import java.util.Base64;
 import java.util.UUID;
 
@@ -33,7 +32,8 @@ public class PlayerHeadUtils {
         String base64Textures = res2.getPropertyValue("textures");
         if (base64Textures == null) return null;
 
-        TexturesJson textures = new Gson().fromJson(new String(Base64.getDecoder().decode(base64Textures), Charset.defaultCharset()), TexturesJson.class);
+        TexturesJson textures = new Gson().fromJson(new String(Base64.getDecoder().decode(base64Textures)), TexturesJson.class);
+        if (textures.textures.SKIN == null) return null;
 
         return textures.textures.SKIN.url;
     }

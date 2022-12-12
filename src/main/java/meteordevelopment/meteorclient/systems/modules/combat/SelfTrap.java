@@ -39,7 +39,7 @@ public class SelfTrap extends Module {
     }
 
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgRender = settings.createGroup("渲染");
+    private final SettingGroup sgRender = settings.createGroup("Render");
 
     // General
 
@@ -51,48 +51,48 @@ public class SelfTrap extends Module {
     );
 
     private final Setting<TopMode> topPlacement = sgGeneral.add(new EnumSetting.Builder<TopMode>()
-            .name("顶部模式")
-            .description("在你的上半身放置哪些位置.")
+            .name("top-mode")
+            .description("Which positions to place on your top half.")
             .defaultValue(TopMode.Top)
             .build()
     );
 
     private final Setting<BottomMode> bottomPlacement = sgGeneral.add(new EnumSetting.Builder<BottomMode>()
-            .name("底层模式")
-            .description("在你的下半身放置哪些位置.")
+            .name("bottom-mode")
+            .description("Which positions to place on your bottom half.")
             .defaultValue(BottomMode.None)
             .build()
     );
 
     private final Setting<Integer> delaySetting = sgGeneral.add(new IntSetting.Builder()
-            .name("地点-延迟")
-            .description("块状放置之间有多少个刻度.")
+            .name("place-delay")
+            .description("How many ticks between block placements.")
             .defaultValue(1)
             .build()
     );
 
     private final Setting<Boolean> center = sgGeneral.add(new BoolSetting.Builder()
-            .name("中心")
-            .description("以你所站的区块为中心,然后再放置.")
+            .name("center")
+            .description("Centers you on the block you are standing on before placing.")
             .defaultValue(true)
             .build()
     );
 
     private final Setting<Boolean> turnOff = sgGeneral.add(new BoolSetting.Builder()
-            .name("关掉")
-            .description("放置后关闭.")
+            .name("turn-off")
+            .description("Turns off after placing.")
             .defaultValue(true)
             .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-            .name("轮换")
-            .description("放置时向服务器发送旋转数据包。.")
+            .name("rotate")
+            .description("Sends rotation packets to the server when placing.")
             .defaultValue(true)
             .build()
     );
 
-    // 渲染
+    // Render
 
     private final Setting<Boolean> render = sgRender.add(new BoolSetting.Builder()
             .name("render")
@@ -102,22 +102,22 @@ public class SelfTrap extends Module {
     );
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
-            .name("形状-模式")
-            .description("形状是如何呈现的.")
+            .name("shape-mode")
+            .description("How the shapes are rendered.")
             .defaultValue(ShapeMode.Both)
             .build()
     );
 
     private final Setting<SettingColor> sideColor = sgRender.add(new ColorSetting.Builder()
-            .name("侧面颜色")
-            .description("被渲染的块的边的颜色.")
+            .name("side-color")
+            .description("The color of the sides of the blocks being rendered.")
             .defaultValue(new SettingColor(204, 0, 0, 10))
             .build()
     );
 
     private final Setting<SettingColor> lineColor = sgRender.add(new ColorSetting.Builder()
-            .name("线条颜色")
-            .description("被渲染的块的线条的颜色.")
+            .name("line-color")
+            .description("The color of the lines of the blocks being rendered.")
             .defaultValue(new SettingColor(204, 0, 0, 255))
             .build()
     );

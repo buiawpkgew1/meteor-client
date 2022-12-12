@@ -65,14 +65,14 @@ public class ModuleScreen extends WindowScreen {
         // Toggle on bind release
         WHorizontalList tobr = section.add(theme.horizontalList()).widget();
 
-        tobr.add(theme.label("切换绑定释放: "));
+        tobr.add(theme.label("Toggle on bind release: "));
         WCheckbox tobrC = tobr.add(theme.checkbox(module.toggleOnBindRelease)).widget();
         tobrC.action = () -> module.toggleOnBindRelease = tobrC.checked;
 
         // Chat feedback
         WHorizontalList cf = section.add(theme.horizontalList()).widget();
 
-        cf.add(theme.label("聊天反馈: "));
+        cf.add(theme.label("Chat Feedback: "));
         WCheckbox cfC = cf.add(theme.checkbox(module.chatFeedback)).widget();
         cfC.action = () -> module.chatFeedback = cfC.checked;
 

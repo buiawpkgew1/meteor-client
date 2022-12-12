@@ -24,7 +24,7 @@ import java.util.List;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class Fonts {
-    public static final String[] BUILTIN_FONTS = { "Zkcyt", "Zkc yt-W03", "RiBenHuaYuanMingChaoTi-2", "NotoSansCJK-Thin-2" };
+    public static final String[] BUILTIN_FONTS = { "JetBrains Mono", "Comfortaa", "Tw Cen MT", "Pixelation" };
 
     public static String DEFAULT_FONT_FAMILY;
     public static FontFace DEFAULT_FONT;
@@ -46,7 +46,7 @@ public class Fonts {
 
         FONT_FAMILIES.sort(Comparator.comparing(FontFamily::getName));
 
-        MeteorClient.LOG.info("找到 {} 个字体系列.", FONT_FAMILIES.size());
+        MeteorClient.LOG.info("Found {} font families.", FONT_FAMILIES.size());
 
         DEFAULT_FONT_FAMILY = FontUtils.getBuiltinFontInfo(BUILTIN_FONTS[1]).family();
         DEFAULT_FONT = getFamily(DEFAULT_FONT_FAMILY).get(FontInfo.Type.Regular);
@@ -64,10 +64,10 @@ public class Fonts {
         }
         catch (Exception e) {
             if (fontFace.equals(DEFAULT_FONT)) {
-                throw new RuntimeException("加载默认字体失败: " + fontFace, e);
+                throw new RuntimeException("Failed to load default font: " + fontFace, e);
             }
 
-            MeteorClient.LOG.error("无法加载字体: " + fontFace, e);
+            MeteorClient.LOG.error("Failed to load font: " + fontFace, e);
             load(Fonts.DEFAULT_FONT);
         }
 

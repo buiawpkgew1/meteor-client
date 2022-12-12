@@ -41,8 +41,8 @@ public class ModulesScreen extends TabScreen {
 
         // Help
         WVerticalList help = add(theme.verticalList()).pad(4).bottom().widget();
-        help.add(theme.label("左键 - 切换模块"));
-        help.add(theme.label("右键 — 打开模块设置"));
+        help.add(theme.label("Left click - Toggle module"));
+        help.add(theme.label("Right click - Open module settings"));
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ModulesScreen extends TabScreen {
             Set<Module> modules = Modules.get().searchTitles(text);
 
             if (modules.size() > 0) {
-                WSection section = w.add(theme.section("模块")).expandX().widget();
+                WSection section = w.add(theme.section("Modules")).expandX().widget();
                 section.spacing = 0;
 
                 int count = 0;
@@ -98,7 +98,7 @@ public class ModulesScreen extends TabScreen {
             modules = Modules.get().searchSettingTitles(text);
 
             if (modules.size() > 0) {
-                WSection section = w.add(theme.section("设置")).expandX().widget();
+                WSection section = w.add(theme.section("Settings")).expandX().widget();
                 section.spacing = 0;
 
                 int count = 0;
@@ -113,7 +113,7 @@ public class ModulesScreen extends TabScreen {
 
     protected WWindow createSearch(WContainer c) {
         WWindow w = theme.window("Search");
-        w.id = "搜索";
+        w.id = "search";
 
         if (theme.categoryIcons()) {
             w.beforeHeaderInit = wContainer -> wContainer.add(theme.item(Items.COMPASS.getDefaultStack())).pad(2);
@@ -146,7 +146,7 @@ public class ModulesScreen extends TabScreen {
         if (!hasFavorites) return null;
 
         WWindow w = theme.window("Favorites");
-        w.id = "最爱";
+        w.id = "favorites";
         w.padding = 0;
         w.spacing = 0;
 

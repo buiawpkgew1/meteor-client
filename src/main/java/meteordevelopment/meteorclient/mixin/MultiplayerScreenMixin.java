@@ -38,7 +38,7 @@ public class MultiplayerScreenMixin extends Screen {
         textColor1 = Color.fromRGBA(255, 255, 255, 255);
         textColor2 = Color.fromRGBA(175, 175, 175, 255);
 
-        loggedInAs = "登录账号为 ";
+        loggedInAs = "Logged in as ";
         loggedInAsLength = textRenderer.getWidth(loggedInAs);
 
         addDrawableChild(
@@ -65,7 +65,7 @@ public class MultiplayerScreenMixin extends Screen {
         float x = 3;
         float y = 3;
 
-        // 登录账号为
+        // Logged in as
         textRenderer.drawWithShadow(matrices, loggedInAs, x, y, textColor1);
         textRenderer.drawWithShadow(matrices, Modules.get().get(NameProtect.class).getName(client.getSession().getUsername()), x + loggedInAsLength, y, textColor2);
 
@@ -74,7 +74,7 @@ public class MultiplayerScreenMixin extends Screen {
         // Proxy
         Proxy proxy = Proxies.get().getEnabled();
 
-        String left = proxy != null ? "使用代理 " : "不使用代理";
+        String left = proxy != null ? "Using proxy " : "Not using a proxy";
         String right = proxy != null ? (proxy.name.get() != null && !proxy.name.get().isEmpty() ? "(" + proxy.name.get() + ") " : "") + proxy.address.get() + ":" + proxy.port.get() : null;
 
         textRenderer.drawWithShadow(matrices, left, x, y, textColor1);

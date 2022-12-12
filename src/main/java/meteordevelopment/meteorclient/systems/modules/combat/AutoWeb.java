@@ -21,8 +21,8 @@ public class AutoWeb extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> range = sgGeneral.add(new DoubleSetting.Builder()
-        .name("目标范围")
-        .description("与目标玩家的最大距离.")
+        .name("target-range")
+        .description("The maximum distance to target players.")
         .defaultValue(4)
         .range(0, 5)
         .sliderMax(5)
@@ -37,15 +37,15 @@ public class AutoWeb extends Module {
     );
 
     private final Setting<Boolean> doubles = sgGeneral.add(new BoolSetting.Builder()
-        .name("双打")
-        .description("在目标的上部命中框和下部命中框中放置网状物.")
+        .name("doubles")
+        .description("Places webs in the target's upper hitbox as well as the lower hitbox.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-        .name("轮换")
-        .description("放置时向网状物旋转.")
+        .name("rotate")
+        .description("Rotates towards the webs when placing.")
         .defaultValue(true)
         .build()
     );
@@ -53,7 +53,7 @@ public class AutoWeb extends Module {
     private PlayerEntity target = null;
 
     public AutoWeb() {
-        super(Categories.Combat, "自动蛛网", "自动将蛛网放置在其他玩家身上.");
+        super(Categories.Combat, "auto-web", "Automatically places webs on other players.");
     }
 
     @EventHandler

@@ -25,7 +25,7 @@ import java.util.*;
 
 public class ArrowDodge extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgMovement = settings.createGroup("移动");
+    private final SettingGroup sgMovement = settings.createGroup("Movement");
 
     private final Setting<MoveType> moveType = sgMovement.add(new EnumSetting.Builder<MoveType>()
         .name("move-type")
@@ -44,8 +44,8 @@ public class ArrowDodge extends Module {
     );
 
     private final Setting<Double> distanceCheck = sgMovement.add(new DoubleSetting.Builder()
-        .name("距离检查")
-        .description("箭应该离玩家多远才被认为没有击中.")
+        .name("distance-check")
+        .description("How far should an arrow be from the player to be considered not hitting.")
         .defaultValue(1)
         .min(0.01)
         .sliderRange(0.01, 5)
@@ -53,29 +53,29 @@ public class ArrowDodge extends Module {
     );
 
     private final Setting<Boolean> accurate = sgGeneral.add(new BoolSetting.Builder()
-        .name("准确")
-        .description("是否计算更准确.")
+        .name("accurate")
+        .description("Whether or not to calculate more accurate.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> groundCheck = sgGeneral.add(new BoolSetting.Builder()
-        .name("地面检查")
-        .description("试图防止你摔死.")
+        .name("ground-check")
+        .description("Tries to prevent you from falling to your death.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> allProjectiles = sgGeneral.add(new BoolSetting.Builder()
-        .name("全弹")
-        .description("躲避所有射弹,不仅是箭.")
+        .name("all-projectiles")
+        .description("Dodge all projectiles, not only arrows.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> ignoreOwn = sgGeneral.add(new BoolSetting.Builder()
-        .name("忽略自己")
-        .description("忽略你自己的弹丸")
+        .name("ignore-own")
+        .description("Ignore your own projectiles.")
         .defaultValue(false)
         .build()
     );
@@ -104,7 +104,7 @@ public class ArrowDodge extends Module {
     private final List<Vector3d> points = new ArrayList<>();
 
     public ArrowDodge() {
-        super(Categories.Combat, "箭矢闪避", "试图躲避射向你的箭矢");
+        super(Categories.Combat, "arrow-dodge", "Tries to dodge arrows coming at you.");
     }
 
     @EventHandler

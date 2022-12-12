@@ -24,14 +24,14 @@ public class Spam extends Module {
 
     private final Setting<List<String>> messages = sgGeneral.add(new StringListSetting.Builder()
         .name("messages")
-        .description("用于垃圾邮件的消息.")
+        .description("Messages to use for spam.")
         .defaultValue(List.of("Meteor on Crack!"))
         .build()
     );
 
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
         .name("delay")
-        .description("指定消息之间的延迟（以滴答为单位）.")
+        .description("The delay between specified messages in ticks.")
         .defaultValue(20)
         .min(0)
         .sliderMax(200)
@@ -40,7 +40,7 @@ public class Spam extends Module {
 
     private final Setting<Boolean> disableOnLeave = sgGeneral.add(new BoolSetting.Builder()
         .name("disable-on-leave")
-        .description("离开服务器时禁用垃圾邮件.")
+        .description("Disables spam when you leave a server.")
         .defaultValue(true)
         .build()
     );
@@ -48,28 +48,28 @@ public class Spam extends Module {
 
     private final Setting<Boolean> disableOnDisconnect = sgGeneral.add(new BoolSetting.Builder()
         .name("disable-on-disconnect")
-        .description("与服务器断开连接时禁用垃圾邮件.")
+        .description("Disables spam when you are disconnected from a server.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> random = sgGeneral.add(new BoolSetting.Builder()
         .name("randomise")
-        .description("从垃圾邮件列表中随机选择一封邮件.")
+        .description("Selects a random message from your spam message list.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> bypass = sgGeneral.add(new BoolSetting.Builder()
         .name("bypass")
-        .description("在邮件末尾添加随机文本以尝试绕过反垃圾邮件.")
+        .description("Add random text at the end of the message to try to bypass anti spams.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Integer> length = sgGeneral.add(new IntSetting.Builder()
         .name("length")
-        .description("用于绕过反垃圾邮件的字符数.")
+        .description("Number of characters used to bypass anti spam.")
         .visible(bypass::get)
         .defaultValue(16)
         .sliderRange(1, 256)
@@ -79,7 +79,7 @@ public class Spam extends Module {
     private int messageI, timer;
 
     public Spam() {
-        super(Categories.Misc, "spam", "聊天中的垃圾邮件特定消息.");
+        super(Categories.Misc, "spam", "Spams specified messages in chat.");
     }
 
     @Override

@@ -102,7 +102,7 @@ public class BookBot extends Module {
     private Random random;
 
     public BookBot() {
-        super(Categories.Misc, "图书bot", "自动写书.");
+        super(Categories.Misc, "book-bot", "Automatically writes in books.");
 
         if (!file.exists()) {
             file = null;

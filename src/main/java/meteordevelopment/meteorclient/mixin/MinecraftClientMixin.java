@@ -23,7 +23,6 @@ import meteordevelopment.meteorclient.utils.network.OnlinePlayers;
 import meteordevelopment.starscript.Script;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
-import net.minecraft.client.RunArgs;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.option.GameOptions;
@@ -65,11 +64,6 @@ public abstract class MinecraftClientMixin implements IMinecraftClient {
     @Shadow
     @Nullable
     public ClientPlayerInteractionManager interactionManager;
-
-    @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setOverlay(Lnet/minecraft/client/gui/screen/Overlay;)V", shift = At.Shift.BEFORE))
-    private void init(RunArgs args, CallbackInfo ci) {
-        MeteorClient.init();
-    }
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void onInit(CallbackInfo info) {

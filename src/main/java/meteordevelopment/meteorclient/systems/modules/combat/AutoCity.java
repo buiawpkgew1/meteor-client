@@ -32,8 +32,8 @@ public class AutoCity extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Double> targetRange = sgGeneral.add(new DoubleSetting.Builder()
-        .name("目标范围")
-        .description("玩家成为目标的半径.")
+        .name("target-range")
+        .description("The radius in which players get targeted.")
         .defaultValue(4)
         .min(0)
         .sliderMax(5)
@@ -41,29 +41,29 @@ public class AutoCity extends Module {
     );
 
     private final Setting<Boolean> autoSwitch = sgGeneral.add(new BoolSetting.Builder()
-        .name("自动切换")
-        .description("启用 AutoCity 时自动切换到镐.")
+        .name("auto-switch")
+        .description("Auto switches to a pickaxe when AutoCity is enabled.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> support = sgGeneral.add(new BoolSetting.Builder()
-        .name("支持")
-        .description("如果城市街区下方没有街区,它将在采矿前放置一个.")
+        .name("support")
+        .description("If there is no block below a city block it will place one before mining.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-        .name("旋转")
-        .description("自动将您转向城市街区.")
+        .name("rotate")
+        .description("Automatically rotates you towards the city block.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> selfToggle = sgGeneral.add(new BoolSetting.Builder()
-        .name("自切换")
-        .description("激活后自动关闭.")
+        .name("self-toggle")
+        .description("Automatically toggles off after activation.")
         .defaultValue(true)
         .build()
     );
@@ -73,7 +73,7 @@ public class AutoCity extends Module {
     private boolean sentMessage;
 
     public AutoCity() {
-        super(Categories.Combat, "自动城市", "通过挖掘附近最近的黑曜石来自动占领目标.");
+        super(Categories.Combat, "auto-city", "Automatically cities a target by mining the nearest obsidian next to them.");
     }
 
     @EventHandler
@@ -95,7 +95,7 @@ public class AutoCity extends Module {
 
         if (blockPosTarget == null) {
             if (selfToggle.get()) {
-                error("未找到目标块...禁用.");
+                error("No target block found... disabling.");
                 toggle();
             }
             target = null;
@@ -103,13 +103,13 @@ public class AutoCity extends Module {
         }
 
         if (!PlayerUtils.isWithinReach(blockPosTarget) && selfToggle.get()) {
-            error("目标块遥不可及...禁用.");
+            error("Target block out of reach... disabling.");
             toggle();
             return;
         }
 
         if (!sentMessage) {
-            info("正在尝试城市 %s.", target.getEntityName());
+            info("Attempting to city %s.", target.getEntityName());
             sentMessage = true;
         }
 
@@ -117,7 +117,7 @@ public class AutoCity extends Module {
 
         if (!pickaxe.isHotbar()) {
             if (selfToggle.get()) {
-                error("没有找到镐...禁用.");
+                error("No pickaxe found... disabling.");
                 toggle();
             }
             return;

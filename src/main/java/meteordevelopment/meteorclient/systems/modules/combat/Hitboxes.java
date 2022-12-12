@@ -19,21 +19,21 @@ public class Hitboxes extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
     private final Setting<Object2BooleanMap<EntityType<?>>> entities = sgGeneral.add(new EntityTypeListSetting.Builder()
-        .name("实体")
-        .description("以哪些实体为目标.")
+        .name("entities")
+        .description("Which entities to target.")
         .defaultValue(EntityType.PLAYER)
         .build()
     );
 
     private final Setting<Double> value = sgGeneral.add(new DoubleSetting.Builder()
-        .name("拓展")
-        .description("扩大实体的打击范围的程度.")
+        .name("expand")
+        .description("How much to expand the hitbox of the entity.")
         .defaultValue(0.5)
         .build()
     );
 
     public Hitboxes() {
-        super(Categories.Combat, "碰撞箱", "扩展一个实体的命中框.");
+        super(Categories.Combat, "hitboxes", "Expands an entity's hitboxes.");
     }
 
     public double getEntityValue(Entity entity) {

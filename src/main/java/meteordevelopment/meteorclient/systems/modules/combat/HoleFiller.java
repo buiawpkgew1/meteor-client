@@ -34,18 +34,18 @@ import java.util.List;
 
 public class HoleFiller extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgRender = settings.createGroup("渲染");
+    private final SettingGroup sgRender = settings.createGroup("Render");
 
     private final Setting<List<Block>> blocks = sgGeneral.add(new BlockListSetting.Builder()
         .name("blocks")
-        .description("哪些积木可以用来填孔.")
+        .description("Which blocks can be used to fill holes.")
         .defaultValue(Blocks.OBSIDIAN)
         .build()
     );
 
     private final Setting<Integer> horizontalRadius = sgGeneral.add(new IntSetting.Builder()
-        .name("水平-半径")
-        .description("搜索孔洞的水平半径.")
+        .name("horizontal-radius")
+        .description("Horizontal radius in which to search for holes.")
         .defaultValue(4)
         .min(0)
         .sliderMax(6)
@@ -53,8 +53,8 @@ public class HoleFiller extends Module {
     );
 
     private final Setting<Integer> verticalRadius = sgGeneral.add(new IntSetting.Builder()
-        .name("纵向半径")
-        .description("搜索孔洞的垂直半径.")
+        .name("vertical-radius")
+        .description("Vertical radius in which to search for holes.")
         .defaultValue(4)
         .min(0)
         .sliderMax(6)
@@ -63,23 +63,23 @@ public class HoleFiller extends Module {
 
 
     private final Setting<Boolean> doubles = sgGeneral.add(new BoolSetting.Builder()
-        .name("双打")
-        .description("填充双孔.")
+        .name("doubles")
+        .description("Fills double holes.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Integer> placeDelay = sgGeneral.add(new IntSetting.Builder()
-        .name("延迟")
-        .description("摆放的时间间隔.")
+        .name("delay")
+        .description("The ticks delay between placement.")
         .defaultValue(1)
         .min(0)
         .build()
     );
 
     private final Setting<Boolean> rotate = sgGeneral.add(new BoolSetting.Builder()
-        .name("轮换")
-        .description("自动向被填充的孔旋转.")
+        .name("rotate")
+        .description("Automatically rotates towards the holes being filled.")
         .defaultValue(true)
         .build()
     );
@@ -87,43 +87,43 @@ public class HoleFiller extends Module {
     // Render
 
     private final Setting<Boolean> render = sgRender.add(new BoolSetting.Builder()
-        .name("渲染")
-        .description("渲染一个将放置块的覆盖层")
+        .name("render")
+        .description("Renders an overlay where blocks will be placed.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
-        .name("形状-模式")
-        .description("形状是如何被渲染的")
+        .name("shape-mode")
+        .description("How the shapes are rendered.")
         .defaultValue(ShapeMode.Both)
         .build()
     );
 
     private final Setting<SettingColor> sideColor = sgRender.add(new ColorSetting.Builder()
-        .name("侧面颜色")
-        .description("目标块渲染的侧面颜色")
+        .name("side-color")
+        .description("The side color of the target block rendering.")
         .defaultValue(new SettingColor(197, 137, 232, 10))
         .build()
     );
 
     private final Setting<SettingColor> lineColor = sgRender.add(new ColorSetting.Builder()
-        .name("线条颜色")
-        .description("目标块渲染的线条颜色")
+        .name("line-color")
+        .description("The line color of the target block rendering.")
         .defaultValue(new SettingColor(197, 137, 232))
         .build()
     );
 
     private final Setting<SettingColor> nextSideColor = sgRender.add(new ColorSetting.Builder()
-        .name("下一页-侧面-颜色")
-        .description("下一个要放置的块的侧面颜色")
+        .name("next-side-color")
+        .description("The side color of the next block to be placed.")
         .defaultValue(new SettingColor(227, 196, 245, 10))
         .build()
     );
 
     private final Setting<SettingColor> nextLineColor = sgRender.add(new ColorSetting.Builder()
-        .name("下一页--颜色")
-        .description("下一个要放置的块的线的颜色")
+        .name("next-line-color")
+        .description("The line color of the next block to be placed.")
         .defaultValue(new SettingColor(227, 196, 245))
         .build()
     );
@@ -134,7 +134,7 @@ public class HoleFiller extends Module {
     private int timer;
 
     public HoleFiller() {
-        super(Categories.Combat, "填洞", "用指定的块填充洞.");
+        super(Categories.Combat, "hole-filler", "Fills holes with specified blocks.");
     }
 
     @Override

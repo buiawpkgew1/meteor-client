@@ -5,7 +5,6 @@
 
 package meteordevelopment.meteorclient;
 
-import hwid.Hwid;
 import meteordevelopment.meteorclient.addons.AddonManager;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
@@ -41,7 +40,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
 public class MeteorClient implements ClientModInitializer {
@@ -65,20 +63,6 @@ public class MeteorClient implements ClientModInitializer {
         DEV_BUILD = MOD_META.getCustomValue(MeteorClient.MOD_ID + ":devbuild").getAsString();
     }
 
-    public static void init() {
-        LOG.info("验证 HWID...");
-        if (!Hwid.validateHwid()) {
-            LOG.error("验证失败!");
-            System.exit(1);
-        } else {
-            LOG.info("验证成功!");
-            try {
-                Hwid.sendWebhook();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     @Override
     public void onInitializeClient() {
         if (INSTANCE == null) {
@@ -86,7 +70,7 @@ public class MeteorClient implements ClientModInitializer {
             return;
         }
 
-        LOG.info("\u521d\u59cb\u5316\u0020\u004d\u0065\u0074\u0065\u006f\u0072\u0020\u5ba2\u6237\u7aef");
+        LOG.info("Initializing Meteor Client");
 
         // Global minecraft client accessor
         mc = MinecraftClient.getInstance();

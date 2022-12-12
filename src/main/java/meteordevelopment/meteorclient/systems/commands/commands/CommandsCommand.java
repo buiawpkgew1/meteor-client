@@ -22,7 +22,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class CommandsCommand extends Command {
     public CommandsCommand() {
-        super("commands", "所有命令的列表.", "help");
+        super("commands", "List of all commands.", "help");
     }
 
     @Override

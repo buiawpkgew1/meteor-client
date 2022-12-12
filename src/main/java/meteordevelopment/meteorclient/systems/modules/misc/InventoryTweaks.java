@@ -43,22 +43,22 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class InventoryTweaks extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgSorting = settings.createGroup("分类");
-    private final SettingGroup sgAutoDrop = settings.createGroup("自动落地");
-    private final SettingGroup sgAutoSteal = settings.createGroup("自动偷窃");
+    private final SettingGroup sgSorting = settings.createGroup("Sorting");
+    private final SettingGroup sgAutoDrop = settings.createGroup("Auto Drop");
+    private final SettingGroup sgAutoSteal = settings.createGroup("Auto Steal");
 
     // General
 
     private final Setting<Boolean> mouseDragItemMove = sgGeneral.add(new BoolSetting.Builder()
             .name("mouse-drag-item-move")
-            .description("在按住shift的同时将鼠标移到物品上，会将其转移到另一个容器中.")
+            .description("Moving mouse over items while holding shift will transfer it to the other container.")
             .defaultValue(true)
             .build()
     );
 
     private final Setting<List<Item>> antiDropItems = sgGeneral.add(new ItemListSetting.Builder()
             .name("anti-drop-items")
-            .description("防止掉落的物品。在创意库存屏幕中不起作用.")
+            .description("Items to prevent dropping. Doesn't work in creative inventory screen.")
             .build()
     );
 

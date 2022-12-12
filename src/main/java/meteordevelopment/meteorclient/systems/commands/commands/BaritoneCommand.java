@@ -15,7 +15,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class BaritoneCommand extends Command {
     public BaritoneCommand() {
-        super("baritone", "执行男中音命令.", "b");
+        super("baritone", "Executes baritone commands.", "b");
     }
 
     @Override

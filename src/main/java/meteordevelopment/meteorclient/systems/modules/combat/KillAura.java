@@ -44,8 +44,8 @@ import java.util.List;
 
 public class KillAura extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
-    private final SettingGroup sgTargeting = settings.createGroup("锁定目标");
-    private final SettingGroup sgDelay = settings.createGroup("延迟");
+    private final SettingGroup sgTargeting = settings.createGroup("Targeting");
+    private final SettingGroup sgDelay = settings.createGroup("Delay");
 
     // General
 
@@ -57,8 +57,8 @@ public class KillAura extends Module {
     );
 
     private final Setting<Boolean> autoSwitch = sgGeneral.add(new BoolSetting.Builder()
-        .name("自动转换")
-        .description("攻击目标时切换到你选择的武器.")
+        .name("auto-switch")
+        .description("Switches to your selected weapon when attacking the target.")
         .defaultValue(false)
         .build()
     );
@@ -71,30 +71,30 @@ public class KillAura extends Module {
     );
 
     private final Setting<Boolean> onlyWhenLook = sgGeneral.add(new BoolSetting.Builder()
-        .name("只有当看")
-        .description("只有当你在看实体时才会攻击.")
+        .name("only-when-look")
+        .description("Only attacks when you are looking at the entity.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> randomTeleport = sgGeneral.add(new BoolSetting.Builder()
-        .name("随机-远程传输")
-        .description("随机传送到目标周围.")
+        .name("random-teleport")
+        .description("Randomly teleport around the target.")
         .defaultValue(false)
         .visible(() -> !onlyWhenLook.get())
         .build()
     );
 
     private final Setting<RotationMode> rotation = sgGeneral.add(new EnumSetting.Builder<RotationMode>()
-        .name("轮换")
-        .description("决定你何时应该向目标旋转.")
+        .name("rotate")
+        .description("Determines when you should rotate towards the target.")
         .defaultValue(RotationMode.Always)
         .build()
     );
 
     private final Setting<Double> hitChance = sgGeneral.add(new DoubleSetting.Builder()
-        .name("命中率")
-        .description("你的命中率的概率.")
+        .name("hit-chance")
+        .description("The probability of your hits landing.")
         .defaultValue(100)
         .range(1, 100)
         .sliderRange(1, 100)
@@ -102,15 +102,15 @@ public class KillAura extends Module {
     );
 
     private final Setting<Boolean> pauseOnCombat = sgGeneral.add(new BoolSetting.Builder()
-        .name("战斗时暂停")
-        .description("暂时冻结男高音,直到你完成对实体的攻击.")
+        .name("pause-on-combat")
+        .description("Freezes Baritone temporarily until you are finished attacking the entity.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> noRightClick = sgGeneral.add(new BoolSetting.Builder()
-        .name("使用时暂停")
-        .description("使用物品时不攻击.")
+        .name("pause-on-use")
+        .description("Does not attack if using an item.")
         .defaultValue(true)
         .build()
     );
@@ -118,30 +118,30 @@ public class KillAura extends Module {
     // Targeting
 
     private final Setting<Boolean> ignorePassive = sgGeneral.add(new BoolSetting.Builder()
-        .name("无视-被动")
-        .description("只会攻击有时被动的暴徒,如果他们是针对你的.")
+        .name("ignore-passive")
+        .description("Will only attack sometimes passive mobs if they are targeting you.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> ignoreTamed = sgGeneral.add(new BoolSetting.Builder()
-        .name("无视驯服")
-        .description("会避免攻击你驯服的暴徒.")
+        .name("ignore-tamed")
+        .description("Will avoid attacking mobs you tamed.")
         .defaultValue(false)
         .build()
     );
 
 
     private final Setting<Object2BooleanMap<EntityType<?>>> entities = sgTargeting.add(new EntityTypeListSetting.Builder()
-        .name("实体")
-        .description("要攻击的实体.")
+        .name("entities")
+        .description("Entities to attack.")
         .onlyAttackable()
         .build()
     );
 
     private final Setting<Double> range = sgTargeting.add(new DoubleSetting.Builder()
-        .name("范围")
-        .description("该实体可以攻击的最大范围.")
+        .name("range")
+        .description("The maximum range the entity can be to attack it.")
         .defaultValue(4.5)
         .min(0)
         .sliderMax(6)
@@ -149,8 +149,8 @@ public class KillAura extends Module {
     );
 
     private final Setting<Double> wallsRange = sgTargeting.add(new DoubleSetting.Builder()
-        .name("墙壁-范围")
-        .description("实体可以通过墙壁被攻击的最大范围.")
+        .name("walls-range")
+        .description("The maximum range the entity can be attacked through walls.")
         .defaultValue(3.5)
         .min(0)
         .sliderMax(6)
@@ -158,15 +158,15 @@ public class KillAura extends Module {
     );
 
     private final Setting<SortPriority> priority = sgTargeting.add(new EnumSetting.Builder<SortPriority>()
-        .name("优先权")
-        .description("如何过滤范围内的目标")
+        .name("priority")
+        .description("How to filter targets within range.")
         .defaultValue(SortPriority.LowestHealth)
         .build()
     );
 
     private final Setting<Integer> maxTargets = sgTargeting.add(new IntSetting.Builder()
-        .name("最大目标")
-        .description("一次要针对多少个实体")
+        .name("max-targets")
+        .description("How many entities to target at once.")
         .defaultValue(1)
         .min(1)
         .sliderRange(1, 5)
@@ -174,22 +174,22 @@ public class KillAura extends Module {
     );
 
     private final Setting<Boolean> babies = sgTargeting.add(new BoolSetting.Builder()
-        .name("婴儿")
-        .description("是否攻击实体的婴儿变体")
+        .name("babies")
+        .description("Whether or not to attack baby variants of the entity.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Boolean> nametagged = sgTargeting.add(new BoolSetting.Builder()
-        .name("有名字的")
-        .description("是否攻击有名字标签的暴徒")
+        .name("nametagged")
+        .description("Whether or not to attack mobs with a name tag.")
         .defaultValue(false)
         .build()
     );
 
     private final Setting<Boolean> ignoreShield = sgGeneral.add(new BoolSetting.Builder()
-        .name("忽略屏蔽")
-        .description("只在打击没有被盾牌挡住的情况下进行攻击")
+        .name("ignore-shield")
+        .description("Attacks only if the blow is not blocked by a shield.")
         .defaultValue(true)
         .build()
     );
@@ -197,15 +197,15 @@ public class KillAura extends Module {
     // Delay
 
     private final Setting<Boolean> smartDelay = sgDelay.add(new BoolSetting.Builder()
-        .name("智能延时")
-        .description("使用香草的冷却时间来攻击实体")
+        .name("smart-delay")
+        .description("Uses the vanilla cooldown to attack entities.")
         .defaultValue(true)
         .build()
     );
 
     private final Setting<Integer> hitDelay = sgDelay.add(new IntSetting.Builder()
-        .name("命中率-延时")
-        .description("你击中实体的速度,以ticks为单位")
+        .name("hit-delay")
+        .description("How fast you hit the entity in ticks.")
         .defaultValue(0)
         .min(0)
         .sliderMax(60)
@@ -214,16 +214,16 @@ public class KillAura extends Module {
     );
 
     private final Setting<Boolean> randomDelayEnabled = sgDelay.add(new BoolSetting.Builder()
-        .name("启用随机延迟功能")
-        .description("在点击之间添加一个随机延迟,以试图绕过反作弊")
+        .name("random-delay-enabled")
+        .description("Adds a random delay between hits to attempt to bypass anti-cheats.")
         .defaultValue(false)
         .visible(() -> !smartDelay.get())
         .build()
     );
 
     private final Setting<Integer> randomDelayMax = sgDelay.add(new IntSetting.Builder()
-        .name("随机-延迟-最大值")
-        .description("随机延迟的最大值")
+        .name("random-delay-max")
+        .description("The maximum value for random delay.")
         .defaultValue(4)
         .min(0)
         .sliderMax(20)
@@ -232,8 +232,8 @@ public class KillAura extends Module {
     );
 
     private final Setting<Integer> switchDelay = sgDelay.add(new IntSetting.Builder()
-        .name("开关-延迟")
-        .description("切换热键槽后,要等待多少时间才能打到一个实体")
+        .name("switch-delay")
+        .description("How many ticks to wait before hitting an entity after switching hotbar slots.")
         .defaultValue(0)
         .min(0)
         .build()
@@ -244,7 +244,7 @@ public class KillAura extends Module {
     private boolean wasPathing = false;
 
     public KillAura() {
-        super(Categories.Combat, "杀戮光环", "攻击你周围的指定实体.");
+        super(Categories.Combat, "kill-aura", "Attacks specified entities around you.");
     }
 
     @Override

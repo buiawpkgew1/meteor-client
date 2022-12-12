@@ -25,9 +25,9 @@ public class CrashReportMixin {
     @Inject(method = "addStackTrace", at = @At("TAIL"))
     private void onAddStackTrace(StringBuilder sb, CallbackInfo info) {
         sb.append("\n\n-- Meteor Client --\n\n");
-        sb.append("版本: ").append(MeteorClient.VERSION).append("\n");
+        sb.append("Version: ").append(MeteorClient.VERSION).append("\n");
         if (!MeteorClient.DEV_BUILD.isEmpty()) {
-            sb.append("开发构建: ").append(MeteorClient.DEV_BUILD).append("\n");
+            sb.append("Dev Build: ").append(MeteorClient.DEV_BUILD).append("\n");
         }
 
         if (Modules.get() != null) {
@@ -41,7 +41,7 @@ public class CrashReportMixin {
 
                     if (!modulesActive) {
                         modulesActive = true;
-                        sb.append("\n[[ 活动模块 ]]\n");
+                        sb.append("\n[[ Active Modules ]]\n");
                     }
 
                     if (!categoryActive) {
@@ -65,7 +65,7 @@ public class CrashReportMixin {
 
                 if (!hudActive) {
                     hudActive = true;
-                    sb.append("\n[[ 活动的Hud元素 ]]\n");
+                    sb.append("\n[[ Active Hud Elements ]]\n");
                 }
 
                 if (!(element instanceof TextHud textHud)) sb.append(element.info.name).append("\n");

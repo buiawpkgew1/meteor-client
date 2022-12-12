@@ -24,7 +24,7 @@ public class ProxiesImportScreen extends WindowScreen {
 
     private final File file;
     public ProxiesImportScreen(GuiTheme theme, File file) {
-        super(theme, "进入代理");
+        super(theme, "Import Proxies");
         this.file = file;
         this.onClosed(() -> {
             if (parent instanceof ProxiesScreen screen) {
@@ -36,7 +36,7 @@ public class ProxiesImportScreen extends WindowScreen {
     @Override
     public void initWidgets() {
         if (file.exists() && file.isFile()) {
-            add(theme.label("导入代理 " + file.getName() + "...").color(Color.GREEN));
+            add(theme.label("Importing proxies from " + file.getName() + "...").color(Color.GREEN));
             WVerticalList list = add(theme.section("Log", false)).widget().add(theme.verticalList()).expandX().widget();
             Proxies proxies = Proxies.get();
             try {
@@ -56,31 +56,31 @@ public class ProxiesImportScreen extends WindowScreen {
                             .build();
 
                         if (proxies.add(proxy)) {
-                            list.add(theme.label("进口代理: " + proxy.name.get()).color(Color.GREEN));
+                            list.add(theme.label("Imported proxy: " + proxy.name.get()).color(Color.GREEN));
                             pog++;
                         }
                         else {
-                            list.add(theme.label("代理已存在: " + proxy.name.get()).color(Color.ORANGE));
+                            list.add(theme.label("Proxy already exists: " + proxy.name.get()).color(Color.ORANGE));
                             bruh++;
                         }
                     }
                     else {
-                        list.add(theme.label("无效的代理: " + line).color(Color.RED));
+                        list.add(theme.label("Invalid proxy: " + line).color(Color.RED));
                         bruh++;
                     }
                 }
                 add(theme
-                    .label("成功导入 " + pog + "/" + (bruh + pog) + " 代理.")
+                    .label("Successfully imported " + pog + "/" + (bruh + pog) + " proxies.")
                     .color(Utils.lerp(Color.RED, Color.GREEN, (float) pog / (pog + bruh)))
                 );
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            add(theme.label("无效文件!"));
+            add(theme.label("Invalid File!"));
         }
         add(theme.horizontalSeparator()).expandX();
-        WButton btnBack = add(theme.button("返回")).expandX().widget();
+        WButton btnBack = add(theme.button("Back")).expandX().widget();
         btnBack.action = this::close;
     }
 }
