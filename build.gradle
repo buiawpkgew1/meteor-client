@@ -31,7 +31,6 @@ repositories {
         name = "vram"
         url = "https://maven.vram.io//"
     }
-    maven { url 'https://jitpack.io' }
     mavenCentral()
 }
 
