@@ -128,7 +128,7 @@ public class InfinityMiner extends Module {
         if (isFull()) {
             if (walkHome.get()) {
                 if (isBaritoneNotWalking()) {
-                    info("Walking home.");
+                    info("步行回家.");
                     baritone.getCustomGoalProcess().setGoalAndPath(new GoalBlock(homePos));
                 }
                 else if (mc.player.getBlockPos().equals(homePos) && logOut.get()) logOut();
