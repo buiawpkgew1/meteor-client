@@ -40,6 +40,7 @@ jobs:
         run: ./gradlew build -Pcommit=${{ github.sha }} -Pdevbuild=${{ steps.dev-build.outputs.number }}
 
       - name: 自动释放贰
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
