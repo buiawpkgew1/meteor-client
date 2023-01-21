@@ -59,7 +59,7 @@ dependencies {
 
 	// Baritone (https://github.com/MeteorDevelopment/baritone)
     modInclude "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
-    implementation (include('com.github.buiawpkgew1.baritone:baritone-fabric:1.19.3-SNAPSHOT')) {transitive = false}
+    implementation (include('com.github.buiawpkgew1.baritone:baritone:1.19.3-SNAPSHOT')) {transitive = false}
     // Libraries
     library "meteordevelopment:orbit:${project.orbit_version}"
     library "meteordevelopment:starscript:${project.starscript_version}"
