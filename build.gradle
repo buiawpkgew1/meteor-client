@@ -57,7 +57,8 @@ dependencies {
     //modCompileOnly("io.vram:canvas-fabric-mc119:1.0.+") { transitive = false } // TODO: 1.19.3
 
 	// Baritone (https://github.com/MeteorDevelopment/baritone)
-    modInclude "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
+    // modInclude "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
+    implementation 'com.github.buiawpkgew1:baritone:b679ce6a2a'
 
     // Libraries
     library "meteordevelopment:orbit:${project.orbit_version}"
