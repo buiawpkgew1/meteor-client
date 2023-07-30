@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "author": "buiawpkgew1",
+  "author": "MineGame159",
   "license": "MIT",
   "scripts": {
     "get_number": "node get_number.js",
