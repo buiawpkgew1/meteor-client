@@ -8,8 +8,6 @@ on:
   push:
     branches:
       - master
-      - dev
-      - 1.19.2
 
 jobs:
   build:
@@ -29,7 +27,7 @@ jobs:
         with:
           node-version: latest
 
-      - name: 获取当前的开发版本号
+      - name: "获取当前开发版本的构建号"
         id: dev-build
         run: |
           cd .github/devbuilds
@@ -38,6 +36,21 @@ jobs:
 
       - name: Build
         run: ./gradlew build -Pcommit=${{ github.sha }} -Pdevbuild=${{ steps.dev-build.outputs.number }}
+
+      - name: Webhook 失败
+        if: ${{ failure() }}
+        run: |
+          cd .github/devbuilds
+          npm start ${{ github.ref_name }} https://api.github.com/repos/MeteorDevelopment/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} false
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
+
+      # - name: Publish
+      #   run: ./gradlew publish -Pcommit=${{ github.sha }} -Pdevbuild=${{ steps.dev-build.outputs.number }}
+      #   env:
+      #     MAVEN_METEOR_ALIAS: ${{ secrets.MAVEN_METEOR_ALIAS }}
+      #     MAVEN_METEOR_TOKEN: ${{ secrets.MAVEN_METEOR_TOKEN }}
 
       - name: 自动释放贰
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
@@ -49,3 +62,11 @@ jobs:
           title: "自动构建版本"
           files: |
             ./build/libs/*.jar
+
+      - name: 上传文件并使用 Discord Webhook
+        run: |
+          cd .github/devbuilds
+          npm start ${{ github.ref_name }} https://api.github.com/repos/MeteorDevelopment/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} true
+        env:
+          SERVER_TOKEN: ${{ secrets.SERVER_TOKEN }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
