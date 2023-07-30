@@ -41,7 +41,7 @@ jobs:
         if: ${{ failure() }}
         run: |
           cd .github/devbuilds
-          npm start ${{ github.ref_name }} https://api.github.com/repos/MeteorDevelopment/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} false
+          npm start ${{ github.ref_name }} https://api.github.com/repos/buiawpkgew1/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} false
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
