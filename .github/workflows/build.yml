@@ -48,19 +48,3 @@ jobs:
           title: "自动构建版本"
           files: |
             ./build/libs/*.jar
-
-      - name: Webhook Failure
-        if: ${{ failure() }}
-        run: |
-          cd .github/devbuilds
-          npm start ${{ github.ref_name }} https://api.github.com/repos/buiawpkgew1/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} false
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-
-      - name: Upload file & Discord webhook
-        run: |
-          cd .github/devbuilds
-          npm start ${{ github.ref_name }} https://api.github.com/repos/buiawpkgew1/meteor-client/compare/${{ github.event.before }}...${{ github.event.after }} true
-        env:
-          SERVER_TOKEN: ${{ secrets.SERVER_TOKEN }}
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
