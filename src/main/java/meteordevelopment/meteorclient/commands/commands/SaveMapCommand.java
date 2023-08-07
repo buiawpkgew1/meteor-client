@@ -33,13 +33,13 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class SaveMapCommand extends Command {
-    private static final SimpleCommandExceptionType MAP_NOT_FOUND = new SimpleCommandExceptionType(Text.literal("您必须手持一个已填充的地图。"));
-    private static final SimpleCommandExceptionType OOPS = new SimpleCommandExceptionType(Text.literal("发生了一些错误。"));
+    private static final SimpleCommandExceptionType MAP_NOT_FOUND = new SimpleCommandExceptionType(Text.literal("您必须手持一个已填充的地图."));
+    private static final SimpleCommandExceptionType OOPS = new SimpleCommandExceptionType(Text.literal("发生了一些错误."));
 
     private final PointerBuffer filters;
 
     public SaveMapCommand() {
-        super("save-map", "将地图保存为图像。", "sm");
+        super("save-map", "将地图保存为图像.", "sm");
 
         filters = BufferUtils.createPointerBuffer(1);
 

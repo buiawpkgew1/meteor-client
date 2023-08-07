@@ -29,7 +29,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class NameHistoryCommand extends Command {
     public NameHistoryCommand() {
-        super("name-history", "提供玩家在laby.net api中的先前名称列表。", "history", "names");
+        super("name-history", "提供玩家在laby.net api中的先前名称列表.", "history", "names");
     }
 
     @Override
@@ -42,7 +42,7 @@ public class NameHistoryCommand extends Command {
                 NameHistory history = Http.get("https://laby.net/api/v2/user/" + uuid + "/get-profile").sendJson(NameHistory.class);
 
                 if (history == null || history.username_history == null || history.username_history.length == 0) {
-                    error("获取该用户名称历史时出现错误。");
+                    error("获取该用户名称历史时出现错误.");
                     return;
                 }
 
@@ -86,7 +86,7 @@ public class NameHistoryCommand extends Command {
                     if (!entry.accurate) {
                         MutableText text = Text.literal("*").formatted(Formatting.WHITE);
 
-                        text.setStyle(text.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("根据 laby.net,该名称历史条目不准确。"))));
+                        text.setStyle(text.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("根据 laby.net,该名称历史条目不准确."))));
 
                         nameText.append(text);
                     }

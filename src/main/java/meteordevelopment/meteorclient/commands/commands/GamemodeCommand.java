@@ -15,7 +15,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class GamemodeCommand extends Command {
     public GamemodeCommand() {
-        super("gamemode", "在客户端修改你的游戏模式（Game Mode）。", "gm");
+        super("gamemode", "在客户端修改你的游戏模式（Game Mode）.", "gm");
     }
 
     @Override

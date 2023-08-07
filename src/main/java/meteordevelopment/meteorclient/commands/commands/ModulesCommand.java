@@ -20,7 +20,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class ModulesCommand extends Command {
     public ModulesCommand() {
-        super("modules", "显示所有模块的列表。", "features");
+        super("modules", "显示所有模块的列表.", "features");
     }
 
     @Override

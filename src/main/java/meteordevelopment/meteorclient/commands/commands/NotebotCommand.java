@@ -35,13 +35,13 @@ import java.util.Map;
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class NotebotCommand extends Command {
-    private final static SimpleCommandExceptionType INVALID_SONG = new SimpleCommandExceptionType(Text.literal("无效的歌曲。"));
+    private final static SimpleCommandExceptionType INVALID_SONG = new SimpleCommandExceptionType(Text.literal("无效的歌曲."));
 
     int ticks = -1;
     private final Map<Integer, List<Note>> song = new HashMap<>(); // tick -> notes
 
     public NotebotCommand() {
-        super("notebot", "允许您加载Notebot文件。");
+        super("notebot", "允许您加载Notebot文件.");
     }
 
     @Override
@@ -172,9 +172,9 @@ public class NotebotCommand extends Command {
             }
 
             file.close();
-            info("歌曲已保存。");
+            info("歌曲已保存.");
         } catch (IOException e) {
-            info("无法创建该文件。");
+            info("无法创建该文件.");
             MeteorClient.EVENT_BUS.unsubscribe(this);
         }
 

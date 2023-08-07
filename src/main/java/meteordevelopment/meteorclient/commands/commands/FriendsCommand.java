@@ -20,7 +20,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class FriendsCommand extends Command {
     public FriendsCommand() {
-        super("friends", "管理好友。");
+        super("friends", "管理好友.");
     }
 
     @Override
@@ -32,9 +32,9 @@ public class FriendsCommand extends Command {
                     Friend friend = new Friend(profile.getName(), profile.getId());
 
                     if (Friends.get().add(friend)) {
-                        ChatUtils.sendMsg(friend.hashCode(), Formatting.GRAY, "已将 (highlight)%s (default) 添加到好友列表。" .formatted(friend.getName()));
+                        ChatUtils.sendMsg(friend.hashCode(), Formatting.GRAY, "已将 (highlight)%s (default) 添加到好友列表." .formatted(friend.getName()));
                     }
-                    else error("已经是该玩家的好友了。");
+                    else error("已经是该玩家的好友了.");
 
                     return SINGLE_SUCCESS;
                 })
@@ -46,14 +46,14 @@ public class FriendsCommand extends Command {
                 .executes(context -> {
                     Friend friend = FriendArgumentType.get(context);
                     if (friend == null) {
-                        error("与该玩家不是好友。");
+                        error("与该玩家不是好友.");
                         return SINGLE_SUCCESS;
                     }
 
                     if (Friends.get().remove(friend)) {
-                        ChatUtils.sendMsg(friend.hashCode(), Formatting.GRAY, "已将 (highlight)%s (default) 从好友列表中移除。".formatted(friend.getName()));
+                        ChatUtils.sendMsg(friend.hashCode(), Formatting.GRAY, "已将 (highlight)%s (default) 从好友列表中移除.".formatted(friend.getName()));
                     }
-                    else error("移除该好友失败。");
+                    else error("移除该好友失败.");
 
                     return SINGLE_SUCCESS;
                 })

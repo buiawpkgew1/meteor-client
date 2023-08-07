@@ -19,7 +19,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class ToggleCommand extends Command {
     public ToggleCommand() {
-        super("toggle", "切换一个模块。", "t");
+        super("toggle", "切换一个模块.", "t");
     }
 
     @Override

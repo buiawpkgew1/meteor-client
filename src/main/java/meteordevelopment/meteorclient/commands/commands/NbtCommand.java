@@ -77,7 +77,7 @@ public class NbtCommand extends Command {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
 
             if (stack == null) {
-                error("您必须手持一个物品在主手中。");
+                error("您必须手持一个物品在主手中.");
             } else {
                 NbtCompound tag = stack.getNbt();
 
@@ -90,7 +90,7 @@ public class NbtCommand extends Command {
                         ))
                         .withHoverEvent(new HoverEvent(
                                 HoverEvent.Action.SHOW_TEXT,
-                                Text.literal("将NBT数据复制到您的剪贴板。")
+                                Text.literal("将NBT数据复制到您的剪贴板.")
                         )));
 
                 MutableText text = Text.literal("");
@@ -109,7 +109,7 @@ public class NbtCommand extends Command {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
 
             if (stack == null) {
-                error("您必须手持一个物品在主手中。");
+                error("您必须手持一个物品在主手中.");
             } else {
                 NbtCompound tag = stack.getOrCreateNbt();
                 mc.keyboard.setClipboard(tag.toString());
@@ -162,12 +162,12 @@ public class NbtCommand extends Command {
 
     private boolean validBasic(ItemStack stack) {
         if (!mc.player.getAbilities().creativeMode) {
-            error("仅限创造模式。");
+            error("仅限创造模式.");
             return false;
         }
 
         if (stack == null) {
-            error("您必须手持一个物品在主手中。");
+            error("您必须手持一个物品在主手中.");
             return false;
         }
         return true;

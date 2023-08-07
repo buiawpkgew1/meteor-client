@@ -18,10 +18,10 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class PeekCommand extends Command {
     private static final ItemStack[] ITEMS = new ItemStack[27];
-    private static final SimpleCommandExceptionType NOT_HOLDING_SHULKER_BOX = new SimpleCommandExceptionType(Text.literal("您必须手持一个包含物品的存储块。"));
+    private static final SimpleCommandExceptionType NOT_HOLDING_SHULKER_BOX = new SimpleCommandExceptionType(Text.literal("您必须手持一个包含物品的存储块."));
 
     public PeekCommand() {
-        super("peek", "允许您查看存储块物品内部的内容。");
+        super("peek", "允许您查看存储块物品内部的内容.");
     }
 
     @Override

@@ -16,7 +16,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class EnderChestCommand extends Command {
     public EnderChestCommand() {
-        super("ender-chest", "允许你预览你末影箱中的物品。", "ec", "echest");
+        super("ender-chest", "允许你预览你末影箱中的物品.", "ec", "echest");
     }
 
     @Override

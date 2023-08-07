@@ -66,19 +66,19 @@ public class LocateCommand extends Command {
         builder.then(literal("buried_treasure").executes(s -> {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
             if (stack.getItem() != Items.FILLED_MAP) {
-                error("你首先需要手持一张藏宝图。");
+                error("你首先需要手持一张藏宝图.");
                 return SINGLE_SUCCESS;
             }
             NbtCompound tag = stack.getNbt();
             NbtList nbt1 = (NbtList) tag.get("Decorations");
             if (nbt1 == null) {
-                error("无法定位十字架。你是否手持一张(highlight)treasure map(default)？");
+                error("无法定位十字架.你是否手持一张(highlight)treasure map(default)？");
                 return SINGLE_SUCCESS;
             }
 
             NbtCompound iconNBT = nbt1.getCompound(0);
             if (iconNBT == null) {
-                error("无法定位十字架。你是否手持一张(highlight)treasure map(default)？");
+                error("无法定位十字架.你是否手持一张(highlight)treasure map(default)？");
                 return SINGLE_SUCCESS;
             }
 
@@ -98,12 +98,12 @@ public class LocateCommand extends Command {
             }
             NbtCompound tag = stack.getNbt();
             if (tag == null) {
-                error("无法获取NBT数据。你是否手持一枚(highlight)lodestone(default)？");
+                error("无法获取NBT数据.你是否手持一枚(highlight)lodestone(default)？");
                 return SINGLE_SUCCESS;
             }
             NbtCompound nbt1 = tag.getCompound("LodestonePos");
             if (nbt1 == null) {
-                error("无法获取NBT数据。你是否手持一枚(highlight)lodestone(default)？");
+                error("无法获取NBT数据.你是否手持一枚(highlight)lodestone(default)？");
                 return SINGLE_SUCCESS;
             }
 
@@ -118,19 +118,19 @@ public class LocateCommand extends Command {
         builder.then(literal("mansion").executes(s -> {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
             if (stack.getItem() != Items.FILLED_MAP) {
-                error("你首先需要手持一张丛林探险家地图。");
+                error("你首先需要手持一张丛林探险家地图.");
                 return SINGLE_SUCCESS;
             }
             NbtCompound tag = stack.getNbt();
             NbtList nbt1 = (NbtList) tag.get("Decorations");
             if (nbt1 == null) {
-                error("无法找到豪宅。你是否手持一张(highlight)woodland explorer map(default)？");
+                error("无法找到豪宅.你是否手持一张(highlight)woodland explorer map(default)？");
                 return SINGLE_SUCCESS;
             }
 
             NbtCompound iconNBT = nbt1.getCompound(0);
             if (iconNBT == null) {
-                error("无法找到豪宅。你是否手持一张(highlight)woodland explorer map(default)？");
+                error("无法找到豪宅.你是否手持一张(highlight)woodland explorer map(default)？");
                 return SINGLE_SUCCESS;
             }
 
@@ -156,7 +156,7 @@ public class LocateCommand extends Command {
             } else {
                 Vec3d coords = findByBlockList(strongholdBlocks);
                 if (coords == null) {
-                    error("附近未找到要塞。你可以使用（highlight）末影之眼（Ender Eyes）(default) 来提高成功率。");
+                    error("附近未找到要塞.你可以使用（highlight）末影之眼（Ender Eyes）(default) 来提高成功率.");
                     return SINGLE_SUCCESS;
                 }
                 MutableText text = Text.literal("要塞位于 ");
@@ -228,7 +228,7 @@ public class LocateCommand extends Command {
             return null;
         }
         if (posList.size() < 3) {
-            warning("仅找到 %d 个方块。这可能是误报。" , posList.size());
+            warning("仅找到 %d 个方块.这可能是误报." , posList.size());
         }
         return new Vec3d(posList.get(0).getX(), posList.get(0).getY(), posList.get(0).getZ());
     }
@@ -258,11 +258,11 @@ public class LocateCommand extends Command {
     }
 
     private void lastPosition(double x, double y, double z) {
-        info("被保存的%s末影之眼轨迹。", (this.firstEnd == null) ? "第一个" : "第二个");
+        info("被保存的%s末影之眼轨迹.", (this.firstEnd == null) ? "第一个" : "第二个");
         Vec3d pos = new Vec3d(x, y, z);
         if (this.firstEnd == null) {
             this.firstEnd = pos;
-            info("请从不同的位置投掷第二个末影之眼。");
+            info("请从不同的位置投掷第二个末影之眼.");
         }
         else {
             this.secondEnd = pos;

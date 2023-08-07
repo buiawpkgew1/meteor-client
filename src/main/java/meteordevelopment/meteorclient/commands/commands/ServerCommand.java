@@ -44,7 +44,7 @@ public class ServerCommand extends Command {
 
 
     public ServerCommand() {
-        super("server", "打印服务器信息。");
+        super("server", "打印服务器信息.");
     }
 
     @Override
@@ -117,7 +117,7 @@ public class ServerCommand extends Command {
         if (!plugins.isEmpty()) {
             info("Plugins (%d): %s ", plugins.size(), Strings.join(plugins.toArray(new String[0]), ", "));
         } else {
-            error("未找到插件。");
+            error("未找到插件.");
         }
 
         ticks = 0;
@@ -138,7 +138,7 @@ public class ServerCommand extends Command {
         ServerInfo server = mc.getCurrentServerEntry();
 
         if (server == null) {
-            info("无法获取任何服务器信息。");
+            info("无法获取任何服务器信息.");
             return;
         }
 

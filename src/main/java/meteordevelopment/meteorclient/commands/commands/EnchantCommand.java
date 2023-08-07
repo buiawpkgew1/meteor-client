@@ -28,11 +28,11 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class EnchantCommand extends Command {
-    private final static SimpleCommandExceptionType NOT_IN_CREATIVE = new SimpleCommandExceptionType(Text.literal("你必须处于创造模式才能使用此功能。"));
-    private final static SimpleCommandExceptionType NOT_HOLDING_ITEM = new SimpleCommandExceptionType(Text.literal("你需要手持一些物品才能进行附魔。"));
+    private final static SimpleCommandExceptionType NOT_IN_CREATIVE = new SimpleCommandExceptionType(Text.literal("你必须处于创造模式才能使用此功能."));
+    private final static SimpleCommandExceptionType NOT_HOLDING_ITEM = new SimpleCommandExceptionType(Text.literal("你需要手持一些物品才能进行附魔."));
 
     public EnchantCommand() {
-        super("enchant", "给你手中的物品添加附魔。需要处于创造模式下执行该命令。");
+        super("enchant", "给你手中的物品添加附魔.需要处于创造模式下执行该命令.");
     }
 
     @Override

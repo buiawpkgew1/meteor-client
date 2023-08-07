@@ -20,7 +20,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class FakePlayerCommand extends Command {
     public FakePlayerCommand() {
-        super("fake-player", "管理虚拟玩家,您可以用于测试。");
+        super("fake-player", "管理虚拟玩家,您可以用于测试.");
     }
 
     @Override
@@ -45,7 +45,7 @@ public class FakePlayerCommand extends Command {
                 .executes(context -> {
                     FakePlayerEntity fp = FakePlayerArgumentType.get(context);
                     if (fp == null || !FakePlayerManager.contains(fp)) {
-                        error("未找到该名称的虚拟玩家。");
+                        error("未找到该名称的虚拟玩家.");
                         return SINGLE_SUCCESS;
                     }
 

@@ -32,7 +32,7 @@ public class InputCommand extends Command {
     );
 
     public InputCommand() {
-        super("input", "模拟键盘输入。");
+        super("input", "模拟键盘输入.");
     }
 
     @Override

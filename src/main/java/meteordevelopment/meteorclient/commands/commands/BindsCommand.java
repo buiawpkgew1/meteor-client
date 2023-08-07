@@ -23,7 +23,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class BindsCommand extends Command {
     public BindsCommand() {
-        super("binds", "所有已绑定的模块列表。");
+        super("binds", "所有已绑定的模块列表.");
     }
 
     @Override

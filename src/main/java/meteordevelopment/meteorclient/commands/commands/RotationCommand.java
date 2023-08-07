@@ -18,7 +18,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class RotationCommand extends Command {
     public RotationCommand() {
-        super("rotation", "修改您的旋转。");
+        super("rotation", "修改您的旋转.");
     }
 
     @Override

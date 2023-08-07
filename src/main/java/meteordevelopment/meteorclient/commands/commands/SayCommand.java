@@ -26,7 +26,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class SayCommand extends Command {
     public SayCommand() {
-        super("say", "在聊天中发送消息。");
+        super("say", "在聊天中发送消息.");
     }
 
     @Override

@@ -20,13 +20,13 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class WaypointCommand extends Command {
     public WaypointCommand() {
-        super("waypoint", "管理路标点。", "wp");
+        super("waypoint", "管理路标点.", "wp");
     }
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.then(literal("list").executes(context -> {
-            if (Waypoints.get().waypoints.isEmpty()) error("没有已创建的路标点。");
+            if (Waypoints.get().waypoints.isEmpty()) error("没有已创建的路标点.");
             else {
                 info(Formatting.WHITE + "已创建的路标点：");
                 for (Waypoint waypoint : Waypoints.get()) {
