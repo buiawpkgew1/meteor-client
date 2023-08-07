@@ -19,13 +19,13 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class ReloadCommand extends Command {
     public ReloadCommand() {
-        super("reload", "Reloads many systems.");
+        super("reload", "重新加载多个系统。");
     }
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(context -> {
-            warning("Reloading systems, this may take a while.");
+            warning("正在重新加载系统,可能需要一些时间。");
 
             Systems.load();
             Capes.init();

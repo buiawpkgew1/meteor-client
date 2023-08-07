@@ -17,7 +17,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class HClipCommand extends Command {
     public HClipCommand() {
-        super("hclip", "Lets you clip through blocks horizontally.");
+        super("hclip", "允许你在水平方向上穿过方块。");
     }
 
     @Override

@@ -24,7 +24,7 @@ public class DamageCommand extends Command {
     private final static SimpleCommandExceptionType INVULNERABLE = new SimpleCommandExceptionType(Text.literal("You are invulnerable."));
 
     public DamageCommand() {
-        super("damage", "Damages self", "dmg");
+        super("damage", "对自己造成伤害", "dmg");
     }
 
     @Override

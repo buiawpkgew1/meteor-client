@@ -29,7 +29,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class NameHistoryCommand extends Command {
     public NameHistoryCommand() {
-        super("name-history", "Provides a list of a players previous names from the laby.net api.", "history", "names");
+        super("name-history", "提供玩家在laby.net api中的先前名称列表。", "history", "names");
     }
 
     @Override
@@ -42,7 +42,7 @@ public class NameHistoryCommand extends Command {
                 NameHistory history = Http.get("https://laby.net/api/v2/user/" + uuid + "/get-profile").sendJson(NameHistory.class);
 
                 if (history == null || history.username_history == null || history.username_history.length == 0) {
-                    error("There was an error fetching that users name history.");
+                    error("获取该用户名称历史时出现错误。");
                     return;
                 }
 
@@ -61,20 +61,20 @@ public class NameHistoryCommand extends Command {
                     )
                     .withHoverEvent(new HoverEvent(
                         HoverEvent.Action.SHOW_TEXT,
-                        Text.literal("View on laby.net")
+                        Text.literal("在 laby.net 上查看")
                             .formatted(Formatting.YELLOW)
                             .formatted(Formatting.ITALIC)
                     ))
                 );
 
-                info(initial.append(Text.literal(" Username History:").formatted(Formatting.GRAY)));
+                info(initial.append(Text.literal("用户名历史: ").formatted(Formatting.GRAY)));
 
                 for (Name entry : history.username_history) {
                     MutableText nameText = Text.literal(entry.name);
                     nameText.formatted(Formatting.AQUA);
 
                     if (entry.changed_at != null && entry.changed_at.getTime() != 0) {
-                        MutableText changed = Text.literal("Changed at: ");
+                        MutableText changed = Text.literal("更改时间：");
                         changed.formatted(Formatting.GRAY);
 
                         DateFormat formatter = new SimpleDateFormat("hh:mm:ss, dd/MM/yyyy");
@@ -86,7 +86,7 @@ public class NameHistoryCommand extends Command {
                     if (!entry.accurate) {
                         MutableText text = Text.literal("*").formatted(Formatting.WHITE);
 
-                        text.setStyle(text.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("This name history entry is not accurate according to laby.net"))));
+                        text.setStyle(text.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("根据 laby.net,该名称历史条目不准确。"))));
 
                         nameText.append(text);
                     }

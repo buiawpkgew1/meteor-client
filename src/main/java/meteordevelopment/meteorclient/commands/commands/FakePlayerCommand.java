@@ -20,7 +20,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class FakePlayerCommand extends Command {
     public FakePlayerCommand() {
-        super("fake-player", "Manages fake players that you can use for testing.");
+        super("fake-player", "管理虚拟玩家,您可以用于测试。");
     }
 
     @Override
@@ -45,12 +45,12 @@ public class FakePlayerCommand extends Command {
                 .executes(context -> {
                     FakePlayerEntity fp = FakePlayerArgumentType.get(context);
                     if (fp == null || !FakePlayerManager.contains(fp)) {
-                        error("Couldn't find a Fake Player with that name.");
+                        error("未找到该名称的虚拟玩家。");
                         return SINGLE_SUCCESS;
                     }
 
                     FakePlayerManager.remove(fp);
-                    info("Removed Fake Player %s.".formatted(fp.getEntityName()));
+                    info("移除虚拟玩家 %s.".formatted(fp.getEntityName()));
 
                     return SINGLE_SUCCESS;
                 })
@@ -66,7 +66,7 @@ public class FakePlayerCommand extends Command {
 
         builder.then(literal("list")
             .executes(context -> {
-                info("--- Fake Players ((highlight)%s(default)) ---", FakePlayerManager.count());
+                info("--- 虚拟玩家 ((highlight)%s(default)) ---", FakePlayerManager.count());
                 FakePlayerManager.forEach(fp -> ChatUtils.info("(highlight)%s".formatted(fp.getEntityName())));
                 return SINGLE_SUCCESS;
             })

@@ -15,7 +15,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class MacroCommand extends Command {
     public MacroCommand() {
-        super("macro", "Allows you to execute macros.");
+        super("macro", "允许您执行宏。");
     }
 
     @Override

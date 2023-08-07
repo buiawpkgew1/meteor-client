@@ -22,13 +22,13 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class CommandsCommand extends Command {
     public CommandsCommand() {
-        super("commands", "List of all commands.", "help");
+        super("commands", "所有命令的列表。", "help");
     }
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(context -> {
-            ChatUtils.info("--- Commands ((highlight)%d(default)) ---", Commands.COMMANDS.size());
+            ChatUtils.info("--- 命令列表 ((highlight)%d(default)) ---", Commands.COMMANDS.size());
 
             MutableText commands = Text.literal("");
             Commands.COMMANDS.forEach(command -> commands.append(getCommandText(command)));

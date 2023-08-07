@@ -58,7 +58,7 @@ public class LocateCommand extends Command {
     );
 
     public LocateCommand() {
-        super("locate", "Locates structures", "loc");
+        super("locate", "定位结构", "loc");
     }
 
     @Override
@@ -66,24 +66,24 @@ public class LocateCommand extends Command {
         builder.then(literal("buried_treasure").executes(s -> {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
             if (stack.getItem() != Items.FILLED_MAP) {
-                error("You need to hold a treasure map first");
+                error("你首先需要手持一张藏宝图。");
                 return SINGLE_SUCCESS;
             }
             NbtCompound tag = stack.getNbt();
             NbtList nbt1 = (NbtList) tag.get("Decorations");
             if (nbt1 == null) {
-                error("Couldn't locate the cross. Are you holding a (highlight)treasure map(default)?");
+                error("无法定位十字架。你是否手持一张(highlight)treasure map(default)？");
                 return SINGLE_SUCCESS;
             }
 
             NbtCompound iconNBT = nbt1.getCompound(0);
             if (iconNBT == null) {
-                error("Couldn't locate the cross. Are you holding a (highlight)treasure map(default)?");
+                error("无法定位十字架。你是否手持一张(highlight)treasure map(default)？");
                 return SINGLE_SUCCESS;
             }
 
             Vec3d coords = new Vec3d(iconNBT.getDouble("x"), iconNBT.getDouble("y"), iconNBT.getDouble("z"));
-            MutableText text = Text.literal("Buried Treasure located at ");
+            MutableText text = Text.literal("发现埋藏的宝藏在 ");
             text.append(ChatUtils.formatCoords(coords));
             text.append(".");
             info(text);
@@ -93,22 +93,22 @@ public class LocateCommand extends Command {
         builder.then(literal("lodestone").executes(s -> {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
             if (stack.getItem() != Items.COMPASS) {
-                error("You need to hold a lodestone compass");
+                error("你需要手持一枚磁石指南针(lodestone compass)");
                 return SINGLE_SUCCESS;
             }
             NbtCompound tag = stack.getNbt();
             if (tag == null) {
-                error("Couldn't get the NBT data. Are you holding a (highlight)lodestone(default) compass?");
+                error("无法获取NBT数据。你是否手持一枚(highlight)lodestone(default)？");
                 return SINGLE_SUCCESS;
             }
             NbtCompound nbt1 = tag.getCompound("LodestonePos");
             if (nbt1 == null) {
-                error("Couldn't get the NBT data. Are you holding a (highlight)lodestone(default) compass?");
+                error("无法获取NBT数据。你是否手持一枚(highlight)lodestone(default)？");
                 return SINGLE_SUCCESS;
             }
 
             Vec3d coords = new Vec3d(nbt1.getDouble("X"), nbt1.getDouble("Y"), nbt1.getDouble("Z"));
-            MutableText text = Text.literal("Lodestone located at ");
+            MutableText text = Text.literal("发现磁石(Lodestone)位于 ");
             text.append(ChatUtils.formatCoords(coords));
             text.append(".");
             info(text);
@@ -118,24 +118,24 @@ public class LocateCommand extends Command {
         builder.then(literal("mansion").executes(s -> {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
             if (stack.getItem() != Items.FILLED_MAP) {
-                error("You need to hold a woodland explorer map first");
+                error("你首先需要手持一张丛林探险家地图。");
                 return SINGLE_SUCCESS;
             }
             NbtCompound tag = stack.getNbt();
             NbtList nbt1 = (NbtList) tag.get("Decorations");
             if (nbt1 == null) {
-                error("Couldn't locate the mansion. Are you holding a (highlight)woodland explorer map(default)?");
+                error("无法找到豪宅。你是否手持一张(highlight)woodland explorer map(default)？");
                 return SINGLE_SUCCESS;
             }
 
             NbtCompound iconNBT = nbt1.getCompound(0);
             if (iconNBT == null) {
-                error("Couldn't locate the mansion. Are you holding a (highlight)woodland explorer map(default)?");
+                error("无法找到豪宅。你是否手持一张(highlight)woodland explorer map(default)？");
                 return SINGLE_SUCCESS;
             }
 
             Vec3d coords = new Vec3d(iconNBT.getDouble("x"), iconNBT.getDouble("y"), iconNBT.getDouble("z"));
-            MutableText text = Text.literal("Mansion located at ");
+            MutableText text = Text.literal("豪宅位于 ");
             text.append(ChatUtils.formatCoords(coords));
             text.append(".");
             info(text);
@@ -152,14 +152,14 @@ public class LocateCommand extends Command {
                 secondStart = null;
                 secondEnd = null;
                 MeteorClient.EVENT_BUS.subscribe(this);
-                info("Please throw the first Eye of Ender");
+                info("请投掷第一个末影之眼（Eye of Ender）");
             } else {
                 Vec3d coords = findByBlockList(strongholdBlocks);
                 if (coords == null) {
-                    error("No stronghold found nearby. You can use (highlight)Ender Eyes(default) for more success.");
+                    error("附近未找到要塞。你可以使用（highlight）末影之眼（Ender Eyes）(default) 来提高成功率。");
                     return SINGLE_SUCCESS;
                 }
-                MutableText text = Text.literal("Stronghold located at ");
+                MutableText text = Text.literal("要塞位于 ");
                 text.append(ChatUtils.formatCoords(coords));
                 text.append(".");
                 info(text);
@@ -170,10 +170,10 @@ public class LocateCommand extends Command {
         builder.then(literal("nether_fortress").executes(s -> {
             Vec3d coords = findByBlockList(netherFortressBlocks);
             if (coords == null) {
-                error("No nether fortress found.");
+                error("未找到地狱堡垒（Nether Fortress）");
                 return SINGLE_SUCCESS;
             }
-            MutableText text = Text.literal("Fortress located at ");
+            MutableText text = Text.literal("地狱堡垒位于 ");
             text.append(ChatUtils.formatCoords(coords));
             text.append(".");
             info(text);
@@ -190,7 +190,7 @@ public class LocateCommand extends Command {
                         NbtCompound iconNBT = nbt1.getCompound(0);
                         if (iconNBT != null) {
                             Vec3d coords = new Vec3d(iconNBT.getDouble("x"), iconNBT.getDouble("y"), iconNBT.getDouble("z"));
-                            MutableText text = Text.literal("Monument located at ");
+                            MutableText text = Text.literal("海底神殿位于 ");
                             text.append(ChatUtils.formatCoords(coords));
                             text.append(".");
                             info(text);
@@ -204,7 +204,7 @@ public class LocateCommand extends Command {
                 error("No monument found. You can try using a (highlight)Ocean explorer map(default) for more success.");
                 return SINGLE_SUCCESS;
             }
-            MutableText text = Text.literal("Monument located at ");
+            MutableText text = Text.literal("水下庙宇位于 ");
             text.append(ChatUtils.formatCoords(coords));
             text.append(".");
             info(text);
@@ -228,7 +228,7 @@ public class LocateCommand extends Command {
             return null;
         }
         if (posList.size() < 3) {
-            warning("Only %d block(s) found. This search might be a false positive.", posList.size());
+            warning("仅找到 %d 个方块。这可能是误报。" , posList.size());
         }
         return new Vec3d(posList.get(0).getX(), posList.get(0).getY(), posList.get(0).getZ());
     }
@@ -258,11 +258,11 @@ public class LocateCommand extends Command {
     }
 
     private void lastPosition(double x, double y, double z) {
-        info("%s Eye of Ender's trajectory saved.", (this.firstEnd == null) ? "First" : "Second");
+        info("被保存的%s末影之眼轨迹。", (this.firstEnd == null) ? "第一个" : "第二个");
         Vec3d pos = new Vec3d(x, y, z);
         if (this.firstEnd == null) {
             this.firstEnd = pos;
-            info("Please throw the second Eye Of Ender from a different location.");
+            info("请从不同的位置投掷第二个末影之眼。");
         }
         else {
             this.secondEnd = pos;
@@ -272,7 +272,7 @@ public class LocateCommand extends Command {
 
     private void findStronghold() {
         if (this.firstStart == null || this.firstEnd == null || this.secondStart == null || this.secondEnd == null) {
-            error("Missing position data");
+            error("缺失位置数据");
             cancel();
             return;
         }
@@ -280,14 +280,14 @@ public class LocateCommand extends Command {
         final double[] end = new double[]{this.firstStart.x, this.firstStart.z, this.firstEnd.x, this.firstEnd.z};
         final double[] intersection = calcIntersection(start, end);
         if (Double.isNaN(intersection[0]) || Double.isNaN(intersection[1]) || Double.isInfinite(intersection[0]) || Double.isInfinite(intersection[1])) {
-            error("Lines are parallel");
+            error("直线平行");
             cancel();
             return;
         }
         BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("stop");
         MeteorClient.EVENT_BUS.unsubscribe(this);
         Vec3d coords = new Vec3d(intersection[0], 0, intersection[1]);
-        MutableText text = Text.literal("Stronghold roughly located at ");
+        MutableText text = Text.literal("大约位于的要塞 ");
         text.append(ChatUtils.formatCoords(coords));
         text.append(".");
         info(text);

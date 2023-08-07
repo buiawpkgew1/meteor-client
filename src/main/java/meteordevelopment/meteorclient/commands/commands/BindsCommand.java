@@ -23,7 +23,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class BindsCommand extends Command {
     public BindsCommand() {
-        super("binds", "List of all bound modules.");
+        super("binds", "所有已绑定的模块列表。");
     }
 
     @Override
@@ -34,7 +34,7 @@ public class BindsCommand extends Command {
                 .filter(module -> module.keybind.isSet())
                 .toList();
 
-            ChatUtils.info("--- Bound Modules ((highlight)%d(default)) ---", modules.size());
+            ChatUtils.info("--- 绑定的模块列表 ((highlight)%d(default)) ---", modules.size());
 
             for (Module module : modules) {
                 HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, getTooltip(module));

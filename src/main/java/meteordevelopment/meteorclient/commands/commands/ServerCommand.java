@@ -44,7 +44,7 @@ public class ServerCommand extends Command {
 
 
     public ServerCommand() {
-        super("server", "Prints server information");
+        super("server", "打印服务器信息。");
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ServerCommand extends Command {
             if (tps > 17.0f) color = Formatting.GREEN;
             else if (tps > 12.0f) color = Formatting.YELLOW;
             else color = Formatting.RED;
-            info("Current TPS: %s%.2f(default).", color, tps);
+            info("当前 TPS: %s%.2f(default).", color, tps);
             return SINGLE_SUCCESS;
         }));
     }
@@ -95,7 +95,7 @@ public class ServerCommand extends Command {
             }
             mc.player.networkHandler.sendPacket(new RequestCommandCompletionsC2SPacket(random.nextInt(200), "bukkit:ver "));
         } else {
-            info("Please wait around 5 seconds...");
+            info("请等待大约5秒钟...");
             (new Thread(() -> completionStarts.chars().forEach(i -> {
                 mc.player.networkHandler.sendPacket(new RequestCommandCompletionsC2SPacket(random.nextInt(200), Character.toString(i)));
                 try {
@@ -117,7 +117,7 @@ public class ServerCommand extends Command {
         if (!plugins.isEmpty()) {
             info("Plugins (%d): %s ", plugins.size(), Strings.join(plugins.toArray(new String[0]), ", "));
         } else {
-            error("No plugins found.");
+            error("未找到插件。");
         }
 
         ticks = 0;
@@ -138,7 +138,7 @@ public class ServerCommand extends Command {
         ServerInfo server = mc.getCurrentServerEntry();
 
         if (server == null) {
-            info("Couldn't obtain any server information.");
+            info("无法获取任何服务器信息。");
             return;
         }
 

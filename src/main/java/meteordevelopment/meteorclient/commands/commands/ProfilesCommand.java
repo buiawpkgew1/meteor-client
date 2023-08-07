@@ -17,7 +17,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 public class ProfilesCommand extends Command {
 
     public ProfilesCommand() {
-        super("profiles", "Loads and saves profiles.");
+        super("profiles", "加载并保存配置文件。");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ProfilesCommand extends Command {
 
             if (profile != null) {
                 profile.load();
-                info("Loaded profile (highlight)%s(default).", profile.name.get());
+                info("已加载配置文件 (highlight)%s(default)。", profile.name.get());
             }
 
             return SINGLE_SUCCESS;
@@ -38,7 +38,7 @@ public class ProfilesCommand extends Command {
 
             if (profile != null) {
                 profile.save();
-                info("Saved profile (highlight)%s(default).", profile.name.get());
+                info("已保存配置文件 (highlight)%s(default)。", profile.name.get());
             }
 
             return SINGLE_SUCCESS;
@@ -49,7 +49,7 @@ public class ProfilesCommand extends Command {
 
             if (profile != null) {
                 Profiles.get().remove(profile);
-                info("Deleted profile (highlight)%s(default).", profile.name.get());
+                info("已删除配置文件 (highlight)%s(default)。", profile.name.get());
             }
 
             return SINGLE_SUCCESS;

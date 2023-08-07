@@ -36,10 +36,10 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class SwarmCommand extends Command {
 
-    private final static SimpleCommandExceptionType SWARM_NOT_ACTIVE = new SimpleCommandExceptionType(Text.literal("The swarm module must be active to use this command."));
+    private final static SimpleCommandExceptionType SWARM_NOT_ACTIVE = new SimpleCommandExceptionType(Text.literal("使用此命令,群集模块必须处于活动状态。"));
 
     public SwarmCommand() {
-        super("swarm", "Sends commands to connected swarm workers.");
+        super("swarm", "向连接的群集工作节点发送命令。");
     }
 
     @Override

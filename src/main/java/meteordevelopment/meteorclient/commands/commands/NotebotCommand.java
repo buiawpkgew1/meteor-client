@@ -35,19 +35,19 @@ import java.util.Map;
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class NotebotCommand extends Command {
-    private final static SimpleCommandExceptionType INVALID_SONG = new SimpleCommandExceptionType(Text.literal("Invalid song."));
+    private final static SimpleCommandExceptionType INVALID_SONG = new SimpleCommandExceptionType(Text.literal("无效的歌曲。"));
 
     int ticks = -1;
     private final Map<Integer, List<Note>> song = new HashMap<>(); // tick -> notes
 
     public NotebotCommand() {
-        super("notebot", "Allows you load notebot files");
+        super("notebot", "允许您加载Notebot文件。");
     }
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.then(literal("help").executes(ctx -> {
-            Util.getOperatingSystem().open("https://github.com/buiawpkgew1/meteor-client/wiki/Notebot-Guide");
+            Util.getOperatingSystem().open("https://github.com/MeteorDevelopment/meteor-client/wiki/Notebot-Guide");
             return SINGLE_SUCCESS;
         }));
 
@@ -172,9 +172,9 @@ public class NotebotCommand extends Command {
             }
 
             file.close();
-            info("Song saved.");
+            info("歌曲已保存。");
         } catch (IOException e) {
-            info("Couldn't create the file.");
+            info("无法创建该文件。");
             MeteorClient.EVENT_BUS.unsubscribe(this);
         }
 

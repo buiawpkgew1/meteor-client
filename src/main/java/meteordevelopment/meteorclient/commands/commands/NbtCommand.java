@@ -28,7 +28,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class NbtCommand extends Command {
     public NbtCommand() {
-        super("nbt", "Modifies NBT data for an item, example: .nbt add {display:{Name:'{\"text\":\"$cRed Name\"}'}}");
+        super("nbt", "修改物品的NBT数据，例如：.nbt add {display:{Name:'{\"text\":\"$c红色名称\"}'}}");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class NbtCommand extends Command {
                     source.copyFrom(tag);
                     setStack(stack);
                 } else {
-                    error("Some of the NBT data could not be found, try using: " + Config.get().prefix.get() + "nbt set {nbt}");
+                    error("找不到部分NBT数据，请尝试使用：" + Config.get().prefix.get() + "nbt set {nbt}");
                 }
             }
 
@@ -77,7 +77,7 @@ public class NbtCommand extends Command {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
 
             if (stack == null) {
-                error("You must hold an item in your main hand.");
+                error("您必须手持一个物品在主手中。");
             } else {
                 NbtCompound tag = stack.getNbt();
 
@@ -90,7 +90,7 @@ public class NbtCommand extends Command {
                         ))
                         .withHoverEvent(new HoverEvent(
                                 HoverEvent.Action.SHOW_TEXT,
-                                Text.literal("Copy the NBT data to your clipboard.")
+                                Text.literal("将NBT数据复制到您的剪贴板。")
                         )));
 
                 MutableText text = Text.literal("");
@@ -109,7 +109,7 @@ public class NbtCommand extends Command {
             ItemStack stack = mc.player.getInventory().getMainHandStack();
 
             if (stack == null) {
-                error("You must hold an item in your main hand.");
+                error("您必须手持一个物品在主手中。");
             } else {
                 NbtCompound tag = stack.getOrCreateNbt();
                 mc.keyboard.setClipboard(tag.toString());
@@ -123,7 +123,7 @@ public class NbtCommand extends Command {
 
                 MutableText text = Text.literal("");
                 text.append(nbt);
-                text.append(Text.literal(" data copied!"));
+                text.append(Text.literal(" 数据已复制!"));
 
                 info(text);
             }
@@ -149,7 +149,7 @@ public class NbtCommand extends Command {
                 int count = IntegerArgumentType.getInteger(context, "count");
                 stack.setCount(count);
                 setStack(stack);
-                info("Set mainhand stack count to %s.",count);
+                info("将主手物品堆叠数量设置为 %s.",count);
             }
 
             return SINGLE_SUCCESS;
@@ -162,12 +162,12 @@ public class NbtCommand extends Command {
 
     private boolean validBasic(ItemStack stack) {
         if (!mc.player.getAbilities().creativeMode) {
-            error("Creative mode only.");
+            error("仅限创造模式。");
             return false;
         }
 
         if (stack == null) {
-            error("You must hold an item in your main hand.");
+            error("您必须手持一个物品在主手中。");
             return false;
         }
         return true;

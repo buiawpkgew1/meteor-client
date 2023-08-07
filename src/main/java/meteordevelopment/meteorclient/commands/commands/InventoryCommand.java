@@ -16,7 +16,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class InventoryCommand extends Command {
     public InventoryCommand() {
-        super("inventory", "Allows you to see parts of another player's inventory.", "inv", "invsee");
+        super("inventory", "允许你查看另一个玩家的部分物品栏。", "inv", "invsee");
     }
 
     @Override

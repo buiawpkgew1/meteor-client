@@ -15,7 +15,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class DismountCommand extends Command {
     public DismountCommand() {
-        super("dismount", "Dismounts you from entity you are riding.");
+        super("dismount", "让你离开当前骑乘的实体");
     }
 
     @Override

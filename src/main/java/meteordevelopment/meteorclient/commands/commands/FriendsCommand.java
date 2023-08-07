@@ -20,7 +20,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class FriendsCommand extends Command {
     public FriendsCommand() {
-        super("friends", "Manages friends.");
+        super("friends", "管理好友。");
     }
 
     @Override
@@ -32,9 +32,9 @@ public class FriendsCommand extends Command {
                     Friend friend = new Friend(profile.getName(), profile.getId());
 
                     if (Friends.get().add(friend)) {
-                        ChatUtils.sendMsg(friend.hashCode(), Formatting.GRAY, "Added (highlight)%s (default)to friends.".formatted(friend.getName()));
+                        ChatUtils.sendMsg(friend.hashCode(), Formatting.GRAY, "已将 (highlight)%s (default) 添加到好友列表。" .formatted(friend.getName()));
                     }
-                    else error("Already friends with that player.");
+                    else error("已经是该玩家的好友了。");
 
                     return SINGLE_SUCCESS;
                 })
@@ -46,14 +46,14 @@ public class FriendsCommand extends Command {
                 .executes(context -> {
                     Friend friend = FriendArgumentType.get(context);
                     if (friend == null) {
-                        error("Not friends with that player.");
+                        error("与该玩家不是好友。");
                         return SINGLE_SUCCESS;
                     }
 
                     if (Friends.get().remove(friend)) {
-                        ChatUtils.sendMsg(friend.hashCode(), Formatting.GRAY, "Removed (highlight)%s (default)from friends.".formatted(friend.getName()));
+                        ChatUtils.sendMsg(friend.hashCode(), Formatting.GRAY, "已将 (highlight)%s (default) 从好友列表中移除。".formatted(friend.getName()));
                     }
-                    else error("Failed to remove that friend.");
+                    else error("移除该好友失败。");
 
                     return SINGLE_SUCCESS;
                 })
@@ -61,7 +61,7 @@ public class FriendsCommand extends Command {
         );
 
         builder.then(literal("list").executes(context -> {
-                info("--- Friends ((highlight)%s(default)) ---", Friends.get().count());
+                info("--- 好友 ((highlight)%s(default)) ---", Friends.get().count());
                 Friends.get().forEach(friend -> ChatUtils.info("(highlight)%s".formatted(friend.getName())));
                 return SINGLE_SUCCESS;
             })

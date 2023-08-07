@@ -22,7 +22,7 @@ public class SpectateCommand extends Command {
     private final StaticListener shiftListener = new StaticListener();
 
     public SpectateCommand() {
-        super("spectate", "Allows you to spectate nearby players");
+        super("spectate", "允许您观察附近的玩家。");
     }
 
     @Override
@@ -34,7 +34,7 @@ public class SpectateCommand extends Command {
 
         builder.then(argument("player", PlayerArgumentType.create()).executes(context -> {
             mc.setCameraEntity(PlayerArgumentType.get(context));
-            mc.player.sendMessage(Text.literal("Sneak to un-spectate."), true);
+            mc.player.sendMessage(Text.literal("潜行退出观察模式。"), true);
             MeteorClient.EVENT_BUS.subscribe(shiftListener);
             return SINGLE_SUCCESS;
         }));

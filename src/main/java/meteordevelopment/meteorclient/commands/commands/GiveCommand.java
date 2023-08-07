@@ -21,11 +21,11 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class GiveCommand extends Command {
-    private final static SimpleCommandExceptionType NOT_IN_CREATIVE = new SimpleCommandExceptionType(Text.literal("You must be in creative mode to use this."));
-    private final static SimpleCommandExceptionType NO_SPACE = new SimpleCommandExceptionType(Text.literal("No space in hotbar."));
+    private final static SimpleCommandExceptionType NOT_IN_CREATIVE = new SimpleCommandExceptionType(Text.literal("你必须处于创造模式才能使用此功能。"));
+    private final static SimpleCommandExceptionType NO_SPACE = new SimpleCommandExceptionType(Text.literal("快捷栏没有空间。"));
 
     public GiveCommand() {
-        super("give", "Gives you any item.");
+        super("give", "给予你任何物品。");
     }
 
     @Override

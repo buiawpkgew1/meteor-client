@@ -22,7 +22,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 public class ResetCommand extends Command {
 
     public ResetCommand() {
-        super("reset", "Resets specified settings.");
+        super("reset", "重置指定的设置。");
     }
 
     @Override
@@ -31,35 +31,35 @@ public class ResetCommand extends Command {
                 .then(argument("module", ModuleArgumentType.create()).executes(context -> {
                     Module module = context.getArgument("module", Module.class);
                     module.settings.forEach(group -> group.forEach(Setting::reset));
-                    module.info("Reset all settings.");
+                    module.info("重置所有设置。");
                     return SINGLE_SUCCESS;
                 }))
                 .then(literal("all").executes(context -> {
                     Modules.get().getAll().forEach(module -> module.settings.forEach(group -> group.forEach(Setting::reset)));
-                    ChatUtils.infoPrefix("Modules", "Reset all module settings");
+                    ChatUtils.infoPrefix("Modules", "重置所有模块设置。");
                     return SINGLE_SUCCESS;
                 }))
         ).then(literal("gui").executes(context -> {
             GuiThemes.get().clearWindowConfigs();
-            ChatUtils.info("Reset GUI positioning.");
+            ChatUtils.info("重置GUI位置。");
             return SINGLE_SUCCESS;
         })).then(literal("bind")
                 .then(argument("module", ModuleArgumentType.create()).executes(context -> {
                     Module module = context.getArgument("module", Module.class);
 
                     module.keybind.set(true, -1);
-                    module.info("Reset bind.");
+                    module.info("重置按键绑定。");
 
                     return SINGLE_SUCCESS;
                 }))
                 .then(literal("all").executes(context -> {
                     Modules.get().getAll().forEach(module -> module.keybind.set(true, -1));
-                    ChatUtils.infoPrefix("Modules", "Reset all binds.");
+                    ChatUtils.infoPrefix("Modules", "重置所有按键绑定。");
                     return SINGLE_SUCCESS;
                 }))
         ).then(literal("hud").executes(context -> {
             Systems.get(Hud.class).resetToDefaultElements();
-            ChatUtils.infoPrefix("HUD", "Reset all elements.");
+            ChatUtils.infoPrefix("HUD", "重置所有元素。");
             return SINGLE_SUCCESS;
         }));
     }

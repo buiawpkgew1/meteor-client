@@ -17,7 +17,7 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class VClipCommand extends Command {
     public VClipCommand() {
-        super("vclip", "Lets you clip through blocks vertically.");
+        super("vclip", "允许您在垂直方向上穿过方块。");
     }
 
     @Override
