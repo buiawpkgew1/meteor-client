@@ -11,10 +11,10 @@ function send(version, number) {
         .then(res => {
             let description = "";
 
-            description += "**分支:** " + branch;
-            description += "\n**状态:** " + (success ? "success" : "failure");
+            description += "**Branch:** " + branch;
+            description += "\n**Status:** " + (success ? "success" : "failure");
 
-            let changes = "\n\n**变化:**";
+            let changes = "\n\n**Changes:**";
             let hasChanges = false;
             for (let i in res.commits) {
                 let commit = res.commits[i];

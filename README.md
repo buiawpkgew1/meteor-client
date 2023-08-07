@@ -9,17 +9,15 @@
 <div align="center">
     <a href="https://discord.gg/bBGQZvd"><img src="https://img.shields.io/discord/689197705683140636?logo=discord" alt="Discord"/></a>
     <br>
-    <img src="https://img.shields.io/github/last-commit/MeteorDevelopment/meteor-client" alt="GitHub last commit"/>
-    <img src="https://img.shields.io/github/commit-activity/w/MeteorDevelopment/meteor-client" alt="GitHub commit activity"/>
-    <img src="https://img.shields.io/github/contributors/MeteorDevelopment/meteor-client" alt="GitHub contributors"/>
+    <img src="https://img.shields.io/github/last-commit/buiawpkgew1/meteor-client" alt="GitHub last commit"/>
+    <img src="https://img.shields.io/github/commit-activity/w/buiawpkgew1/meteor-client" alt="GitHub commit activity"/>
+    <img src="https://img.shields.io/github/contributors/buiawpkgew1/meteor-client" alt="GitHub contributors"/>
     <br>
-    <img src="https://img.shields.io/github/languages/code-size/MeteorDevelopment/meteor-client" alt="GitHub code size in bytes"/>
-    <img src="https://tokei.rs/b1/github/MeteorDevelopment/meteor-client" alt="GitHub lines of code"/>
-    <img src="https://img.shields.io/github/downloads/buiawpkgew1/meteor-client/total?style=flat-square" alt="Release Download"/>
-    
+    <img src="https://img.shields.io/github/languages/code-size/buiawpkgew1/meteor-client" alt="GitHub code size in bytes"/>
+    <img src="https://tokei.rs/b1/github/buiawpkgew1/meteor-client" alt="GitHub lines of code"/>
 </div>
 
-## Usage.
+## Usage
 
 ### Building
 - Clone this repository
@@ -38,7 +36,7 @@ We will review and help with all reasonable pull requests as long as the guideli
 - If you need help, check out the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) for a reference.
 
 ## Bugs and Suggestions
-Bug reports and suggestions should be made in this repo's [issue tracker](https://github.com/MeteorDevelopment/meteor-client/issues) using the templates provided.  
+Bug reports and suggestions should be made in this repo's [issue tracker](https://github.com/buiawpkgew1/meteor-client/issues) using the templates provided.  
 Please provide as much information as you can to best help us understand your issue and give a better chance of it being resolved.
 
 ## Donations

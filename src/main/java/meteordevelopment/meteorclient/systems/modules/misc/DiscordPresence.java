@@ -1,5 +1,5 @@
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
+ * This file is part of the Meteor Client distribution (https://github.com/buiawpkgew1/meteor-client).
  * Copyright (c) Meteor Development.
  */
 
@@ -289,7 +289,7 @@ public class DiscordPresence extends Module {
     @Override
     public WWidget getWidget(GuiTheme theme) {
         WButton help = theme.button("Open documentation.");
-        help.action = () -> Util.getOperatingSystem().open("https://github.com/MeteorDevelopment/meteor-client/wiki/Starscript");
+        help.action = () -> Util.getOperatingSystem().open("https://github.com/buiawpkgew1/meteor-client/wiki/Starscript");
 
         return help;
     }
