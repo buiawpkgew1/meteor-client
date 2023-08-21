@@ -271,6 +271,7 @@ public class LocateCommand extends Command {
     }
 
     private void findStronghold() {
+        BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("stop");
         if (this.firstStart == null || this.firstEnd == null || this.secondStart == null || this.secondEnd == null) {
             error("缺失位置数据");
             cancel();
@@ -284,7 +285,6 @@ public class LocateCommand extends Command {
             cancel();
             return;
         }
-        BaritoneAPI.getProvider().getPrimaryBaritone().getCommandManager().execute("stop");
         MeteorClient.EVENT_BUS.unsubscribe(this);
         Vec3d coords = new Vec3d(intersection[0], 0, intersection[1]);
         MutableText text = Text.literal("大约位于的要塞 ");
