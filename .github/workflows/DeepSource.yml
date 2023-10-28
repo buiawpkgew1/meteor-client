@@ -21,8 +21,7 @@ jobs:
                     curl https://deepsource.io/cli | sh
 
                   # From the root directory, run the report coverage command
-                  deepsource report --help
-                  #  ./bin/deepsource report --analyzer test-coverage --key java --value-file ./**
+                    ./bin/deepsource report --analyzer test-coverage --key java --value-file ./src/main/java/meteordevelopment/meteorclient
 
               env:
                 DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
