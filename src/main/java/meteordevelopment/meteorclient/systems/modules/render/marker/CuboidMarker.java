@@ -22,7 +22,6 @@ public class CuboidMarker extends BaseMarker {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
     private final SettingGroup sgRender = settings.createGroup("Render");
 
-    // General
 
     private final Setting<BlockPos> pos1 = sgGeneral.add(new BlockPosSetting.Builder()
         .name("pos-1")
@@ -36,14 +35,7 @@ public class CuboidMarker extends BaseMarker {
         .build()
     );
 
-    // Render
 
-    private final Setting<Mode> mode = sgRender.add(new EnumSetting.Builder<Mode>()
-        .name("mode")
-        .description("What mode to use for this marker.")
-        .defaultValue(Mode.Full)
-        .build()
-    );
 
     private final Setting<ShapeMode> shapeMode = sgRender.add(new EnumSetting.Builder<ShapeMode>()
         .name("shape-mode")

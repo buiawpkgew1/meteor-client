@@ -63,8 +63,6 @@ public class Sphere2dMarker extends BaseMarker {
         .build()
     );
 
-    // Render
-
     private final Setting<Boolean> limitRenderRange = sgRender.add(new BoolSetting.Builder()
         .name("limit-render-range")
         .description("Whether to limit rendering range (useful in very large circles)")
@@ -103,25 +101,7 @@ public class Sphere2dMarker extends BaseMarker {
         .build()
     );
 
-    // Keybinding
 
-    private final Setting<Keybind> nextLayerKey = sgKeybinding.add(new KeybindSetting.Builder()
-        .name("next-layer-keybind")
-        .description("Keybind to increment layer")
-        .action(() -> {
-            if (isVisible() && layer.get() < radius.get() * 2) layer.set(layer.get() + 1);
-        })
-        .build()
-    );
-
-    private final Setting<Keybind> prevLayerKey = sgKeybinding.add(new KeybindSetting.Builder()
-        .name("prev-layer-keybind")
-        .description("Keybind to increment layer")
-        .action(() -> {
-            if (isVisible()) layer.set(layer.get() - 1);
-        })
-        .build()
-    );
 
     private final List<Block> blocks = new ArrayList<>();
     private boolean dirty = true, calculating;

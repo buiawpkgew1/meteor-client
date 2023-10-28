@@ -33,16 +33,6 @@ public class Blink extends Module {
         .build()
     );
 
-    private final Setting<Keybind> cancelBlink = sgGeneral.add(new KeybindSetting.Builder()
-        .name("cancel-blink")
-        .description("Cancels sending packets and sends you back to your original position.")
-        .defaultValue(Keybind.none())
-        .action(() -> {
-            cancelled = true;
-            if (isActive()) toggle();
-        })
-        .build()
-    );
 
     private final List<PlayerMoveC2SPacket> packets = new ArrayList<>();
     private FakePlayerEntity model;

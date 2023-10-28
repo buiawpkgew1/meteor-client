@@ -29,7 +29,6 @@ public class LightOverlay extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
     private final SettingGroup sgColors = settings.createGroup("Colors");
 
-    // General
 
     private final Setting<Integer> horizontalRange = sgGeneral.add(new IntSetting.Builder()
         .name("horizontal-range")
@@ -61,7 +60,6 @@ public class LightOverlay extends Module {
         .build()
     );
 
-    // Colors
 
     private final Setting<SettingColor> color = sgColors.add(new ColorSetting.Builder()
         .name("color")
@@ -80,7 +78,6 @@ public class LightOverlay extends Module {
     private final Pool<Cross> crossPool = new Pool<>(Cross::new);
     private final List<Cross> crosses = new ArrayList<>();
 
-    private final BlockPos.Mutable bp = new BlockPos.Mutable();
 
     private final Mesh mesh = new ShaderMesh(Shaders.POS_COLOR, DrawMode.Lines, Mesh.Attrib.Vec3, Mesh.Attrib.Color);
 

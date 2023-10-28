@@ -40,7 +40,6 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
     private final SettingGroup sgEditor = settings.createGroup("Editor");
     private final SettingGroup sgKeybind = settings.createGroup("Bind");
 
-    // General
 
     private final Setting<Boolean> customFont = sgGeneral.add(new BoolSetting.Builder()
         .name("custom-font")
@@ -75,7 +74,6 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
         .build()
     );
 
-    // Editor
 
     public final Setting<Integer> border = sgEditor.add(new IntSetting.Builder()
         .name("border")
@@ -93,13 +91,6 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
         .build()
     );
 
-    // Keybindings
-    private final Setting<Keybind> keybind = sgKeybind.add(new KeybindSetting.Builder()
-        .name("bind")
-        .defaultValue(Keybind.none())
-        .action(() -> active = !active)
-        .build()
-    );
 
     private boolean resetToDefaultElements;
 

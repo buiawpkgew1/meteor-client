@@ -78,7 +78,6 @@ public class HighwayBuilder extends Module {
     private final SettingGroup sgRenderMine = settings.createGroup("Render Mine");
     private final SettingGroup sgRenderPlace = settings.createGroup("Render Place");
 
-    // General
 
     private final Setting<Integer> width = sgGeneral.add(new IntSetting.Builder()
         .name("width")
@@ -142,12 +141,6 @@ public class HighwayBuilder extends Module {
         .build()
     );
 
-    private final Setting<Boolean> dontBreakTools = sgGeneral.add(new BoolSetting.Builder()
-        .name("dont-break-tools")
-        .description("Don't break tools.")
-        .defaultValue(false)
-        .build()
-    );
 
     private final Setting<Boolean> mineEnderChests = sgGeneral.add(new BoolSetting.Builder()
         .name("mine-ender-chests")

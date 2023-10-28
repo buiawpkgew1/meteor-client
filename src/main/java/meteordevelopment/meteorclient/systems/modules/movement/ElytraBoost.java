@@ -51,12 +51,6 @@ public class ElytraBoost extends Module {
         .build()
     );
 
-    private final Setting<Keybind> keybind = sgGeneral.add(new KeybindSetting.Builder()
-        .name("keybind")
-        .description("The keybind to boost.")
-        .action(this::boost)
-        .build()
-    );
 
     private final List<FireworkRocketEntity> fireworks = new ArrayList<>();
 
