@@ -8,7 +8,7 @@ rules:
     conflictReviewers:
       - buiawpkgew1
   - base: main
-    upstream: MeteorDevelopment:master
+    upstream: buiawpkgew1:master
     mergeMethod: merge
     assignees:
       - buiawpkgew1
