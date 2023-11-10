@@ -7,10 +7,3 @@ rules:
       - buiawpkgew1
     conflictReviewers:
       - buiawpkgew1
-  - base: main
-    upstream: buiawpkgew1:master
-    mergeMethod: merge
-    assignees:
-      - buiawpkgew1
-    conflictReviewers:
-      - buiawpkgew1
