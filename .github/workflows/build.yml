@@ -33,11 +33,41 @@ jobs:
           cd .github/devbuilds
           npm install
           node get_number.js >> $GITHUB_OUTPUT
-
+          
+      - name: 使用Spotless检查代码风格
+        id: spotless_check
+        run: ./gradlew spotlessCheck
+        continue-on-error: true
+  
+      - name: 在Spotless失败时在PR上发表评论
+        if: ${{ steps.spotless_check.outcome == 'failure' && github.event_name == 'pull_request' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prAuthor = context.payload.pull_request.user.login;
+            const codestyleUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/tree/master/codestyle`;
+            const commentBody = `
+              Hi @${prAuthor}, 感谢你的拉取请求！似乎有一些需要修复的格式违规行为。
+              
+              如果你使用的是Eclipse，请确保使用位于 [codestyle 文件夹](${codestyleUrl}) 中的清理和格式设置。这将有助于确保与现有代码库的一致性。
+              
+              或者，如果你没有使用Eclipse，你还可以通过从命令行运行以下命令来修复这些违规行为：
+              
+              \`\`\`
+              ./gradlew spotlessApply
+              \`\`\`
+              
+              完成后，请提交更改并将其推送到你的分支。这应该使检查通过，允许合并你的拉取请求。
+            `;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: commentBody
+            });
       - name: Build
         run: ./gradlew build -Pcommit=${{ github.sha }} -Pdevbuild=${{ steps.dev-build.outputs.number }}
-
-
+    
       - name: 自动释放贰
         if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         uses: marvinpinto/action-automatic-releases@v1.2.1
