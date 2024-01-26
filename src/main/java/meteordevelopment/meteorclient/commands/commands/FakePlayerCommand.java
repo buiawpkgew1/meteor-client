@@ -50,7 +50,7 @@ public class FakePlayerCommand extends Command {
                     }
 
                     FakePlayerManager.remove(fp);
-                    info("移除虚拟玩家 %s.".formatted(fp.getEntityName()));
+                    info("移除虚拟玩家 %s.".formatted(fp.getName().getString()));
 
                     return SINGLE_SUCCESS;
                 })
@@ -67,7 +67,7 @@ public class FakePlayerCommand extends Command {
         builder.then(literal("list")
             .executes(context -> {
                 info("--- 虚拟玩家 ((highlight)%s(default)) ---", FakePlayerManager.count());
-                FakePlayerManager.forEach(fp -> ChatUtils.info("(highlight)%s".formatted(fp.getEntityName())));
+                FakePlayerManager.forEach(fp -> ChatUtils.info("(highlight)%s".formatted(fp.getName().getString())));
                 return SINGLE_SUCCESS;
             })
         );
