@@ -6,6 +6,7 @@
 package meteordevelopment.meteorclient.gui.widgets;
 
 import meteordevelopment.meteorclient.gui.widgets.containers.WHorizontalList;
+import meteordevelopment.meteorclient.utils.misc.Names;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.item.ItemStack;
@@ -46,7 +47,7 @@ public class WItemWithLabel extends WHorizontalList {
                 StatusEffectInstance effect = effects.get(0);
                 if (effect.getAmplifier() > 0) str += "%d ".formatted(effect.getAmplifier() + 1);
 
-                str += "(%s)".formatted(StatusEffectUtil.getDurationText(effect, 1, mc.world.getTickManager().getTickRate()).getString());
+                str += "(%s)".formatted(StatusEffectUtil.getDurationText(effect, 1, mc.world != null ? mc.world.getTickManager().getTickRate() : 20.0F).getString());
             }
         }
 
@@ -57,7 +58,7 @@ public class WItemWithLabel extends WHorizontalList {
         this.itemStack = itemStack;
         item.itemStack = itemStack;
 
-        name = itemStack.getName().getString();
+        name = Names.get(itemStack);
         label.set(name + getStringToAppend());
     }
 
