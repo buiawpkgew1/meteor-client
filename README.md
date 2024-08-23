@@ -12,8 +12,8 @@
     <img src="https://img.shields.io/github/commit-activity/w/buiawpkgew1/meteor-client" alt="GitHub提交活动"/>
     <img src="https://img.shields.io/github/contributors/buiawpkgew1/meteor-client" alt="GitHub贡献者"/>
     <br>
-    <img src="https://img.shields.io/github/languages/code-size/buiawpkgew1/meteor-client" alt="GitHub代码大小（字节）"/>
-    <img src="https://tokei.rs/b1/github/buiawpkgew1/meteor-client" alt="GitHub代码行数"/>
+    <img src="https://img.shields.io/github/languages/code-size/MeteorDevelopment/meteor-client" alt="GitHub code size in bytes"/>
+    <img src="https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/MeteorDevelopment/meteor-client/badge?filter=.java$&label=lines%20of%20code&color=blue" alt="GitHub lines of code"/>
 </div>
 
 ## 使用方法

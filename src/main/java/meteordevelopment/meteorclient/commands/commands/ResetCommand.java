@@ -17,8 +17,6 @@ import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import net.minecraft.command.CommandSource;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-
 public class ResetCommand extends Command {
 
     public ResetCommand() {
@@ -47,13 +45,13 @@ public class ResetCommand extends Command {
                 .then(argument("module", ModuleArgumentType.create()).executes(context -> {
                     Module module = context.getArgument("module", Module.class);
 
-                    module.keybind.set(true, -1);
+                    module.keybind.reset();
                     module.info("重置按键绑定.");
 
                     return SINGLE_SUCCESS;
                 }))
                 .then(literal("all").executes(context -> {
-                    Modules.get().getAll().forEach(module -> module.keybind.set(true, -1));
+                    Modules.get().getAll().forEach(module -> module.keybind.reset());
                     ChatUtils.infoPrefix("Modules", "重置所有按键绑定.");
                     return SINGLE_SUCCESS;
                 }))

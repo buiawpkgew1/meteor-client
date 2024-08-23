@@ -19,8 +19,6 @@ import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.Utils;
 import net.minecraft.command.CommandSource;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-
 public class SettingCommand extends Command {
     public SettingCommand() {
         super("settings", "允许您查看和更改模块设置.", "s");

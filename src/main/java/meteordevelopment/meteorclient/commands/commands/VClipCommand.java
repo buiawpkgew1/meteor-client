@@ -12,9 +12,6 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.network.packet.c2s.play.VehicleMoveC2SPacket;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-import static meteordevelopment.meteorclient.MeteorClient.mc;
-
 public class VClipCommand extends Command {
     public VClipCommand() {
         super("vclip", "允许您在垂直方向上穿过方块.");

@@ -24,9 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-import static meteordevelopment.meteorclient.MeteorClient.mc;
-
 public class NameHistoryCommand extends Command {
     public NameHistoryCommand() {
         super("name-history", "提供玩家在laby.net api中的先前名称列表.", "history", "names");
@@ -39,11 +36,14 @@ public class NameHistoryCommand extends Command {
                 PlayerListEntry lookUpTarget = PlayerListEntryArgumentType.get(context);
                 UUID uuid = lookUpTarget.getProfile().getId();
 
-                NameHistory history = Http.get("https://laby.net/api/v2/user/" + uuid + "/get-profile").sendJson(NameHistory.class);
+                NameHistory history = Http.get("https://laby.net/api/v2/user/" + uuid + "/get-profile")
+                    .exceptionHandler(e -> error("There was an error fetching that users name history."))
+                    .sendJson(NameHistory.class);
 
-                if (history == null || history.username_history == null || history.username_history.length == 0) {
-                    error("获取该用户名称历史时出现错误.");
+                if (history == null) {
                     return;
+                } else if (history.username_history == null || history.username_history.length == 0) {
+                    error("获取该用户名称历史时出现错误.");
                 }
 
                 String name = lookUpTarget.getProfile().getName();
