@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - run: chmod +x gradlew
 
@@ -73,7 +73,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "Latest-1.20.2"
+          automatic_release_tag: "Latest-1.21.1"
           prerelease: true
           title: "自动构建版本"
           files: |

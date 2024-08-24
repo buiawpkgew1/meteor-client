@@ -12,8 +12,6 @@ import meteordevelopment.meteorclient.utils.Utils;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.command.CommandSource;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-
 public class InventoryCommand extends Command {
     public InventoryCommand() {
         super("inventory", "允许你查看另一个玩家的部分物品栏.", "inv", "invsee");

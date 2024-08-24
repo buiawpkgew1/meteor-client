@@ -19,8 +19,6 @@ import net.minecraft.util.Formatting;
 
 import java.util.List;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-
 public class BindsCommand extends Command {
     public BindsCommand() {
         super("binds", "所有已绑定的模块列表.");

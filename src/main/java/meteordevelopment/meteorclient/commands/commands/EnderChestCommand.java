@@ -12,8 +12,6 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
-
 public class EnderChestCommand extends Command {
     public EnderChestCommand() {
         super("ender-chest", "允许你预览你末影箱中的物品.", "ec", "echest");
