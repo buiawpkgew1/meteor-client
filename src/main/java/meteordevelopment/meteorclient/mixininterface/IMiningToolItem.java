@@ -5,8 +5,8 @@
 
 package meteordevelopment.meteorclient.mixininterface;
 
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.item.ToolMaterial;
 
-public interface IExplosion {
-    void set(Vec3d pos, float power, boolean createFire);
+public interface IMiningToolItem {
+    ToolMaterial meteor$getMaterial();
 }
