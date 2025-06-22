@@ -5,6 +5,7 @@
 
 package meteordevelopment.meteorclient.systems.modules.misc;
 
+import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.events.entity.DropItemsEvent;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.meteor.KeyEvent;
@@ -12,7 +13,6 @@ import meteordevelopment.meteorclient.events.meteor.MouseButtonEvent;
 import meteordevelopment.meteorclient.events.packets.InventoryEvent;
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.mixin.CloseHandledScreenC2SPacketAccessor;
 import meteordevelopment.meteorclient.mixin.HandledScreenAccessor;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Categories;
@@ -69,13 +69,6 @@ public class InventoryTweaks extends Module {
         .build()
     );
 
-    private final Setting<Boolean> armorStorage = sgGeneral.add(new BoolSetting.Builder()
-        .name("armor-storage")
-        .description("Allows you to put normal items in your armor slots.")
-        .defaultValue(true)
-        .build()
-    );
-
     // Sorting
 
     private final Setting<Boolean> sortingEnabled = sgSorting.add(new BoolSetting.Builder()
@@ -99,6 +92,14 @@ public class InventoryTweaks extends Module {
         .visible(sortingEnabled::get)
         .defaultValue(1)
         .min(0)
+        .build()
+    );
+
+    private final Setting<Boolean> disableInCreative = sgSorting.add(new BoolSetting.Builder()
+        .name("disable-in-creative")
+        .description("Disables the inventory sorter when in creative mode.")
+        .defaultValue(true)
+        .visible(sortingEnabled::get)
         .build()
     );
 
@@ -273,7 +274,7 @@ public class InventoryTweaks extends Module {
     }
 
     private boolean sort() {
-        if (!sortingEnabled.get() || !(mc.currentScreen instanceof HandledScreen<?> screen) || sorter != null)
+        if (!sortingEnabled.get() || !(mc.currentScreen instanceof HandledScreen<?> screen) || sorter != null || (mc.player.isCreative() && disableInCreative.get()))
             return false;
 
         if (!mc.player.currentScreenHandler.getCursorStack().isEmpty()) {
@@ -304,7 +305,7 @@ public class InventoryTweaks extends Module {
     @EventHandler
     private void onTickPost(TickEvent.Post event) {
         // Auto Drop
-        if (mc.currentScreen instanceof HandledScreen<?> || autoDropItems.get().isEmpty()) return;
+        if (!Utils.canUpdate() || mc.currentScreen instanceof HandledScreen<?> || autoDropItems.get().isEmpty()) return;
 
         for (int i = autoDropExcludeHotbar.get() ? 9 : 0; i < mc.player.getInventory().size(); i++) {
             ItemStack itemStack = mc.player.getInventory().getStack(i);
@@ -325,9 +326,9 @@ public class InventoryTweaks extends Module {
 
     @EventHandler
     private void onSendPacket(PacketEvent.Send event) {
-        if (!xCarry.get() || !(event.packet instanceof CloseHandledScreenC2SPacket)) return;
+        if (!xCarry.get() || !(event.packet instanceof CloseHandledScreenC2SPacket packet)) return;
 
-        if (((CloseHandledScreenC2SPacketAccessor) event.packet).getSyncId() == mc.player.playerScreenHandler.syncId) {
+        if (packet.getSyncId() == mc.player.playerScreenHandler.syncId) {
             invOpened = true;
             event.cancel();
         }
@@ -360,7 +361,7 @@ public class InventoryTweaks extends Module {
                 try {
                     Thread.sleep(sleep);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    MeteorClient.LOG.error("Error when sleeping the slot mover", e);
                 }
             }
 
@@ -406,10 +407,6 @@ public class InventoryTweaks extends Module {
         return isActive() && mouseDragItemMove.get();
     }
 
-    public boolean armorStorage() {
-        return isActive() && armorStorage.get();
-    }
-
     public boolean canSteal(ScreenHandler handler) {
         try {
             return (stealScreens.get().contains(handler.getType()));
@@ -421,7 +418,7 @@ public class InventoryTweaks extends Module {
     @EventHandler
     private void onInventory(InventoryEvent event) {
         ScreenHandler handler = mc.player.currentScreenHandler;
-        if (canSteal(handler) && event.packet.getSyncId() == handler.syncId) {
+        if (canSteal(handler) && event.packet.syncId() == handler.syncId) {
             if (autoSteal.get()) {
                 steal(handler);
             } else if (autoDump.get()) {

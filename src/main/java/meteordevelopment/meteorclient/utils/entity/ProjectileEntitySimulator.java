@@ -74,7 +74,8 @@ public class ProjectileEntitySimulator {
             case EggItem ignored                -> set(user, 0, 1.5, simulated, 0.03, 0.8, accurate, tickDelta, EntityType.EGG);
             case EnderPearlItem ignored         -> set(user, 0, 1.5, simulated, 0.03, 0.8, accurate, tickDelta, EntityType.ENDER_PEARL);
             case ExperienceBottleItem ignored   -> set(user, -20, 0.7, simulated, 0.07, 0.8, accurate, tickDelta, EntityType.EXPERIENCE_BOTTLE);
-            case ThrowablePotionItem ignored    -> set(user, -20, 0.5, simulated, 0.05, 0.8, accurate, tickDelta, EntityType.POTION);
+            case SplashPotionItem ignored       -> set(user, -20, 0.5, simulated, 0.05, 0.8, accurate, tickDelta, EntityType.SPLASH_POTION);
+            case LingeringPotionItem ignored       -> set(user, -20, 0.5, simulated, 0.05, 0.8, accurate, tickDelta, EntityType.LINGERING_POTION);
             default -> {
                 return false;
             }
@@ -123,7 +124,7 @@ public class ProjectileEntitySimulator {
             velocity.add(vel.x, user.isOnGround() ? 0.0D : vel.y, vel.z);
         }
 
-        this.simulatingEntity = user;
+        this.simulatingEntity = type.create(mc.world, null);
         this.gravity = gravity;
         this.airDrag = 0.99;
         this.waterDrag = waterDrag;
@@ -211,7 +212,7 @@ public class ProjectileEntitySimulator {
         double l = velocity.length();
         velocity.mul(0.6 / l + 0.5, 0.6 / l + 0.5, 0.6 / l + 0.5);
 
-        simulatingEntity = user;
+        simulatingEntity = EntityType.FISHING_BOBBER.create(mc.world, null);
         gravity = 0.03;
         airDrag = 0.92;
         waterDrag = 0;
@@ -264,7 +265,13 @@ public class ProjectileEntitySimulator {
         Box box = new Box(prevPos3d.x - (width / 2f), prevPos3d.y, prevPos3d.z - (width / 2f), prevPos3d.x + (width / 2f), prevPos3d.y + height, prevPos3d.z + (width / 2f))
             .stretch(velocity.x, velocity.y, velocity.z).expand(1.0D);
         HitResult hitResult2 = ProjectileUtil.getEntityCollision(
-            mc.world, simulatingEntity == mc.player ? null : simulatingEntity, prevPos3d, pos3d, box, entity -> !entity.isSpectator() && entity.isAlive() && entity.canHit()
+            mc.world,
+            simulatingEntity,
+            prevPos3d,
+            pos3d,
+            box,
+            entity -> !entity.isSpectator() && entity.isAlive() && entity.canHit(),
+            ProjectileUtil.getToleranceMargin(simulatingEntity)
         );
         if (hitResult2 != null) {
             hitResult = hitResult2;

@@ -42,6 +42,19 @@ public class Settings implements ISerializable<Settings>, Iterable<SettingGroup>
         return null;
     }
 
+    @SuppressWarnings("unchecked")
+    public <T> Setting<T> get(String name, Class<T> tClass) {
+        for (SettingGroup sg : this) {
+            for (Setting<?> setting : sg) {
+                Class<?> sClass = setting.getDefaultValue().getClass();
+                if (name.equalsIgnoreCase(setting.name) && tClass.equals(sClass))
+                    return (Setting<T>) setting;
+            }
+        }
+
+        return null;
+    }
+
     public void reset() {
         for (SettingGroup group : groups) {
             for (Setting<?> setting : group) {
@@ -76,6 +89,7 @@ public class Settings implements ISerializable<Settings>, Iterable<SettingGroup>
         return createGroup(name, true);
     }
 
+    @SuppressWarnings("unchecked")
     public void registerColorSettings(Module module) {
         for (SettingGroup group : this) {
             for (Setting<?> setting : group) {
@@ -91,6 +105,7 @@ public class Settings implements ISerializable<Settings>, Iterable<SettingGroup>
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void unregisterColorSettings() {
         for (SettingGroup group : this) {
             for (Setting<?> setting : group) {
@@ -141,12 +156,12 @@ public class Settings implements ISerializable<Settings>, Iterable<SettingGroup>
     public Settings fromTag(NbtCompound tag) {
         reset();
 
-        NbtList groupsTag = tag.getList("groups", 10);
+        NbtList groupsTag = tag.getListOrEmpty("groups");
 
         for (NbtElement t : groupsTag) {
             NbtCompound groupTag = (NbtCompound) t;
 
-            SettingGroup sg = getGroup(groupTag.getString("name"));
+            SettingGroup sg = getGroup(groupTag.getString("name", ""));
             if (sg != null) sg.fromTag(groupTag);
         }
 

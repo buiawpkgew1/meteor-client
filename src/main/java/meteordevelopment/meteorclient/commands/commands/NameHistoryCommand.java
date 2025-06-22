@@ -19,6 +19,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
+import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,13 +55,11 @@ public class NameHistoryCommand extends Command {
 
                 initial.setStyle(initial.getStyle()
                     .withColor(TextColor.fromRgb(nameColor.getPacked()))
-                    .withClickEvent(new ClickEvent(
-                            ClickEvent.Action.OPEN_URL,
-                            "https://laby.net/@" + name
+                    .withClickEvent(new ClickEvent.OpenUrl(
+                            URI.create("https://laby.net/@" + name)
                         )
                     )
-                    .withHoverEvent(new HoverEvent(
-                        HoverEvent.Action.SHOW_TEXT,
+                    .withHoverEvent(new HoverEvent.ShowText(
                         Text.literal("在 laby.net 上查看")
                             .formatted(Formatting.YELLOW)
                             .formatted(Formatting.ITALIC)
@@ -80,13 +79,13 @@ public class NameHistoryCommand extends Command {
                         DateFormat formatter = new SimpleDateFormat("hh:mm:ss, dd/MM/yyyy");
                         changed.append(Text.literal(formatter.format(entry.changed_at)).formatted(Formatting.WHITE));
 
-                        nameText.setStyle(nameText.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, changed)));
+                        nameText.setStyle(nameText.getStyle().withHoverEvent(new HoverEvent.ShowText(changed)));
                     }
 
                     if (!entry.accurate) {
                         MutableText text = Text.literal("*").formatted(Formatting.WHITE);
 
-                        text.setStyle(text.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("根据 laby.net,该名称历史条目不准确."))));
+                        text.setStyle(text.getStyle().withHoverEvent(new HoverEvent.ShowText(Text.literal("根据 laby.net,该名称历史条目不准确."))));
 
                         nameText.append(text);
                     }

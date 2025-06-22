@@ -28,6 +28,8 @@ import meteordevelopment.meteorclient.utils.render.prompts.OkPrompt;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.nbt.NbtCompound;
 
+import java.util.Optional;
+
 import static meteordevelopment.meteorclient.utils.Utils.getWindowWidth;
 
 public class ModuleScreen extends WindowScreen {
@@ -123,8 +125,11 @@ public class ModuleScreen extends WindowScreen {
                     .show();
             }
         };
+        copy.tooltip = "Copy config";
+
         WButton paste = sharing.add(theme.button(GuiRenderer.PASTE)).widget();
         paste.action = this::fromClipboard;
+        paste.tooltip = "Paste config";
     }
 
     @Override
@@ -154,6 +159,7 @@ public class ModuleScreen extends WindowScreen {
         NbtCompound tag = new NbtCompound();
 
         tag.putString("name", module.name);
+
         NbtCompound settingsTag = module.settings.toTag();
         if (!settingsTag.isEmpty()) tag.put("settings", settingsTag);
 
@@ -163,15 +169,15 @@ public class ModuleScreen extends WindowScreen {
     @Override
     public boolean fromClipboard() {
         NbtCompound tag = NbtUtils.fromClipboard();
-        if (tag == null
-            || !tag.contains("name")
-            || !tag.getString("name").equals(module.name)) return false;
+        if (tag == null) return false;
+        if (!tag.getString("name", "").equals(module.name)) return false;
 
-        module.settings.fromTag(tag.getCompound("settings"));
+        Optional<NbtCompound> settings = tag.getCompound("settings");
 
-        if (parent instanceof WidgetScreen p) {
-            p.reload();
-        }
+        if (settings.isPresent()) module.settings.fromTag(settings.get());
+        else module.settings.reset();
+
+        if (parent instanceof WidgetScreen p) p.reload();
         reload();
 
         return true;
