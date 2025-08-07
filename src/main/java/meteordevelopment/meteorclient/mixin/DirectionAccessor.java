@@ -5,13 +5,14 @@
 
 package meteordevelopment.meteorclient.mixin;
 
-import com.mojang.blaze3d.buffers.GpuBuffer;
-import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.util.math.Direction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(RenderSystem.ShapeIndexBuffer.class)
-public interface ShapeIndexBufferAccessor {
-    @Accessor("indexBuffer")
-    GpuBuffer getBuffer();
+@Mixin(Direction.class)
+public interface DirectionAccessor {
+    @Accessor("HORIZONTAL")
+    static Direction[] meteor$getHorizontal() {
+        throw new AssertionError();
+    }
 }
